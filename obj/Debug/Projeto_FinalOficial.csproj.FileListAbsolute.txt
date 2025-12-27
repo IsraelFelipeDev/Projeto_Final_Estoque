@@ -1,0 +1,94 @@
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\bin\Debug\Projeto_FinalOficial.exe.config
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\bin\Debug\Projeto_FinalOficial.exe
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\bin\Debug\Projeto_FinalOficial.pdb
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\bin\Debug\ReaLTaiizor.dll
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\bin\Debug\ReaLTaiizor.xml
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.csproj.AssemblyReference.cache
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.Properties.Resources.resources
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.csproj.GenerateResource.cache
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.csproj.CoreCompileInputs.cache
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_.694DF7B1.Up2Date
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.exe
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.pdb
+C:\Users\Aluno_Manha\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.Form1.resources
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\Projeto_FinalOficial.exe.config
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\Projeto_FinalOficial.exe
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\Projeto_FinalOficial.pdb
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Design.dll
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Docking.dll
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Navigator.dll
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Ribbon.dll
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\ReaLTaiizor.dll
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\bin\Debug\ReaLTaiizor.xml
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.csproj.AssemblyReference.cache
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.exe.config
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.Form1.resources
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.Properties.Resources.resources
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.csproj.GenerateResource.cache
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.csproj.CoreCompileInputs.cache
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_.694DF7B1.Up2Date
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.exe
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.pdb
+C:\Users\Suporte 003\Desktop\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.Principla.resources
+D:\Atividade\Projeto_FinalOficial\bin\Debug\Projeto_FinalOficial.exe.config
+D:\Atividade\Projeto_FinalOficial\bin\Debug\Projeto_FinalOficial.exe
+D:\Atividade\Projeto_FinalOficial\bin\Debug\Projeto_FinalOficial.pdb
+D:\Atividade\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Design.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Docking.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Navigator.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Ribbon.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\ComponentFactory.Krypton.Workspace.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\FontAwesome.Sharp.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\ReaLTaiizor.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\ReaLTaiizor.xml
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.csproj.AssemblyReference.cache
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.UC_Monitoramento.resources
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.CadastroProdutos.resources
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.Form1.resources
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.Principla.resources
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.Properties.Resources.resources
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.UC_CadastroFornecedores.resources
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.UC_CadastroFuncionario.resources
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.csproj.GenerateResource.cache
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.csproj.CoreCompileInputs.cache
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_.694DF7B1.Up2Date
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.exe
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.pdb
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.exe.config
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.UC_Vendas.resources
+D:\Atividade\Projeto_FinalOficial\bin\Debug\BouncyCastle.Cryptography.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\Google.Protobuf.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\K4os.Compression.LZ4.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\K4os.Compression.LZ4.Streams.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\K4os.Hash.xxHash.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\MySql.Data.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Buffers.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.IO.Pipelines.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Memory.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Numerics.Vectors.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\ZstdSharp.dll
+D:\Atividade\Projeto_FinalOficial\bin\Debug\BouncyCastle.Cryptography.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\Google.Protobuf.pdb
+D:\Atividade\Projeto_FinalOficial\bin\Debug\Google.Protobuf.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\K4os.Compression.LZ4.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\K4os.Compression.LZ4.Streams.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\K4os.Hash.xxHash.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\MySql.Data.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Buffers.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Configuration.ConfigurationManager.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.IO.Pipelines.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Memory.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Numerics.Vectors.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Atividade\Projeto_FinalOficial\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.UC_EstoqueGeral.resources
+D:\Atividade\Projeto_FinalOficial\obj\Debug\Projeto_FinalOficial.UC_Information.resources
