@@ -35,9 +35,9 @@
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.moonLabel2 = new ReaLTaiizor.Controls.MoonLabel();
-            this.kryptonTextBox2 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txt_Senha = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.moonLabel1 = new ReaLTaiizor.Controls.MoonLabel();
-            this.kryptonTextBox1 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txt_Login = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -69,9 +69,9 @@
             this.panel1.Controls.Add(this.kryptonButton2);
             this.panel1.Controls.Add(this.kryptonButton1);
             this.panel1.Controls.Add(this.moonLabel2);
-            this.panel1.Controls.Add(this.kryptonTextBox2);
+            this.panel1.Controls.Add(this.txt_Senha);
             this.panel1.Controls.Add(this.moonLabel1);
-            this.panel1.Controls.Add(this.kryptonTextBox1);
+            this.panel1.Controls.Add(this.txt_Login);
             this.panel1.Controls.Add(this.bigLabel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(381, 0);
@@ -118,16 +118,16 @@
             this.moonLabel2.TabIndex = 4;
             this.moonLabel2.Text = "Senha";
             // 
-            // kryptonTextBox2
+            // txt_Senha
             // 
-            this.kryptonTextBox2.Location = new System.Drawing.Point(47, 268);
-            this.kryptonTextBox2.Name = "kryptonTextBox2";
-            this.kryptonTextBox2.Size = new System.Drawing.Size(152, 27);
-            this.kryptonTextBox2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.txt_Senha.Location = new System.Drawing.Point(47, 268);
+            this.txt_Senha.Name = "txt_Senha";
+            this.txt_Senha.Size = new System.Drawing.Size(152, 27);
+            this.txt_Senha.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox2.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox2.TabIndex = 5;
+            this.txt_Senha.StateCommon.Border.Rounding = 5;
+            this.txt_Senha.TabIndex = 5;
             // 
             // moonLabel1
             // 
@@ -140,16 +140,16 @@
             this.moonLabel1.TabIndex = 1;
             this.moonLabel1.Text = "Login/E-mail";
             // 
-            // kryptonTextBox1
+            // txt_Login
             // 
-            this.kryptonTextBox1.Location = new System.Drawing.Point(47, 210);
-            this.kryptonTextBox1.Name = "kryptonTextBox1";
-            this.kryptonTextBox1.Size = new System.Drawing.Size(152, 27);
-            this.kryptonTextBox1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.txt_Login.Location = new System.Drawing.Point(47, 210);
+            this.txt_Login.Name = "txt_Login";
+            this.txt_Login.Size = new System.Drawing.Size(152, 27);
+            this.txt_Login.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox1.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox1.TabIndex = 3;
+            this.txt_Login.StateCommon.Border.Rounding = 5;
+            this.txt_Login.TabIndex = 3;
             // 
             // bigLabel1
             // 
@@ -191,11 +191,11 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_Login;
         private ReaLTaiizor.Controls.MoonLabel moonLabel1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ReaLTaiizor.Controls.MoonLabel moonLabel2;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_Senha;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
     }
 }
