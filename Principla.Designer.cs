@@ -400,6 +400,7 @@
             this.pn_MenuSup.Size = new System.Drawing.Size(647, 37);
             this.pn_MenuSup.TabIndex = 1;
             this.pn_MenuSup.Tag = "Fixo";
+            this.pn_MenuSup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pn_MenuSup_MouseDown);
             // 
             // btn_Layout
             // 
