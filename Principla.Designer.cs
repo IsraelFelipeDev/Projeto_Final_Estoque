@@ -47,20 +47,25 @@
             this.btn_Monitoramento = new FontAwesome.Sharp.IconButton();
             this.Btn_MenuGerente = new FontAwesome.Sharp.IconButton();
             this.pn_Logo = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pn_MenuSup = new System.Windows.Forms.Panel();
             this.btn_Layout = new FontAwesome.Sharp.IconButton();
             this.icon_mod = new FontAwesome.Sharp.IconButton();
             this.btn_Sair = new FontAwesome.Sharp.IconButton();
             this.pnlConteudo = new System.Windows.Forms.Panel();
+            this.suit = new System.Windows.Forms.Label();
+            this.Crimson = new System.Windows.Forms.Label();
+            this.Logo = new System.Windows.Forms.PictureBox();
             this.cyberProgressBar1 = new ReaLTaiizor.Controls.CyberProgressBar();
             this.timerSidebar = new System.Windows.Forms.Timer(this.components);
-            this.Crimson = new System.Windows.Forms.Label();
-            this.suit = new System.Windows.Forms.Label();
-            this.Logo = new System.Windows.Forms.PictureBox();
             this.pn_Principal.SuspendLayout();
             this.pn_SubMenuEstoque.SuspendLayout();
             this.pn_SubMenuVendedor.SuspendLayout();
             this.pn_SubMenuGerente.SuspendLayout();
+            this.pn_Logo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pn_MenuSup.SuspendLayout();
             this.pnlConteudo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
@@ -91,7 +96,7 @@
             this.pn_SubMenuEstoque.Controls.Add(this.btn_FazerPed);
             this.pn_SubMenuEstoque.Controls.Add(this.btn_EstoqGeral);
             this.pn_SubMenuEstoque.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pn_SubMenuEstoque.Location = new System.Drawing.Point(0, 382);
+            this.pn_SubMenuEstoque.Location = new System.Drawing.Point(0, 319);
             this.pn_SubMenuEstoque.Name = "pn_SubMenuEstoque";
             this.pn_SubMenuEstoque.Size = new System.Drawing.Size(159, 71);
             this.pn_SubMenuEstoque.TabIndex = 7;
@@ -167,7 +172,7 @@
             this.btn_MenuEstoque.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_MenuEstoque.IconSize = 32;
             this.btn_MenuEstoque.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_MenuEstoque.Location = new System.Drawing.Point(0, 344);
+            this.btn_MenuEstoque.Location = new System.Drawing.Point(0, 281);
             this.btn_MenuEstoque.Name = "btn_MenuEstoque";
             this.btn_MenuEstoque.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btn_MenuEstoque.Size = new System.Drawing.Size(159, 38);
@@ -182,7 +187,7 @@
             this.pn_SubMenuVendedor.Controls.Add(this.btn_Desemp);
             this.pn_SubMenuVendedor.Controls.Add(this.btn_Vendedor);
             this.pn_SubMenuVendedor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pn_SubMenuVendedor.Location = new System.Drawing.Point(0, 290);
+            this.pn_SubMenuVendedor.Location = new System.Drawing.Point(0, 227);
             this.pn_SubMenuVendedor.Name = "pn_SubMenuVendedor";
             this.pn_SubMenuVendedor.Size = new System.Drawing.Size(159, 54);
             this.pn_SubMenuVendedor.TabIndex = 5;
@@ -237,7 +242,7 @@
             this.btn_MenuVendas.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_MenuVendas.IconSize = 32;
             this.btn_MenuVendas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_MenuVendas.Location = new System.Drawing.Point(0, 252);
+            this.btn_MenuVendas.Location = new System.Drawing.Point(0, 189);
             this.btn_MenuVendas.Name = "btn_MenuVendas";
             this.btn_MenuVendas.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btn_MenuVendas.Size = new System.Drawing.Size(159, 38);
@@ -255,7 +260,7 @@
             this.pn_SubMenuGerente.Controls.Add(this.btn_CadFun);
             this.pn_SubMenuGerente.Controls.Add(this.btn_Monitoramento);
             this.pn_SubMenuGerente.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pn_SubMenuGerente.Location = new System.Drawing.Point(0, 138);
+            this.pn_SubMenuGerente.Location = new System.Drawing.Point(0, 75);
             this.pn_SubMenuGerente.Name = "pn_SubMenuGerente";
             this.pn_SubMenuGerente.Size = new System.Drawing.Size(159, 114);
             this.pn_SubMenuGerente.TabIndex = 3;
@@ -372,7 +377,7 @@
             this.Btn_MenuGerente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Btn_MenuGerente.IconSize = 32;
             this.Btn_MenuGerente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_MenuGerente.Location = new System.Drawing.Point(0, 100);
+            this.Btn_MenuGerente.Location = new System.Drawing.Point(0, 37);
             this.Btn_MenuGerente.Name = "Btn_MenuGerente";
             this.Btn_MenuGerente.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.Btn_MenuGerente.Size = new System.Drawing.Size(159, 38);
@@ -384,13 +389,56 @@
             // 
             // pn_Logo
             // 
-            this.pn_Logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.pn_Logo.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pn_Logo.Controls.Add(this.label2);
+            this.pn_Logo.Controls.Add(this.label1);
+            this.pn_Logo.Controls.Add(this.pictureBox1);
             this.pn_Logo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pn_Logo.Location = new System.Drawing.Point(0, 0);
             this.pn_Logo.Name = "pn_Logo";
-            this.pn_Logo.Size = new System.Drawing.Size(159, 100);
+            this.pn_Logo.Size = new System.Drawing.Size(159, 37);
             this.pn_Logo.TabIndex = 0;
             this.pn_Logo.Tag = "Fixo";
+            this.pn_Logo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pn_MenuSup_MouseDown);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Font = new System.Drawing.Font("Sylfaen", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(9)))), ((int)(((byte)(9)))));
+            this.label2.Location = new System.Drawing.Point(86, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 14);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "S U I T";
+            this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pn_MenuSup_MouseDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(64, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 16);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Crimson";
+            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pn_MenuSup_MouseDown);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Projeto_FinalOficial.Properties.Resources.Logo;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(58, 31);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pn_MenuSup_MouseDown);
             // 
             // pn_MenuSup
             // 
@@ -466,6 +514,42 @@
             this.pnlConteudo.Size = new System.Drawing.Size(647, 503);
             this.pnlConteudo.TabIndex = 2;
             // 
+            // suit
+            // 
+            this.suit.AutoSize = true;
+            this.suit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.suit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.suit.Font = new System.Drawing.Font("Sylfaen", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.suit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(9)))), ((int)(((byte)(9)))));
+            this.suit.Location = new System.Drawing.Point(387, 207);
+            this.suit.Name = "suit";
+            this.suit.Size = new System.Drawing.Size(134, 48);
+            this.suit.TabIndex = 9;
+            this.suit.Text = "S U I T";
+            // 
+            // Crimson
+            // 
+            this.Crimson.AutoSize = true;
+            this.Crimson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.Crimson.Font = new System.Drawing.Font("Mongolian Baiti", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Crimson.ForeColor = System.Drawing.Color.Black;
+            this.Crimson.Location = new System.Drawing.Point(283, 163);
+            this.Crimson.Name = "Crimson";
+            this.Crimson.Size = new System.Drawing.Size(187, 50);
+            this.Crimson.TabIndex = 8;
+            this.Crimson.Text = "Crimson";
+            // 
+            // Logo
+            // 
+            this.Logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.Logo.Image = global::Projeto_FinalOficial.Properties.Resources.Logo;
+            this.Logo.Location = new System.Drawing.Point(54, 107);
+            this.Logo.Name = "Logo";
+            this.Logo.Size = new System.Drawing.Size(318, 221);
+            this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Logo.TabIndex = 7;
+            this.Logo.TabStop = false;
+            // 
             // cyberProgressBar1
             // 
             this.cyberProgressBar1.Alpha = 50;
@@ -491,7 +575,7 @@
             this.cyberProgressBar1.LinearGradient_Background = false;
             this.cyberProgressBar1.LinearGradient_Value = false;
             this.cyberProgressBar1.LinearGradientPen = false;
-            this.cyberProgressBar1.Location = new System.Drawing.Point(188, 432);
+            this.cyberProgressBar1.Location = new System.Drawing.Point(184, 383);
             this.cyberProgressBar1.Maximum = 100;
             this.cyberProgressBar1.Minimum = 0;
             this.cyberProgressBar1.Name = "cyberProgressBar1";
@@ -513,42 +597,6 @@
             // 
             this.timerSidebar.Tick += new System.EventHandler(this.timerSidebar_Tick);
             // 
-            // Crimson
-            // 
-            this.Crimson.AutoSize = true;
-            this.Crimson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.Crimson.Font = new System.Drawing.Font("Mongolian Baiti", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Crimson.ForeColor = System.Drawing.Color.Black;
-            this.Crimson.Location = new System.Drawing.Point(282, 215);
-            this.Crimson.Name = "Crimson";
-            this.Crimson.Size = new System.Drawing.Size(187, 50);
-            this.Crimson.TabIndex = 8;
-            this.Crimson.Text = "Crimson";
-            // 
-            // suit
-            // 
-            this.suit.AutoSize = true;
-            this.suit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.suit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.suit.Font = new System.Drawing.Font("Sylfaen", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.suit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(9)))), ((int)(((byte)(9)))));
-            this.suit.Location = new System.Drawing.Point(386, 259);
-            this.suit.Name = "suit";
-            this.suit.Size = new System.Drawing.Size(134, 48);
-            this.suit.TabIndex = 9;
-            this.suit.Text = "S U I T";
-            // 
-            // Logo
-            // 
-            this.Logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.Logo.Image = global::Projeto_FinalOficial.Properties.Resources.Logo;
-            this.Logo.Location = new System.Drawing.Point(62, 101);
-            this.Logo.Name = "Logo";
-            this.Logo.Size = new System.Drawing.Size(318, 221);
-            this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Logo.TabIndex = 7;
-            this.Logo.TabStop = false;
-            // 
             // Principla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -566,6 +614,9 @@
             this.pn_SubMenuEstoque.ResumeLayout(false);
             this.pn_SubMenuVendedor.ResumeLayout(false);
             this.pn_SubMenuGerente.ResumeLayout(false);
+            this.pn_Logo.ResumeLayout(false);
+            this.pn_Logo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pn_MenuSup.ResumeLayout(false);
             this.pnlConteudo.ResumeLayout(false);
             this.pnlConteudo.PerformLayout();
@@ -604,5 +655,8 @@
         private System.Windows.Forms.Label Crimson;
         private System.Windows.Forms.Label suit;
         private System.Windows.Forms.PictureBox Logo;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
