@@ -7,6 +7,8 @@ namespace Projeto_FinalOficial
         public Form1()
         {
             InitializeComponent();
+            //this.MaximumSize = new System.Drawing.Size(1024, 768);
+            this.MinimumSize = new System.Drawing.Size(701, 455);
         }
 
         private void kryptonButton1_Click(object sender, System.EventArgs e)
@@ -14,6 +16,11 @@ namespace Projeto_FinalOficial
             Principla acesso = new Principla();
             this.Hide();
             acesso.ShowDialog();
+        }
+
+        private void pictureBox3_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

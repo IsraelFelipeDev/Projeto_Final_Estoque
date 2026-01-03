@@ -450,8 +450,10 @@
             // 
             // pnlConteudo
             // 
+            this.pnlConteudo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(181)))), ((int)(((byte)(181)))));
             this.pnlConteudo.Controls.Add(this.cyberProgressBar1);
             this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlConteudo.ForeColor = System.Drawing.Color.White;
             this.pnlConteudo.Location = new System.Drawing.Point(159, 37);
             this.pnlConteudo.Name = "pnlConteudo";
             this.pnlConteudo.Size = new System.Drawing.Size(647, 503);
@@ -482,7 +484,7 @@
             this.cyberProgressBar1.LinearGradient_Background = false;
             this.cyberProgressBar1.LinearGradient_Value = false;
             this.cyberProgressBar1.LinearGradientPen = false;
-            this.cyberProgressBar1.Location = new System.Drawing.Point(108, 147);
+            this.cyberProgressBar1.Location = new System.Drawing.Point(177, 192);
             this.cyberProgressBar1.Maximum = 100;
             this.cyberProgressBar1.Minimum = 0;
             this.cyberProgressBar1.Name = "cyberProgressBar1";
@@ -515,7 +517,7 @@
             this.Controls.Add(this.pn_Principal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Principla";
-            this.Text = "Principla";
+            this.Text = "cls";
             this.Load += new System.EventHandler(this.Principla_Load_1);
             this.pn_Principal.ResumeLayout(false);
             this.pn_SubMenuEstoque.ResumeLayout(false);

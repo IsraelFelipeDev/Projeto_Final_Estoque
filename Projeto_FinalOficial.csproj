@@ -219,6 +219,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserControls\Gerente\UC_CadastroFornecedores.resx">
       <DependentUpon>UC_CadastroFornecedores.cs</DependentUpon>
@@ -239,6 +240,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagem\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagem\fundo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
