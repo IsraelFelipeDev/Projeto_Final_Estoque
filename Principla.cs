@@ -12,6 +12,9 @@ namespace Projeto_FinalOficial
 {
     public partial class Principla : Form
     {
+        //primeira acesso ao menu principal
+        private bool primeiroAcesso = true;
+
         //Configuracao do mouse, para mover, caso o M1 esteja precionano 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -47,15 +50,21 @@ namespace Projeto_FinalOficial
         }
         private void esconderSubMenu()
         {
+            
+
             if (pn_SubMenuGerente.Visible == true)
                 pn_SubMenuGerente.Visible = false;
             if (pn_SubMenuVendedor.Visible == true)
                 pn_SubMenuVendedor.Visible = false;
             if (pn_SubMenuEstoque.Visible == true)
                 pn_SubMenuEstoque.Visible = false;
+
+
         }
         private void mostrarSubMenu(Panel subMenu)
         {
+           
+
             if (subMenu.Visible == false)
             {
                 esconderSubMenu();
@@ -67,6 +76,13 @@ namespace Projeto_FinalOficial
             }
         }
 
+        private void VisualizarLogo(bool visualizar) 
+        {
+            Logo.Visible = visualizar;
+            Crimson.Visible = visualizar;
+            suit.Visible = visualizar;
+
+        }
 
         private void AbrirUserControl(UserControl uc)
         {
@@ -87,6 +103,13 @@ namespace Projeto_FinalOficial
 
         private void RenderizarControl(UserControl novoControl)
         {
+            //Verificar se é o primeiro acesso
+            if (primeiroAcesso == true)
+            {
+                VisualizarLogo(false);
+                primeiroAcesso = false;
+            }
+
             // Se já houver algo na tela, removemos
             if (controleAtivo != null)
             {
@@ -248,7 +271,6 @@ namespace Projeto_FinalOficial
                 // Exemplo alterando botões específicos (se necessário)
                 //btnVendas.BackColor = Color.FromArgb(60, 60, 60);
                 //btnVendas.ForeColor = Color.White;
-
             }
             else
             {
@@ -335,7 +357,10 @@ namespace Projeto_FinalOficial
 
         private void timerSidebar_Tick(object sender, EventArgs e)
         {
-            bool mouseOver = pn_Principal.ClientRectangle.Contains(pn_Principal.PointToClient(Cursor.Position));
+
+            bool mouseOver =(primeiroAcesso==false)
+                ?pn_Principal.ClientRectangle.Contains(pn_Principal.PointToClient(Cursor.Position))
+                :false;
 
             if (mouseOver)
             {
@@ -399,15 +424,18 @@ namespace Projeto_FinalOficial
 
         private void pn_Principal_MouseLeave(object sender, EventArgs e)
         {
-            timerSidebar.Start();
+            InicicarTimerSideBar();
         }
 
         private void pn_Principal_MouseEnter(object sender, EventArgs e)
         {
-            timerSidebar.Start();
+            InicicarTimerSideBar();
         }
 
-       
+        private void InicicarTimerSideBar() 
+        {
+            if (primeiroAcesso == false) { timerSidebar.Start(); }
+        }
 
         private void Principla_Load_1(object sender, EventArgs e)
         {

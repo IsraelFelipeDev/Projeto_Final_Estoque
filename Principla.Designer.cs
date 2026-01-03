@@ -54,12 +54,16 @@
             this.pnlConteudo = new System.Windows.Forms.Panel();
             this.cyberProgressBar1 = new ReaLTaiizor.Controls.CyberProgressBar();
             this.timerSidebar = new System.Windows.Forms.Timer(this.components);
+            this.Crimson = new System.Windows.Forms.Label();
+            this.suit = new System.Windows.Forms.Label();
+            this.Logo = new System.Windows.Forms.PictureBox();
             this.pn_Principal.SuspendLayout();
             this.pn_SubMenuEstoque.SuspendLayout();
             this.pn_SubMenuVendedor.SuspendLayout();
             this.pn_SubMenuGerente.SuspendLayout();
             this.pn_MenuSup.SuspendLayout();
             this.pnlConteudo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             this.SuspendLayout();
             // 
             // pn_Principal
@@ -450,7 +454,10 @@
             // 
             // pnlConteudo
             // 
-            this.pnlConteudo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(181)))), ((int)(((byte)(181)))));
+            this.pnlConteudo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.pnlConteudo.Controls.Add(this.suit);
+            this.pnlConteudo.Controls.Add(this.Crimson);
+            this.pnlConteudo.Controls.Add(this.Logo);
             this.pnlConteudo.Controls.Add(this.cyberProgressBar1);
             this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlConteudo.ForeColor = System.Drawing.Color.White;
@@ -484,7 +491,7 @@
             this.cyberProgressBar1.LinearGradient_Background = false;
             this.cyberProgressBar1.LinearGradient_Value = false;
             this.cyberProgressBar1.LinearGradientPen = false;
-            this.cyberProgressBar1.Location = new System.Drawing.Point(177, 192);
+            this.cyberProgressBar1.Location = new System.Drawing.Point(188, 432);
             this.cyberProgressBar1.Maximum = 100;
             this.cyberProgressBar1.Minimum = 0;
             this.cyberProgressBar1.Name = "cyberProgressBar1";
@@ -506,6 +513,42 @@
             // 
             this.timerSidebar.Tick += new System.EventHandler(this.timerSidebar_Tick);
             // 
+            // Crimson
+            // 
+            this.Crimson.AutoSize = true;
+            this.Crimson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.Crimson.Font = new System.Drawing.Font("Mongolian Baiti", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Crimson.ForeColor = System.Drawing.Color.Black;
+            this.Crimson.Location = new System.Drawing.Point(282, 215);
+            this.Crimson.Name = "Crimson";
+            this.Crimson.Size = new System.Drawing.Size(187, 50);
+            this.Crimson.TabIndex = 8;
+            this.Crimson.Text = "Crimson";
+            // 
+            // suit
+            // 
+            this.suit.AutoSize = true;
+            this.suit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.suit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.suit.Font = new System.Drawing.Font("Sylfaen", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.suit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(9)))), ((int)(((byte)(9)))));
+            this.suit.Location = new System.Drawing.Point(386, 259);
+            this.suit.Name = "suit";
+            this.suit.Size = new System.Drawing.Size(134, 48);
+            this.suit.TabIndex = 9;
+            this.suit.Text = "S U I T";
+            // 
+            // Logo
+            // 
+            this.Logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.Logo.Image = global::Projeto_FinalOficial.Properties.Resources.Logo;
+            this.Logo.Location = new System.Drawing.Point(62, 101);
+            this.Logo.Name = "Logo";
+            this.Logo.Size = new System.Drawing.Size(318, 221);
+            this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Logo.TabIndex = 7;
+            this.Logo.TabStop = false;
+            // 
             // Principla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -525,6 +568,8 @@
             this.pn_SubMenuGerente.ResumeLayout(false);
             this.pn_MenuSup.ResumeLayout(false);
             this.pnlConteudo.ResumeLayout(false);
+            this.pnlConteudo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -556,5 +601,8 @@
         private ReaLTaiizor.Controls.CyberProgressBar cyberProgressBar1;
         private FontAwesome.Sharp.IconButton btn_Layout;
         private System.Windows.Forms.Timer timerSidebar;
+        private System.Windows.Forms.Label Crimson;
+        private System.Windows.Forms.Label suit;
+        private System.Windows.Forms.PictureBox Logo;
     }
 }
