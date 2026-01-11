@@ -11,14 +11,33 @@ using System.Windows.Forms;
 namespace Projeto_FinalOficial
 {
     public partial class Principla : Form
+
     {
+       
+
         private bool modoEscuroAtivo = false;
+        private readonly UserLogger _logger = new UserLogger();
+
+      
+
         public Principla()
         {
             InitializeComponent();
             customizando();
             cyberProgressBar1.Visible = false;
+            ocultarTelasGerente();
+
         }
+        private void ocultarTelasGerente()
+        {
+            if(Sessao.Sessão.Cargo != "Gerente")
+            {
+                Btn_MenuGerente.Visible = false;
+                btn_SubMenuFinanceiro.Visible = false;
+                subMenuFinanceiro.Visible = false;
+            }
+        }
+
 
         private void customizando()
         {
@@ -49,18 +68,7 @@ namespace Projeto_FinalOficial
         }
 
 
-        private void AbrirUserControl(UserControl uc)
-        {
-            // Limpa o painel antes de adicionar um novo controle
-            if (pnlConteudo.Controls.Count > 0)
-                pnlConteudo.Controls.Clear();
-
-            // Ajusta o controle para preencher todo o painel
-            uc.Dock = DockStyle.Fill;
-
-            // Adiciona o controle ao painel
-            pnlConteudo.Controls.Add(uc);
-        }
+        
 
 
         // Variável global para armazenar o controle atual
@@ -82,9 +90,9 @@ namespace Projeto_FinalOficial
             // Adiciona ao painel branco
             pnlConteudo.Controls.Add(novoControl);
         }
-        
 
-        
+
+
 
         private void icon_mod_Click(object sender, EventArgs e)
         {
@@ -107,14 +115,14 @@ namespace Projeto_FinalOficial
         }
 
 
-
+        //******************** Gerente*********************//
         private void Btn_MenuGerente_Click(object sender, EventArgs e)
         {
-          
+
 
 
             mostrarSubMenu(pn_SubMenuGerente);
-                     
+
         }
         private void btn_CadFun_Click(object sender, EventArgs e)
         {
@@ -127,27 +135,42 @@ namespace Projeto_FinalOficial
             }
             esconderSubMenu();
             cyberProgressBar1.Visible = false;
-            RenderizarControl(new UC_CadastroFuncionario());
 
+            _logger.LogClick(sender, this);// Loga o clique no botão de cadastro de funcionário
+
+            RenderizarControl(new UC_CadastroFuncionario());
 
         }
         private void btn_CadProd_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
+
+            _logger.LogClick(sender, this);
+
             RenderizarControl(new CadastroProdutos());
         }
 
         private void btn_Monitoramento_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
+
+            _logger.LogClick(sender, this);
+
             RenderizarControl(new UC_Monitoramento());
         }
 
         private void btn_CadForn_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
+
+            _logger.LogClick(sender, this);
+
             RenderizarControl(new UC_CadastroFornecedores());
         }
+        //____________________________________________________
+
+
+
 
         private void btn_MenuVendas_Click(object sender, EventArgs e)
         {
@@ -156,49 +179,69 @@ namespace Projeto_FinalOficial
 
         private void btn_Vendedor_Click(object sender, EventArgs e)
         {
-            esconderSubMenu();
-            RenderizarControl(new UC_Vendas());
+            esconderSubMenu(); // Esconde o menu primeiro
+            _logger.LogClick(sender, this);
+
+            // Verifica o cargo
+            if (Sessao.Sessão.Cargo == "Gerente")
+            {
+                // Se é gerente, abre direto
+                AbrirTelaVendas();
+            }
+            else
+            {
+                // Se não é gerente, pede senha. 
+                // A tela de vendas só abrirá se a senha estiver correta (dentro do método SolicitarAutorizacaoGerente)
+                SolicitarAutorizacaoGerente(AbrirTelaVendas);
+            }
         }
 
         private void btn_Desemp_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
-           // RenderizarControl(new UC_Vendas());
+            _logger.LogClick(sender, this);
+            // RenderizarControl(new UC_Vendas());
         }
+
 
         private void btn_MenuEstoque_Click(object sender, EventArgs e)
         {
             mostrarSubMenu(pn_SubMenuEstoque);
         }
 
+
+
         private void btn_EstoqGeral_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
+            _logger.LogClick(sender, this);
             // RenderizarControl(new UC_EstoqueGeral());
         }
 
         private void btn_FazerPed_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
+            _logger.LogClick(sender, this);
             // RenderizarControl(new UC_FazerPedido());
         }
 
         private void btn_LançarNota_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
+            _logger.LogClick(sender, this);
             // RenderizarControl(new UC_LancarNota());
         }
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
-          
+
             modoEscuroAtivo = !modoEscuroAtivo;
 
             // 1. Muda as cores do Próprio Form Principal
             if (modoEscuroAtivo)
             {
                 this.BackColor = Color.FromArgb(30, 30, 30);
-                this.ForeColor = Color.FromArgb(189, 9,9);
+                this.ForeColor = Color.FromArgb(189, 9, 9);
             }
             else
             {
@@ -209,7 +252,7 @@ namespace Projeto_FinalOficial
             // 2. Chama a mágica para atualizar todos os UserControls e Labels internos
             AtualizarCoresRecursivo(this, modoEscuroAtivo);
         }
-        
+
         private void AplicarTema()
         {
             if (modoEscuroAtivo)
@@ -255,7 +298,7 @@ namespace Projeto_FinalOficial
 
         private void AtualizarCoresRecursivo(Control container, bool escuro)
         {
-            
+
             Color corFundo = escuro ? Color.FromArgb(30, 30, 30) : Color.White;
             Color corTexto = escuro ? Color.White : Color.Black; // inicia com a cor padrão do texto quando e pressionado o botão a cor do texto muda para branco
             Font fontTexto = escuro ? new Font("Segoe UI", 8, FontStyle.Bold) : new Font("Segoe UI", 8, FontStyle.Regular);
@@ -276,8 +319,8 @@ namespace Projeto_FinalOficial
                 if (c is Label) // Pega todas as Labels e muda a cor do texto
                 {
                     c.Font = fontTexto;
-                    
-                   
+
+
                     c.ForeColor = corTexto;
                 }
                 else if (c is UserControl || c is Panel)
@@ -299,7 +342,9 @@ namespace Projeto_FinalOficial
         private void btn_Sair_Click(object sender, EventArgs e)
         {
             // sair
+
             Application.Exit();
+            _logger.LogClose(this);
         }
 
 
@@ -388,10 +433,11 @@ namespace Projeto_FinalOficial
             timerSidebar.Start();
         }
 
-       
+
 
         private void Principla_Load_1(object sender, EventArgs e)
         {
+            _logger.LogOpen(this);
             // Salva o texto atual na propriedade Tag para usar depois
             Btn_MenuGerente.Tag = Btn_MenuGerente.Text;
             btn_MenuVendas.Tag = btn_MenuVendas.Text;
@@ -403,5 +449,84 @@ namespace Projeto_FinalOficial
             // ...
 
         }
+
+        private void btn_SubMenuFinanceiro_Click(object sender, EventArgs e)
+        {
+            esconderSubMenu();
+            // RenderizarControl(new UC_Financeiro());
+
+        }
+
+
+
+
+        // Variável para controlar o painel de fundo (para podermos removê-lo depois)
+        private Panel _painelOverlay;
+
+        private void SolicitarAutorizacaoGerente(Action acaoSeAutorizado)
+        {
+            // Cria uma janela padrão do Windows via código
+            using (Form formPopup = new Form())
+            {
+                // --- Configuração da Janela "Normal" ---
+                formPopup.Text = "Autorização de Gerente"; // Título da janela
+                formPopup.StartPosition = FormStartPosition.CenterParent; // Aparece no meio da tela principal
+                formPopup.Size = new Size(424, 249); // Tamanho da janela
+                formPopup.FormBorderStyle = FormBorderStyle.None; // Janela com borda fina e botão de fechar
+                formPopup.ShowInTaskbar = false;
+
+                // Instancia o seu UserControl de Senha
+                UC_ValidacaoGerente ucValidacao = new UC_ValidacaoGerente(
+                    // Ação se a senha estiver CORRETA
+                    acaoAposLiberacao: () =>
+                    {
+                        formPopup.DialogResult = DialogResult.OK; // Sinaliza sucesso
+                        formPopup.Close(); // Fecha a janelinha
+                    },
+                    // Ação se Clicar em CANCELAR
+                    acaoCancelar: () =>
+                    {
+                        formPopup.DialogResult = DialogResult.Cancel; // Sinaliza cancelamento
+                        formPopup.Close(); // Fecha a janelinha
+                    }
+                );
+
+                // Coloca o UC dentro da janela
+                ucValidacao.Dock = DockStyle.Fill;
+                formPopup.Controls.Add(ucValidacao);
+
+                // Exibe a janela e trava o código aqui até ela ser fechada
+                DialogResult resultado = formPopup.ShowDialog(this);
+
+                // Se o resultado foi OK (senha certa), executa o que você queria (ex: abrir vendas)
+                if (resultado == DialogResult.OK)
+                {
+                    acaoSeAutorizado();
+                }
+            }
+        }
+
+        private void FecharOverlay()
+        {
+            if (_painelOverlay != null)
+            {
+                this.Controls.Remove(_painelOverlay);
+                _painelOverlay.Dispose();
+                _painelOverlay = null;
+            }
+        }
+        // Métodos auxiliares para abrir as telas
+        private void AbrirTelaVendas()
+        {
+            // Confirme se o nome do seu controle é UC_AberturaCaixa
+            RenderizarControl(new UC_AberturaCaixa());
+        }
+
+        private void AbrirTelaEstoque()
+        {
+            // Confirme se o nome do seu controle é UC_EstoqueGeral
+            RenderizarControl(new UC_EstoqueGeral());
+        }
+
     }
 }

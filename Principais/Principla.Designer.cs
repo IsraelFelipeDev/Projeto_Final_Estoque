@@ -30,6 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pn_Principal = new System.Windows.Forms.Panel();
+            this.subMenuFinanceiro = new System.Windows.Forms.Panel();
+            this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.iconButton3 = new FontAwesome.Sharp.IconButton();
+            this.iconButton4 = new FontAwesome.Sharp.IconButton();
+            this.btn_SubMenuFinanceiro = new FontAwesome.Sharp.IconButton();
             this.pn_SubMenuEstoque = new System.Windows.Forms.Panel();
             this.btn_LançarNota = new FontAwesome.Sharp.IconButton();
             this.btn_FazerPed = new FontAwesome.Sharp.IconButton();
@@ -54,25 +59,20 @@
             this.pnlConteudo = new System.Windows.Forms.Panel();
             this.cyberProgressBar1 = new ReaLTaiizor.Controls.CyberProgressBar();
             this.timerSidebar = new System.Windows.Forms.Timer(this.components);
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
-            this.iconButton4 = new FontAwesome.Sharp.IconButton();
             this.pn_Principal.SuspendLayout();
+            this.subMenuFinanceiro.SuspendLayout();
             this.pn_SubMenuEstoque.SuspendLayout();
             this.pn_SubMenuVendedor.SuspendLayout();
             this.pn_SubMenuGerente.SuspendLayout();
             this.pn_MenuSup.SuspendLayout();
             this.pnlConteudo.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pn_Principal
             // 
             this.pn_Principal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(9)))), ((int)(((byte)(9)))));
-            this.pn_Principal.Controls.Add(this.panel1);
-            this.pn_Principal.Controls.Add(this.iconButton1);
+            this.pn_Principal.Controls.Add(this.subMenuFinanceiro);
+            this.pn_Principal.Controls.Add(this.btn_SubMenuFinanceiro);
             this.pn_Principal.Controls.Add(this.pn_SubMenuEstoque);
             this.pn_Principal.Controls.Add(this.btn_MenuEstoque);
             this.pn_Principal.Controls.Add(this.pn_SubMenuVendedor);
@@ -83,11 +83,100 @@
             this.pn_Principal.Dock = System.Windows.Forms.DockStyle.Left;
             this.pn_Principal.Location = new System.Drawing.Point(0, 0);
             this.pn_Principal.Name = "pn_Principal";
-            this.pn_Principal.Size = new System.Drawing.Size(159, 696);
+            this.pn_Principal.Size = new System.Drawing.Size(159, 640);
             this.pn_Principal.TabIndex = 0;
             this.pn_Principal.Tag = "Fixo";
             this.pn_Principal.MouseEnter += new System.EventHandler(this.pn_Principal_MouseEnter);
             this.pn_Principal.MouseLeave += new System.EventHandler(this.pn_Principal_MouseLeave);
+            // 
+            // subMenuFinanceiro
+            // 
+            this.subMenuFinanceiro.Controls.Add(this.iconButton2);
+            this.subMenuFinanceiro.Controls.Add(this.iconButton3);
+            this.subMenuFinanceiro.Controls.Add(this.iconButton4);
+            this.subMenuFinanceiro.Dock = System.Windows.Forms.DockStyle.Top;
+            this.subMenuFinanceiro.Location = new System.Drawing.Point(0, 491);
+            this.subMenuFinanceiro.Name = "subMenuFinanceiro";
+            this.subMenuFinanceiro.Size = new System.Drawing.Size(159, 71);
+            this.subMenuFinanceiro.TabIndex = 9;
+            // 
+            // iconButton2
+            // 
+            this.iconButton2.BackColor = System.Drawing.Color.Gray;
+            this.iconButton2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iconButton2.FlatAppearance.BorderSize = 0;
+            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Shopify;
+            this.iconButton2.IconColor = System.Drawing.Color.Black;
+            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton2.IconSize = 28;
+            this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton2.Location = new System.Drawing.Point(0, 46);
+            this.iconButton2.Name = "iconButton2";
+            this.iconButton2.Size = new System.Drawing.Size(159, 23);
+            this.iconButton2.TabIndex = 6;
+            this.iconButton2.Text = "Lucro";
+            this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton2.UseVisualStyleBackColor = false;
+            // 
+            // iconButton3
+            // 
+            this.iconButton3.BackColor = System.Drawing.Color.Gray;
+            this.iconButton3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iconButton3.FlatAppearance.BorderSize = 0;
+            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.UserTag;
+            this.iconButton3.IconColor = System.Drawing.Color.Black;
+            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton3.IconSize = 28;
+            this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton3.Location = new System.Drawing.Point(0, 23);
+            this.iconButton3.Name = "iconButton3";
+            this.iconButton3.Size = new System.Drawing.Size(159, 23);
+            this.iconButton3.TabIndex = 5;
+            this.iconButton3.Text = "Contas ";
+            this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton3.UseVisualStyleBackColor = false;
+            // 
+            // iconButton4
+            // 
+            this.iconButton4.BackColor = System.Drawing.Color.Gray;
+            this.iconButton4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iconButton4.FlatAppearance.BorderSize = 0;
+            this.iconButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton4.ForeColor = System.Drawing.Color.Black;
+            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.VideoCamera;
+            this.iconButton4.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton4.IconSize = 28;
+            this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton4.Location = new System.Drawing.Point(0, 0);
+            this.iconButton4.Name = "iconButton4";
+            this.iconButton4.Size = new System.Drawing.Size(159, 23);
+            this.iconButton4.TabIndex = 4;
+            this.iconButton4.Text = "Salario";
+            this.iconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton4.UseVisualStyleBackColor = false;
+            // 
+            // btn_SubMenuFinanceiro
+            // 
+            this.btn_SubMenuFinanceiro.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_SubMenuFinanceiro.IconChar = FontAwesome.Sharp.IconChar.UserTie;
+            this.btn_SubMenuFinanceiro.IconColor = System.Drawing.Color.Black;
+            this.btn_SubMenuFinanceiro.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_SubMenuFinanceiro.IconSize = 32;
+            this.btn_SubMenuFinanceiro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_SubMenuFinanceiro.Location = new System.Drawing.Point(0, 453);
+            this.btn_SubMenuFinanceiro.Name = "btn_SubMenuFinanceiro";
+            this.btn_SubMenuFinanceiro.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btn_SubMenuFinanceiro.Size = new System.Drawing.Size(159, 38);
+            this.btn_SubMenuFinanceiro.TabIndex = 8;
+            this.btn_SubMenuFinanceiro.Text = "Financeiro";
+            this.btn_SubMenuFinanceiro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_SubMenuFinanceiro.UseVisualStyleBackColor = true;
+            this.btn_SubMenuFinanceiro.Click += new System.EventHandler(this.btn_SubMenuFinanceiro_Click);
             // 
             // pn_SubMenuEstoque
             // 
@@ -210,7 +299,6 @@
             this.btn_Desemp.Text = "Meu Desempenho";
             this.btn_Desemp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Desemp.UseVisualStyleBackColor = false;
-            this.btn_Desemp.Click += new System.EventHandler(this.btn_Desemp_Click);
             // 
             // btn_Vendedor
             // 
@@ -405,7 +493,7 @@
             this.pn_MenuSup.Dock = System.Windows.Forms.DockStyle.Top;
             this.pn_MenuSup.Location = new System.Drawing.Point(159, 0);
             this.pn_MenuSup.Name = "pn_MenuSup";
-            this.pn_MenuSup.Size = new System.Drawing.Size(647, 37);
+            this.pn_MenuSup.Size = new System.Drawing.Size(624, 37);
             this.pn_MenuSup.TabIndex = 1;
             this.pn_MenuSup.Tag = "Fixo";
             // 
@@ -416,7 +504,7 @@
             this.btn_Layout.IconColor = System.Drawing.Color.Black;
             this.btn_Layout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Layout.IconSize = 30;
-            this.btn_Layout.Location = new System.Drawing.Point(556, 0);
+            this.btn_Layout.Location = new System.Drawing.Point(533, 0);
             this.btn_Layout.Name = "btn_Layout";
             this.btn_Layout.Size = new System.Drawing.Size(29, 37);
             this.btn_Layout.TabIndex = 5;
@@ -432,7 +520,7 @@
             this.icon_mod.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.icon_mod.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icon_mod.IconSize = 25;
-            this.icon_mod.Location = new System.Drawing.Point(585, 0);
+            this.icon_mod.Location = new System.Drawing.Point(562, 0);
             this.icon_mod.Name = "icon_mod";
             this.icon_mod.Size = new System.Drawing.Size(31, 37);
             this.icon_mod.TabIndex = 4;
@@ -448,7 +536,7 @@
             this.btn_Sair.IconColor = System.Drawing.Color.Red;
             this.btn_Sair.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Sair.IconSize = 30;
-            this.btn_Sair.Location = new System.Drawing.Point(616, 0);
+            this.btn_Sair.Location = new System.Drawing.Point(593, 0);
             this.btn_Sair.Name = "btn_Sair";
             this.btn_Sair.Size = new System.Drawing.Size(31, 37);
             this.btn_Sair.TabIndex = 2;
@@ -461,7 +549,7 @@
             this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlConteudo.Location = new System.Drawing.Point(159, 37);
             this.pnlConteudo.Name = "pnlConteudo";
-            this.pnlConteudo.Size = new System.Drawing.Size(647, 659);
+            this.pnlConteudo.Size = new System.Drawing.Size(624, 603);
             this.pnlConteudo.TabIndex = 2;
             // 
             // cyberProgressBar1
@@ -511,114 +599,28 @@
             // 
             this.timerSidebar.Tick += new System.EventHandler(this.timerSidebar_Tick);
             // 
-            // iconButton1
-            // 
-            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.UserTie;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 32;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(0, 453);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.iconButton1.Size = new System.Drawing.Size(159, 38);
-            this.iconButton1.TabIndex = 8;
-            this.iconButton1.Text = "Financeiro";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.iconButton2);
-            this.panel1.Controls.Add(this.iconButton3);
-            this.panel1.Controls.Add(this.iconButton4);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 491);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(159, 71);
-            this.panel1.TabIndex = 9;
-            // 
-            // iconButton2
-            // 
-            this.iconButton2.BackColor = System.Drawing.Color.Gray;
-            this.iconButton2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton2.FlatAppearance.BorderSize = 0;
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Shopify;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 28;
-            this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(0, 46);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(159, 23);
-            this.iconButton2.TabIndex = 6;
-            this.iconButton2.Text = "Lucro";
-            this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton2.UseVisualStyleBackColor = false;
-            // 
-            // iconButton3
-            // 
-            this.iconButton3.BackColor = System.Drawing.Color.Gray;
-            this.iconButton3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton3.FlatAppearance.BorderSize = 0;
-            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.UserTag;
-            this.iconButton3.IconColor = System.Drawing.Color.Black;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.IconSize = 28;
-            this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(0, 23);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(159, 23);
-            this.iconButton3.TabIndex = 5;
-            this.iconButton3.Text = "Contas ";
-            this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton3.UseVisualStyleBackColor = false;
-            // 
-            // iconButton4
-            // 
-            this.iconButton4.BackColor = System.Drawing.Color.Gray;
-            this.iconButton4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton4.FlatAppearance.BorderSize = 0;
-            this.iconButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton4.ForeColor = System.Drawing.Color.Black;
-            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.VideoCamera;
-            this.iconButton4.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton4.IconSize = 28;
-            this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton4.Location = new System.Drawing.Point(0, 0);
-            this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Size = new System.Drawing.Size(159, 23);
-            this.iconButton4.TabIndex = 4;
-            this.iconButton4.Text = "Salario";
-            this.iconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton4.UseVisualStyleBackColor = false;
-            // 
             // Principla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(806, 696);
+            this.ClientSize = new System.Drawing.Size(783, 640);
             this.Controls.Add(this.pnlConteudo);
             this.Controls.Add(this.pn_MenuSup);
             this.Controls.Add(this.pn_Principal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimumSize = new System.Drawing.Size(766, 590);
             this.Name = "Principla";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Principla";
             this.Load += new System.EventHandler(this.Principla_Load_1);
             this.pn_Principal.ResumeLayout(false);
+            this.subMenuFinanceiro.ResumeLayout(false);
             this.pn_SubMenuEstoque.ResumeLayout(false);
             this.pn_SubMenuVendedor.ResumeLayout(false);
             this.pn_SubMenuGerente.ResumeLayout(false);
             this.pn_MenuSup.ResumeLayout(false);
             this.pnlConteudo.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -650,10 +652,10 @@
         private ReaLTaiizor.Controls.CyberProgressBar cyberProgressBar1;
         private FontAwesome.Sharp.IconButton btn_Layout;
         private System.Windows.Forms.Timer timerSidebar;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel subMenuFinanceiro;
         private FontAwesome.Sharp.IconButton iconButton2;
         private FontAwesome.Sharp.IconButton iconButton3;
         private FontAwesome.Sharp.IconButton iconButton4;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btn_SubMenuFinanceiro;
     }
 }

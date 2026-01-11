@@ -12,9 +12,10 @@ namespace Projeto_FinalOficial
         static private string servidor = "localhost";
         static private string banco = "Projeto_Final";
         static private string usuario = "root";
-        static private string PWD = "Sen@i13042501";
+        //static private string PWD = "Sen@i13042501";
+        static private string PWD = "13042501@If";
 
         // ALTERAÇÃO AQUI: Adicionados "SslMode=None" e "AllowPublicKeyRetrieval=True"
-        static public string ConexãoServidor = $"Server={servidor};Database={banco};User id={usuario};Port=3307;PWD={PWD};";
+        static public string ConexãoServidor = $"Server={servidor};Database={banco};User id={usuario};PWD={PWD};";
     }
 }

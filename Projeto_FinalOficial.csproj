@@ -127,6 +127,8 @@
   <ItemGroup>
     <Compile Include="OutrasFunções\Auditoria.cs" />
     <Compile Include="OutrasFunções\Conexao.cs" />
+    <Compile Include="Produtos.cs" />
+    <Compile Include="OutrasFunções\UserLogger.cs" />
     <Compile Include="Users\EstoquistaUser.cs" />
     <Compile Include="Users\GerenteUser.cs" />
     <Compile Include="Users\Service.cs" />
@@ -206,7 +208,7 @@
       <DependentUpon>UC_CadastroFuncionario.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\Usuario.cs" />
-    <Compile Include="VendedorUser.cs" />
+    <Compile Include="Users\VendedorUser.cs" />
     <EmbeddedResource Include="UserControls\Vendedor_UC\UC_AberturaCaixa.resx">
       <DependentUpon>UC_AberturaCaixa.cs</DependentUpon>
     </EmbeddedResource>
@@ -263,6 +265,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Principais\fundo.jpg" />
+    <Content Include="Principais\Logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

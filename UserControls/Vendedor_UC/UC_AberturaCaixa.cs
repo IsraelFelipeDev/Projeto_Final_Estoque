@@ -16,5 +16,11 @@ namespace Projeto_FinalOficial
         {
             InitializeComponent();
         }
+
+        private void btn_Abrir_Click(object sender, EventArgs e)
+        {
+            UC_Vendas vendas = new UC_Vendas();
+            vendas.Show();
+        }
     }
 }

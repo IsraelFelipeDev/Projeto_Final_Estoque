@@ -25,8 +25,14 @@ namespace Projeto_FinalOficial
                 MessageBox.Show("Preencha todos os campos. ");
                 return;
             }
-            if(txt_Login.Text == usuarioAdm && txt_Senha.Text == senhaAdm)
+            if (txt_Login.Text == usuarioAdm && txt_Senha.Text == senhaAdm)
             {
+                // ADICIONE ESTAS LINHAS:
+                Sessão.Nome = "Administrador";
+                Sessão.Cargo = "Gerente"; // Define o cargo mestre
+                Sessão.Id = 0;
+                // ----------------------
+
                 MessageBox.Show("Login realizado com sucesso! ");
                 Principla formMenu = new Principla();
                 formMenu.ShowDialog();
@@ -72,9 +78,19 @@ namespace Projeto_FinalOficial
 
         }
 
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
 
         //Principla acesso = new Principla();
-         //   this.Hide();
+        //   this.Hide();
         //acesso.ShowDialog();
 
     }

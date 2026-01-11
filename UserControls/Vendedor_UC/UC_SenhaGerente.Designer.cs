@@ -1,6 +1,6 @@
 ﻿namespace Projeto_FinalOficial
 {
-    partial class UC_SenhaGerente
+    partial class UC_ValidacaoGerente
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -35,10 +35,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.kryptonTextBox1 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.kryptonTextBox2 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.txtUserGerente = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txtSenhaGerente = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.btnCancelar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnAutorizar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.SuspendLayout();
             // 
             // panel1
@@ -107,62 +107,64 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Liberação de Usuario ";
             // 
-            // kryptonTextBox1
+            // txtUserGerente
             // 
-            this.kryptonTextBox1.Location = new System.Drawing.Point(150, 80);
-            this.kryptonTextBox1.Name = "kryptonTextBox1";
-            this.kryptonTextBox1.Size = new System.Drawing.Size(129, 27);
-            this.kryptonTextBox1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.txtUserGerente.Location = new System.Drawing.Point(150, 80);
+            this.txtUserGerente.Name = "txtUserGerente";
+            this.txtUserGerente.Size = new System.Drawing.Size(129, 27);
+            this.txtUserGerente.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox1.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox1.TabIndex = 7;
+            this.txtUserGerente.StateCommon.Border.Rounding = 5;
+            this.txtUserGerente.TabIndex = 7;
             // 
-            // kryptonTextBox2
+            // txtSenhaGerente
             // 
-            this.kryptonTextBox2.Location = new System.Drawing.Point(150, 118);
-            this.kryptonTextBox2.Name = "kryptonTextBox2";
-            this.kryptonTextBox2.Size = new System.Drawing.Size(129, 27);
-            this.kryptonTextBox2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.txtSenhaGerente.Location = new System.Drawing.Point(150, 118);
+            this.txtSenhaGerente.Name = "txtSenhaGerente";
+            this.txtSenhaGerente.Size = new System.Drawing.Size(129, 27);
+            this.txtSenhaGerente.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox2.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox2.TabIndex = 8;
+            this.txtSenhaGerente.StateCommon.Border.Rounding = 5;
+            this.txtSenhaGerente.TabIndex = 8;
             // 
-            // kryptonButton1
+            // btnCancelar
             // 
-            this.kryptonButton1.AutoSize = true;
-            this.kryptonButton1.Location = new System.Drawing.Point(80, 198);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(100, 30);
-            this.kryptonButton1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnCancelar.AutoSize = true;
+            this.btnCancelar.Location = new System.Drawing.Point(80, 198);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 30);
+            this.btnCancelar.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateCommon.Border.Rounding = 5;
-            this.kryptonButton1.TabIndex = 9;
-            this.kryptonButton1.Values.Text = "Cancelar";
+            this.btnCancelar.StateCommon.Border.Rounding = 5;
+            this.btnCancelar.TabIndex = 9;
+            this.btnCancelar.Values.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
             // 
-            // kryptonButton2
+            // btnAutorizar
             // 
-            this.kryptonButton2.AutoSize = true;
-            this.kryptonButton2.Location = new System.Drawing.Point(228, 198);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Size = new System.Drawing.Size(100, 30);
-            this.kryptonButton2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnAutorizar.AutoSize = true;
+            this.btnAutorizar.Location = new System.Drawing.Point(228, 198);
+            this.btnAutorizar.Name = "btnAutorizar";
+            this.btnAutorizar.Size = new System.Drawing.Size(100, 30);
+            this.btnAutorizar.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton2.StateCommon.Border.Rounding = 5;
-            this.kryptonButton2.TabIndex = 10;
-            this.kryptonButton2.Values.Text = "Confirmar";
+            this.btnAutorizar.StateCommon.Border.Rounding = 5;
+            this.btnAutorizar.TabIndex = 10;
+            this.btnAutorizar.Values.Text = "Confirmar";
+            this.btnAutorizar.Click += new System.EventHandler(this.btnAutorizar_Click_1);
             // 
-            // UC_SenhaGerente
+            // UC_ValidacaoGerente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.kryptonButton1);
-            this.Controls.Add(this.kryptonTextBox2);
-            this.Controls.Add(this.kryptonTextBox1);
+            this.Controls.Add(this.btnAutorizar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.txtSenhaGerente);
+            this.Controls.Add(this.txtUserGerente);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -170,7 +172,7 @@
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
-            this.Name = "UC_SenhaGerente";
+            this.Name = "UC_ValidacaoGerente";
             this.Size = new System.Drawing.Size(424, 249);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -186,9 +188,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtUserGerente;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtSenhaGerente;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancelar;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAutorizar;
     }
 }
