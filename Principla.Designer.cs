@@ -181,6 +181,8 @@
             this.btn_MenuEstoque.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_MenuEstoque.UseVisualStyleBackColor = true;
             this.btn_MenuEstoque.Click += new System.EventHandler(this.btn_MenuEstoque_Click);
+            this.btn_MenuEstoque.MouseEnter += new System.EventHandler(this.pn_Principal_MouseEnter);
+            this.btn_MenuEstoque.MouseLeave += new System.EventHandler(this.pn_Principal_MouseLeave);
             // 
             // pn_SubMenuVendedor
             // 
@@ -251,6 +253,8 @@
             this.btn_MenuVendas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_MenuVendas.UseVisualStyleBackColor = true;
             this.btn_MenuVendas.Click += new System.EventHandler(this.btn_MenuVendas_Click);
+            this.btn_MenuVendas.MouseEnter += new System.EventHandler(this.pn_Principal_MouseEnter);
+            this.btn_MenuVendas.MouseLeave += new System.EventHandler(this.pn_Principal_MouseLeave);
             // 
             // pn_SubMenuGerente
             // 
@@ -366,7 +370,7 @@
             this.btn_Monitoramento.TabIndex = 4;
             this.btn_Monitoramento.Text = "Monitoramento";
             this.btn_Monitoramento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Monitoramento.UseVisualStyleBackColor = false;
+            this.btn_Monitoramento.UseVisualStyleBackColor = true;
             this.btn_Monitoramento.Click += new System.EventHandler(this.btn_Monitoramento_Click);
             // 
             // Btn_MenuGerente
@@ -386,6 +390,8 @@
             this.Btn_MenuGerente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Btn_MenuGerente.UseVisualStyleBackColor = true;
             this.Btn_MenuGerente.Click += new System.EventHandler(this.Btn_MenuGerente_Click);
+            this.Btn_MenuGerente.MouseEnter += new System.EventHandler(this.pn_Principal_MouseEnter);
+            this.Btn_MenuGerente.MouseLeave += new System.EventHandler(this.pn_Principal_MouseLeave);
             // 
             // pn_Logo
             // 

@@ -6,7 +6,7 @@ using System.Windows.Media;
 using System.Drawing.Drawing2D;
 using System.Drawing.Configuration;
 using Color = System.Drawing.Color;
-using System.Windows.Forms;
+
 
 namespace Projeto_FinalOficial
 {
@@ -41,6 +41,8 @@ namespace Projeto_FinalOficial
             customizando();
             cyberProgressBar1.Visible = false;
         }
+
+       
 
         private void customizando()
         {
@@ -81,7 +83,6 @@ namespace Projeto_FinalOficial
             Logo.Visible = visualizar;
             Crimson.Visible = visualizar;
             suit.Visible = visualizar;
-
         }
 
         private void AbrirUserControl(UserControl uc)
