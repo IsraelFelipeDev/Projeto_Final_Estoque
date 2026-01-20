@@ -30,25 +30,35 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Vendas));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.kryptonTextBox1 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.kryptonTextBox2 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.hopePictureBox1 = new ReaLTaiizor.Controls.HopePictureBox();
-            this.kryptonTextBox4 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_CodigoProd = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txt_ValorUnitario = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.pick_FotoProd = new ReaLTaiizor.Controls.HopePictureBox();
+            this.txt_NomeProd = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.moonLabel1 = new ReaLTaiizor.Controls.MoonLabel();
             this.moonLabel2 = new ReaLTaiizor.Controls.MoonLabel();
-            this.kryptonNumericUpDown1 = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
+            this.num_Quantidade = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.dgv_Carrinho = new System.Windows.Forms.DataGridView();
+            this.btn_AdicionarItem = new FontAwesome.Sharp.IconButton();
+            this.btn_LimparCampos = new FontAwesome.Sharp.IconButton();
+            this.Btn_AlterarItem = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btn_FinalizarVenda = new FontAwesome.Sharp.IconButton();
+            this.moonLabel3 = new ReaLTaiizor.Controls.MoonLabel();
+            this.moonLabel4 = new ReaLTaiizor.Controls.MoonLabel();
+            this.moonLabel5 = new ReaLTaiizor.Controls.MoonLabel();
+            this.txt_CorProd = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.btn_ExcluirItemCarrinho = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.moonLabel6 = new ReaLTaiizor.Controls.MoonLabel();
+            this.txt_ValorFinal = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txt_BuscaCliente = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.btn_CadastraCLiente = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btn_BuscarCliente = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.moonLabel7 = new ReaLTaiizor.Controls.MoonLabel();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hopePictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pick_FotoProd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Carrinho)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,10 +69,28 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(875, 48);
+            this.panel1.Size = new System.Drawing.Size(1029, 59);
             this.panel1.TabIndex = 0;
             this.panel1.Tag = "Fixo";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel3.Location = new System.Drawing.Point(548, 58);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(3, 532);
+            this.panel3.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(559, 58);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1, 494);
+            this.panel2.TabIndex = 2;
             // 
             // label1
             // 
@@ -70,214 +98,362 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("OCR A Extended", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(330, 10);
+            this.label1.Location = new System.Drawing.Point(301, 12);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 25);
+            this.label1.Size = new System.Drawing.Size(242, 32);
             this.label1.TabIndex = 0;
             this.label1.Tag = "Fixo";
             this.label1.Text = " Caixa Livre";
             // 
-            // kryptonTextBox1
+            // txt_CodigoProd
             // 
-            this.kryptonTextBox1.Location = new System.Drawing.Point(18, 83);
-            this.kryptonTextBox1.Name = "kryptonTextBox1";
-            this.kryptonTextBox1.Size = new System.Drawing.Size(242, 27);
-            this.kryptonTextBox1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.txt_CodigoProd.Location = new System.Drawing.Point(24, 102);
+            this.txt_CodigoProd.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_CodigoProd.Name = "txt_CodigoProd";
+            this.txt_CodigoProd.Size = new System.Drawing.Size(323, 31);
+            this.txt_CodigoProd.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox1.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox1.TabIndex = 1;
-            this.kryptonTextBox1.Text = "Busca Produto";
+            this.txt_CodigoProd.StateCommon.Border.Rounding = 5;
+            this.txt_CodigoProd.TabIndex = 1;
+            this.txt_CodigoProd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_CodigoProd_KeyDown);
             // 
-            // panel2
+            // txt_ValorUnitario
             // 
-            this.panel2.Location = new System.Drawing.Point(419, 47);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1, 401);
-            this.panel2.TabIndex = 2;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel3.Location = new System.Drawing.Point(411, 47);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(2, 432);
-            this.panel3.TabIndex = 2;
-            // 
-            // kryptonTextBox2
-            // 
-            this.kryptonTextBox2.Location = new System.Drawing.Point(18, 195);
-            this.kryptonTextBox2.Name = "kryptonTextBox2";
-            this.kryptonTextBox2.Size = new System.Drawing.Size(140, 27);
-            this.kryptonTextBox2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.txt_ValorUnitario.Location = new System.Drawing.Point(23, 304);
+            this.txt_ValorUnitario.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_ValorUnitario.Name = "txt_ValorUnitario";
+            this.txt_ValorUnitario.ReadOnly = true;
+            this.txt_ValorUnitario.Size = new System.Drawing.Size(125, 31);
+            this.txt_ValorUnitario.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox2.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox2.TabIndex = 2;
-            this.kryptonTextBox2.Text = "Quantidade";
+            this.txt_ValorUnitario.StateCommon.Border.Rounding = 5;
+            this.txt_ValorUnitario.TabIndex = 2;
             // 
-            // hopePictureBox1
+            // pick_FotoProd
             // 
-            this.hopePictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
-            this.hopePictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.hopePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("hopePictureBox1.Image")));
-            this.hopePictureBox1.Location = new System.Drawing.Point(18, 258);
-            this.hopePictureBox1.Name = "hopePictureBox1";
-            this.hopePictureBox1.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighSpeed;
-            this.hopePictureBox1.Size = new System.Drawing.Size(114, 156);
-            this.hopePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.hopePictureBox1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.Default;
-            this.hopePictureBox1.TabIndex = 3;
-            this.hopePictureBox1.TabStop = false;
-            this.hopePictureBox1.TextRenderingType = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+            this.pick_FotoProd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
+            this.pick_FotoProd.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pick_FotoProd.Image = ((System.Drawing.Image)(resources.GetObject("pick_FotoProd.Image")));
+            this.pick_FotoProd.Location = new System.Drawing.Point(32, 441);
+            this.pick_FotoProd.Margin = new System.Windows.Forms.Padding(4);
+            this.pick_FotoProd.Name = "pick_FotoProd";
+            this.pick_FotoProd.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighSpeed;
+            this.pick_FotoProd.Size = new System.Drawing.Size(151, 191);
+            this.pick_FotoProd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pick_FotoProd.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.Default;
+            this.pick_FotoProd.TabIndex = 3;
+            this.pick_FotoProd.TabStop = false;
+            this.pick_FotoProd.TextRenderingType = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
             // 
-            // kryptonTextBox4
+            // txt_NomeProd
             // 
-            this.kryptonTextBox4.Enabled = false;
-            this.kryptonTextBox4.Location = new System.Drawing.Point(18, 133);
-            this.kryptonTextBox4.Name = "kryptonTextBox4";
-            this.kryptonTextBox4.Size = new System.Drawing.Size(242, 27);
-            this.kryptonTextBox4.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.txt_NomeProd.Location = new System.Drawing.Point(23, 166);
+            this.txt_NomeProd.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_NomeProd.Name = "txt_NomeProd";
+            this.txt_NomeProd.ReadOnly = true;
+            this.txt_NomeProd.Size = new System.Drawing.Size(323, 31);
+            this.txt_NomeProd.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox4.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox4.TabIndex = 5;
-            this.kryptonTextBox4.Text = "Nome do Produto";
+            this.txt_NomeProd.StateCommon.Border.Rounding = 5;
+            this.txt_NomeProd.TabIndex = 5;
             // 
             // moonLabel1
             // 
             this.moonLabel1.AutoSize = true;
             this.moonLabel1.BackColor = System.Drawing.Color.Transparent;
             this.moonLabel1.ForeColor = System.Drawing.Color.DimGray;
-            this.moonLabel1.Location = new System.Drawing.Point(15, 179);
+            this.moonLabel1.Location = new System.Drawing.Point(29, 284);
+            this.moonLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.moonLabel1.Name = "moonLabel1";
-            this.moonLabel1.Size = new System.Drawing.Size(86, 13);
+            this.moonLabel1.Size = new System.Drawing.Size(88, 16);
             this.moonLabel1.TabIndex = 6;
-            this.moonLabel1.Text = "Valor do Produto";
+            this.moonLabel1.Text = "Valor Unitario";
             // 
             // moonLabel2
             // 
             this.moonLabel2.AutoSize = true;
             this.moonLabel2.BackColor = System.Drawing.Color.Transparent;
             this.moonLabel2.ForeColor = System.Drawing.Color.DimGray;
-            this.moonLabel2.Location = new System.Drawing.Point(189, 179);
+            this.moonLabel2.Location = new System.Drawing.Point(195, 284);
+            this.moonLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.moonLabel2.Name = "moonLabel2";
-            this.moonLabel2.Size = new System.Drawing.Size(62, 13);
+            this.moonLabel2.Size = new System.Drawing.Size(77, 16);
             this.moonLabel2.TabIndex = 7;
             this.moonLabel2.Text = "Quantidade";
             // 
-            // kryptonNumericUpDown1
+            // num_Quantidade
             // 
-            this.kryptonNumericUpDown1.Location = new System.Drawing.Point(185, 195);
-            this.kryptonNumericUpDown1.Name = "kryptonNumericUpDown1";
-            this.kryptonNumericUpDown1.Size = new System.Drawing.Size(66, 28);
-            this.kryptonNumericUpDown1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.num_Quantidade.Location = new System.Drawing.Point(197, 304);
+            this.num_Quantidade.Margin = new System.Windows.Forms.Padding(4);
+            this.num_Quantidade.Name = "num_Quantidade";
+            this.num_Quantidade.Size = new System.Drawing.Size(88, 32);
+            this.num_Quantidade.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonNumericUpDown1.StateCommon.Border.Rounding = 10;
-            this.kryptonNumericUpDown1.TabIndex = 14;
+            this.num_Quantidade.StateCommon.Border.Rounding = 10;
+            this.num_Quantidade.TabIndex = 14;
             // 
-            // dataGridView1
+            // dgv_Carrinho
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(411, 83);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(437, 284);
-            this.dataGridView1.TabIndex = 15;
+            this.dgv_Carrinho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Carrinho.Location = new System.Drawing.Point(415, 83);
+            this.dgv_Carrinho.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_Carrinho.Name = "dgv_Carrinho";
+            this.dgv_Carrinho.RowHeadersWidth = 51;
+            this.dgv_Carrinho.Size = new System.Drawing.Size(583, 350);
+            this.dgv_Carrinho.TabIndex = 15;
             // 
-            // iconButton1
+            // btn_AdicionarItem
             // 
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.CartPlus;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(3, 447);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(140, 50);
-            this.iconButton1.TabIndex = 16;
-            this.iconButton1.Text = "ADICIONAR";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton1.UseVisualStyleBackColor = true;
+            this.btn_AdicionarItem.IconChar = FontAwesome.Sharp.IconChar.CartPlus;
+            this.btn_AdicionarItem.IconColor = System.Drawing.Color.Black;
+            this.btn_AdicionarItem.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_AdicionarItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_AdicionarItem.Location = new System.Drawing.Point(13, 673);
+            this.btn_AdicionarItem.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_AdicionarItem.Name = "btn_AdicionarItem";
+            this.btn_AdicionarItem.Size = new System.Drawing.Size(187, 62);
+            this.btn_AdicionarItem.TabIndex = 16;
+            this.btn_AdicionarItem.Text = "ADICIONAR";
+            this.btn_AdicionarItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_AdicionarItem.UseVisualStyleBackColor = true;
+            this.btn_AdicionarItem.Click += new System.EventHandler(this.btn_AdicionarItem_Click);
             // 
-            // iconButton2
+            // btn_LimparCampos
             // 
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 43;
-            this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(149, 447);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(140, 50);
-            this.iconButton2.TabIndex = 17;
-            this.iconButton2.Text = "LIMPAR";
-            this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton2.UseVisualStyleBackColor = true;
+            this.btn_LimparCampos.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
+            this.btn_LimparCampos.IconColor = System.Drawing.Color.Black;
+            this.btn_LimparCampos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_LimparCampos.IconSize = 43;
+            this.btn_LimparCampos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_LimparCampos.Location = new System.Drawing.Point(220, 673);
+            this.btn_LimparCampos.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_LimparCampos.Name = "btn_LimparCampos";
+            this.btn_LimparCampos.Size = new System.Drawing.Size(187, 62);
+            this.btn_LimparCampos.TabIndex = 17;
+            this.btn_LimparCampos.Text = "LIMPAR";
+            this.btn_LimparCampos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_LimparCampos.UseVisualStyleBackColor = true;
+            this.btn_LimparCampos.Click += new System.EventHandler(this.btn_LimparCampos_Click);
             // 
-            // kryptonButton1
+            // Btn_AlterarItem
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(630, 382);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(90, 32);
-            this.kryptonButton1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.Btn_AlterarItem.Location = new System.Drawing.Point(552, 441);
+            this.Btn_AlterarItem.Margin = new System.Windows.Forms.Padding(4);
+            this.Btn_AlterarItem.Name = "Btn_AlterarItem";
+            this.Btn_AlterarItem.Size = new System.Drawing.Size(136, 39);
+            this.Btn_AlterarItem.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateCommon.Border.Rounding = 10;
-            this.kryptonButton1.TabIndex = 18;
-            this.kryptonButton1.Values.Text = "";
+            this.Btn_AlterarItem.StateCommon.Border.Rounding = 10;
+            this.Btn_AlterarItem.TabIndex = 19;
+            this.Btn_AlterarItem.Values.Text = "Alterar Item";
+            this.Btn_AlterarItem.Click += new System.EventHandler(this.Btn_AlterarItem_Click);
             // 
-            // kryptonButton2
+            // btn_FinalizarVenda
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(746, 382);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Size = new System.Drawing.Size(102, 32);
-            this.kryptonButton2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btn_FinalizarVenda.IconChar = FontAwesome.Sharp.IconChar.MoneyCheckDollar;
+            this.btn_FinalizarVenda.IconColor = System.Drawing.Color.Black;
+            this.btn_FinalizarVenda.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_FinalizarVenda.IconSize = 43;
+            this.btn_FinalizarVenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_FinalizarVenda.Location = new System.Drawing.Point(811, 673);
+            this.btn_FinalizarVenda.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_FinalizarVenda.Name = "btn_FinalizarVenda";
+            this.btn_FinalizarVenda.Size = new System.Drawing.Size(187, 62);
+            this.btn_FinalizarVenda.TabIndex = 20;
+            this.btn_FinalizarVenda.Text = "Finalizar ";
+            this.btn_FinalizarVenda.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_FinalizarVenda.UseVisualStyleBackColor = true;
+            this.btn_FinalizarVenda.Click += new System.EventHandler(this.btn_FinalizarVenda_Click);
+            // 
+            // moonLabel3
+            // 
+            this.moonLabel3.AutoSize = true;
+            this.moonLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.moonLabel3.ForeColor = System.Drawing.Color.DimGray;
+            this.moonLabel3.Location = new System.Drawing.Point(20, 146);
+            this.moonLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.moonLabel3.Name = "moonLabel3";
+            this.moonLabel3.Size = new System.Drawing.Size(113, 16);
+            this.moonLabel3.TabIndex = 21;
+            this.moonLabel3.Text = "Nome do Produto";
+            // 
+            // moonLabel4
+            // 
+            this.moonLabel4.AutoSize = true;
+            this.moonLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.moonLabel4.ForeColor = System.Drawing.Color.DimGray;
+            this.moonLabel4.Location = new System.Drawing.Point(20, 82);
+            this.moonLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.moonLabel4.Name = "moonLabel4";
+            this.moonLabel4.Size = new System.Drawing.Size(113, 16);
+            this.moonLabel4.TabIndex = 22;
+            this.moonLabel4.Text = "Codigo de Barras";
+            // 
+            // moonLabel5
+            // 
+            this.moonLabel5.AutoSize = true;
+            this.moonLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.moonLabel5.ForeColor = System.Drawing.Color.DimGray;
+            this.moonLabel5.Location = new System.Drawing.Point(21, 214);
+            this.moonLabel5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.moonLabel5.Name = "moonLabel5";
+            this.moonLabel5.Size = new System.Drawing.Size(97, 16);
+            this.moonLabel5.TabIndex = 23;
+            this.moonLabel5.Text = "Cor do Produto";
+            // 
+            // txt_CorProd
+            // 
+            this.txt_CorProd.Location = new System.Drawing.Point(24, 234);
+            this.txt_CorProd.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_CorProd.Name = "txt_CorProd";
+            this.txt_CorProd.ReadOnly = true;
+            this.txt_CorProd.Size = new System.Drawing.Size(131, 31);
+            this.txt_CorProd.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton2.StateCommon.Border.Rounding = 10;
-            this.kryptonButton2.TabIndex = 19;
-            this.kryptonButton2.Values.Text = "";
+            this.txt_CorProd.StateCommon.Border.Rounding = 5;
+            this.txt_CorProd.TabIndex = 24;
             // 
-            // iconButton3
+            // btn_ExcluirItemCarrinho
             // 
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
-            this.iconButton3.IconColor = System.Drawing.Color.Black;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.IconSize = 43;
-            this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(720, 447);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(140, 50);
-            this.iconButton3.TabIndex = 20;
-            this.iconButton3.Text = "Finalizar ";
-            this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton3.UseVisualStyleBackColor = true;
+            this.btn_ExcluirItemCarrinho.Location = new System.Drawing.Point(396, 441);
+            this.btn_ExcluirItemCarrinho.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ExcluirItemCarrinho.Name = "btn_ExcluirItemCarrinho";
+            this.btn_ExcluirItemCarrinho.Size = new System.Drawing.Size(120, 39);
+            this.btn_ExcluirItemCarrinho.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btn_ExcluirItemCarrinho.StateCommon.Border.Rounding = 10;
+            this.btn_ExcluirItemCarrinho.TabIndex = 25;
+            this.btn_ExcluirItemCarrinho.Values.Text = "Excluir Item";
+            this.btn_ExcluirItemCarrinho.Click += new System.EventHandler(this.btn_ExcluirItemCarrinho_Click);
+            // 
+            // moonLabel6
+            // 
+            this.moonLabel6.AutoSize = true;
+            this.moonLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.moonLabel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moonLabel6.ForeColor = System.Drawing.Color.Black;
+            this.moonLabel6.Location = new System.Drawing.Point(865, 564);
+            this.moonLabel6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.moonLabel6.Name = "moonLabel6";
+            this.moonLabel6.Size = new System.Drawing.Size(111, 28);
+            this.moonLabel6.TabIndex = 27;
+            this.moonLabel6.Text = "Valor Final";
+            // 
+            // txt_ValorFinal
+            // 
+            this.txt_ValorFinal.Location = new System.Drawing.Point(800, 603);
+            this.txt_ValorFinal.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_ValorFinal.Name = "txt_ValorFinal";
+            this.txt_ValorFinal.ReadOnly = true;
+            this.txt_ValorFinal.Size = new System.Drawing.Size(187, 31);
+            this.txt_ValorFinal.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.txt_ValorFinal.StateCommon.Border.Rounding = 5;
+            this.txt_ValorFinal.TabIndex = 26;
+            this.txt_ValorFinal.TextChanged += new System.EventHandler(this.txt_ValorFinal_TextChanged);
+            // 
+            // txt_BuscaCliente
+            // 
+            this.txt_BuscaCliente.Location = new System.Drawing.Point(23, 376);
+            this.txt_BuscaCliente.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_BuscaCliente.Name = "txt_BuscaCliente";
+            this.txt_BuscaCliente.Size = new System.Drawing.Size(125, 31);
+            this.txt_BuscaCliente.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.txt_BuscaCliente.StateCommon.Border.Rounding = 5;
+            this.txt_BuscaCliente.TabIndex = 28;
+            // 
+            // btn_CadastraCLiente
+            // 
+            this.btn_CadastraCLiente.Location = new System.Drawing.Point(287, 376);
+            this.btn_CadastraCLiente.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_CadastraCLiente.Name = "btn_CadastraCLiente";
+            this.btn_CadastraCLiente.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_CadastraCLiente.Size = new System.Drawing.Size(120, 39);
+            this.btn_CadastraCLiente.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btn_CadastraCLiente.StateCommon.Border.Rounding = 10;
+            this.btn_CadastraCLiente.TabIndex = 29;
+            this.btn_CadastraCLiente.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.Values.Image")));
+            this.btn_CadastraCLiente.Values.Text = "Adicionar";
+            this.btn_CadastraCLiente.Click += new System.EventHandler(this.btn_CadastraCLiente_Click);
+            // 
+            // btn_BuscarCliente
+            // 
+            this.btn_BuscarCliente.Location = new System.Drawing.Point(159, 376);
+            this.btn_BuscarCliente.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_BuscarCliente.Name = "btn_BuscarCliente";
+            this.btn_BuscarCliente.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_BuscarCliente.Size = new System.Drawing.Size(120, 39);
+            this.btn_BuscarCliente.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btn_BuscarCliente.StateCommon.Border.Rounding = 10;
+            this.btn_BuscarCliente.TabIndex = 30;
+            this.btn_BuscarCliente.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton2.Values.Image")));
+            this.btn_BuscarCliente.Values.Text = "Buscar";
+            this.btn_BuscarCliente.Click += new System.EventHandler(this.btn_BuscarCliente_Click);
+            // 
+            // moonLabel7
+            // 
+            this.moonLabel7.AutoSize = true;
+            this.moonLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.moonLabel7.ForeColor = System.Drawing.Color.DimGray;
+            this.moonLabel7.Location = new System.Drawing.Point(30, 356);
+            this.moonLabel7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.moonLabel7.Name = "moonLabel7";
+            this.moonLabel7.Size = new System.Drawing.Size(48, 16);
+            this.moonLabel7.TabIndex = 31;
+            this.moonLabel7.Text = "Cliente";
             // 
             // UC_Vendas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.Controls.Add(this.iconButton3);
-            this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.kryptonButton1);
-            this.Controls.Add(this.iconButton2);
-            this.Controls.Add(this.iconButton1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.kryptonNumericUpDown1);
+            this.Controls.Add(this.moonLabel7);
+            this.Controls.Add(this.btn_BuscarCliente);
+            this.Controls.Add(this.btn_CadastraCLiente);
+            this.Controls.Add(this.txt_BuscaCliente);
+            this.Controls.Add(this.moonLabel6);
+            this.Controls.Add(this.txt_ValorFinal);
+            this.Controls.Add(this.btn_ExcluirItemCarrinho);
+            this.Controls.Add(this.txt_CorProd);
+            this.Controls.Add(this.moonLabel5);
+            this.Controls.Add(this.moonLabel4);
+            this.Controls.Add(this.moonLabel3);
+            this.Controls.Add(this.btn_FinalizarVenda);
+            this.Controls.Add(this.Btn_AlterarItem);
+            this.Controls.Add(this.btn_LimparCampos);
+            this.Controls.Add(this.btn_AdicionarItem);
+            this.Controls.Add(this.dgv_Carrinho);
+            this.Controls.Add(this.num_Quantidade);
             this.Controls.Add(this.moonLabel2);
             this.Controls.Add(this.moonLabel1);
-            this.Controls.Add(this.kryptonTextBox4);
-            this.Controls.Add(this.hopePictureBox1);
-            this.Controls.Add(this.kryptonTextBox2);
-            this.Controls.Add(this.kryptonTextBox1);
+            this.Controls.Add(this.txt_NomeProd);
+            this.Controls.Add(this.pick_FotoProd);
+            this.Controls.Add(this.txt_ValorUnitario);
+            this.Controls.Add(this.txt_CodigoProd);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UC_Vendas";
-            this.Size = new System.Drawing.Size(875, 512);
+            this.Size = new System.Drawing.Size(1029, 752);
+            this.Load += new System.EventHandler(this.UC_Vendas_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hopePictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pick_FotoProd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Carrinho)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,20 +463,30 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_CodigoProd;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox2;
-        private ReaLTaiizor.Controls.HopePictureBox hopePictureBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox4;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_ValorUnitario;
+        private ReaLTaiizor.Controls.HopePictureBox pick_FotoProd;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_NomeProd;
         private ReaLTaiizor.Controls.MoonLabel moonLabel1;
         private ReaLTaiizor.Controls.MoonLabel moonLabel2;
-        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown kryptonNumericUpDown1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
-        private FontAwesome.Sharp.IconButton iconButton3;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown num_Quantidade;
+        private System.Windows.Forms.DataGridView dgv_Carrinho;
+        private FontAwesome.Sharp.IconButton btn_AdicionarItem;
+        private FontAwesome.Sharp.IconButton btn_LimparCampos;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton Btn_AlterarItem;
+        private FontAwesome.Sharp.IconButton btn_FinalizarVenda;
+        private ReaLTaiizor.Controls.MoonLabel moonLabel3;
+        private ReaLTaiizor.Controls.MoonLabel moonLabel4;
+        private ReaLTaiizor.Controls.MoonLabel moonLabel5;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_CorProd;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_ExcluirItemCarrinho;
+        private ReaLTaiizor.Controls.MoonLabel moonLabel6;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_ValorFinal;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_BuscaCliente;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_CadastraCLiente;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_BuscarCliente;
+        private ReaLTaiizor.Controls.MoonLabel moonLabel7;
     }
 }

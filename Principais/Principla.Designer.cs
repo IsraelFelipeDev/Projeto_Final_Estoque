@@ -82,8 +82,9 @@
             this.pn_Principal.Controls.Add(this.pn_Logo);
             this.pn_Principal.Dock = System.Windows.Forms.DockStyle.Left;
             this.pn_Principal.Location = new System.Drawing.Point(0, 0);
+            this.pn_Principal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pn_Principal.Name = "pn_Principal";
-            this.pn_Principal.Size = new System.Drawing.Size(159, 640);
+            this.pn_Principal.Size = new System.Drawing.Size(212, 788);
             this.pn_Principal.TabIndex = 0;
             this.pn_Principal.Tag = "Fixo";
             this.pn_Principal.MouseEnter += new System.EventHandler(this.pn_Principal_MouseEnter);
@@ -95,9 +96,10 @@
             this.subMenuFinanceiro.Controls.Add(this.iconButton3);
             this.subMenuFinanceiro.Controls.Add(this.iconButton4);
             this.subMenuFinanceiro.Dock = System.Windows.Forms.DockStyle.Top;
-            this.subMenuFinanceiro.Location = new System.Drawing.Point(0, 491);
+            this.subMenuFinanceiro.Location = new System.Drawing.Point(0, 604);
+            this.subMenuFinanceiro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.subMenuFinanceiro.Name = "subMenuFinanceiro";
-            this.subMenuFinanceiro.Size = new System.Drawing.Size(159, 71);
+            this.subMenuFinanceiro.Size = new System.Drawing.Size(212, 87);
             this.subMenuFinanceiro.TabIndex = 9;
             // 
             // iconButton2
@@ -112,9 +114,10 @@
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.IconSize = 28;
             this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(0, 46);
+            this.iconButton2.Location = new System.Drawing.Point(0, 56);
+            this.iconButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(159, 23);
+            this.iconButton2.Size = new System.Drawing.Size(212, 28);
             this.iconButton2.TabIndex = 6;
             this.iconButton2.Text = "Lucro";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -132,9 +135,10 @@
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton3.IconSize = 28;
             this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(0, 23);
+            this.iconButton3.Location = new System.Drawing.Point(0, 28);
+            this.iconButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(159, 23);
+            this.iconButton3.Size = new System.Drawing.Size(212, 28);
             this.iconButton3.TabIndex = 5;
             this.iconButton3.Text = "Contas ";
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -153,8 +157,9 @@
             this.iconButton4.IconSize = 28;
             this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton4.Location = new System.Drawing.Point(0, 0);
+            this.iconButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Size = new System.Drawing.Size(159, 23);
+            this.iconButton4.Size = new System.Drawing.Size(212, 28);
             this.iconButton4.TabIndex = 4;
             this.iconButton4.Text = "Salario";
             this.iconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -168,10 +173,11 @@
             this.btn_SubMenuFinanceiro.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_SubMenuFinanceiro.IconSize = 32;
             this.btn_SubMenuFinanceiro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_SubMenuFinanceiro.Location = new System.Drawing.Point(0, 453);
+            this.btn_SubMenuFinanceiro.Location = new System.Drawing.Point(0, 557);
+            this.btn_SubMenuFinanceiro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_SubMenuFinanceiro.Name = "btn_SubMenuFinanceiro";
-            this.btn_SubMenuFinanceiro.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btn_SubMenuFinanceiro.Size = new System.Drawing.Size(159, 38);
+            this.btn_SubMenuFinanceiro.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btn_SubMenuFinanceiro.Size = new System.Drawing.Size(212, 47);
             this.btn_SubMenuFinanceiro.TabIndex = 8;
             this.btn_SubMenuFinanceiro.Text = "Financeiro";
             this.btn_SubMenuFinanceiro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -184,9 +190,10 @@
             this.pn_SubMenuEstoque.Controls.Add(this.btn_FazerPed);
             this.pn_SubMenuEstoque.Controls.Add(this.btn_EstoqGeral);
             this.pn_SubMenuEstoque.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pn_SubMenuEstoque.Location = new System.Drawing.Point(0, 382);
+            this.pn_SubMenuEstoque.Location = new System.Drawing.Point(0, 470);
+            this.pn_SubMenuEstoque.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pn_SubMenuEstoque.Name = "pn_SubMenuEstoque";
-            this.pn_SubMenuEstoque.Size = new System.Drawing.Size(159, 71);
+            this.pn_SubMenuEstoque.Size = new System.Drawing.Size(212, 87);
             this.pn_SubMenuEstoque.TabIndex = 7;
             // 
             // btn_LançarNota
@@ -201,9 +208,10 @@
             this.btn_LançarNota.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_LançarNota.IconSize = 28;
             this.btn_LançarNota.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_LançarNota.Location = new System.Drawing.Point(0, 46);
+            this.btn_LançarNota.Location = new System.Drawing.Point(0, 56);
+            this.btn_LançarNota.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_LançarNota.Name = "btn_LançarNota";
-            this.btn_LançarNota.Size = new System.Drawing.Size(159, 23);
+            this.btn_LançarNota.Size = new System.Drawing.Size(212, 28);
             this.btn_LançarNota.TabIndex = 6;
             this.btn_LançarNota.Text = "Lançar Notas";
             this.btn_LançarNota.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -222,9 +230,10 @@
             this.btn_FazerPed.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_FazerPed.IconSize = 28;
             this.btn_FazerPed.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_FazerPed.Location = new System.Drawing.Point(0, 23);
+            this.btn_FazerPed.Location = new System.Drawing.Point(0, 28);
+            this.btn_FazerPed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_FazerPed.Name = "btn_FazerPed";
-            this.btn_FazerPed.Size = new System.Drawing.Size(159, 23);
+            this.btn_FazerPed.Size = new System.Drawing.Size(212, 28);
             this.btn_FazerPed.TabIndex = 5;
             this.btn_FazerPed.Text = "Fazer Pedido";
             this.btn_FazerPed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -244,8 +253,9 @@
             this.btn_EstoqGeral.IconSize = 28;
             this.btn_EstoqGeral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_EstoqGeral.Location = new System.Drawing.Point(0, 0);
+            this.btn_EstoqGeral.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_EstoqGeral.Name = "btn_EstoqGeral";
-            this.btn_EstoqGeral.Size = new System.Drawing.Size(159, 23);
+            this.btn_EstoqGeral.Size = new System.Drawing.Size(212, 28);
             this.btn_EstoqGeral.TabIndex = 4;
             this.btn_EstoqGeral.Text = "Geral";
             this.btn_EstoqGeral.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -260,10 +270,11 @@
             this.btn_MenuEstoque.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_MenuEstoque.IconSize = 32;
             this.btn_MenuEstoque.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_MenuEstoque.Location = new System.Drawing.Point(0, 344);
+            this.btn_MenuEstoque.Location = new System.Drawing.Point(0, 423);
+            this.btn_MenuEstoque.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_MenuEstoque.Name = "btn_MenuEstoque";
-            this.btn_MenuEstoque.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btn_MenuEstoque.Size = new System.Drawing.Size(159, 38);
+            this.btn_MenuEstoque.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btn_MenuEstoque.Size = new System.Drawing.Size(212, 47);
             this.btn_MenuEstoque.TabIndex = 6;
             this.btn_MenuEstoque.Text = "Estoque";
             this.btn_MenuEstoque.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -275,9 +286,10 @@
             this.pn_SubMenuVendedor.Controls.Add(this.btn_Desemp);
             this.pn_SubMenuVendedor.Controls.Add(this.btn_Vendedor);
             this.pn_SubMenuVendedor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pn_SubMenuVendedor.Location = new System.Drawing.Point(0, 290);
+            this.pn_SubMenuVendedor.Location = new System.Drawing.Point(0, 357);
+            this.pn_SubMenuVendedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pn_SubMenuVendedor.Name = "pn_SubMenuVendedor";
-            this.pn_SubMenuVendedor.Size = new System.Drawing.Size(159, 54);
+            this.pn_SubMenuVendedor.Size = new System.Drawing.Size(212, 66);
             this.pn_SubMenuVendedor.TabIndex = 5;
             // 
             // btn_Desemp
@@ -292,13 +304,15 @@
             this.btn_Desemp.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Desemp.IconSize = 28;
             this.btn_Desemp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Desemp.Location = new System.Drawing.Point(0, 23);
+            this.btn_Desemp.Location = new System.Drawing.Point(0, 28);
+            this.btn_Desemp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Desemp.Name = "btn_Desemp";
-            this.btn_Desemp.Size = new System.Drawing.Size(159, 31);
+            this.btn_Desemp.Size = new System.Drawing.Size(212, 38);
             this.btn_Desemp.TabIndex = 5;
             this.btn_Desemp.Text = "Meu Desempenho";
             this.btn_Desemp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Desemp.UseVisualStyleBackColor = false;
+          
             // 
             // btn_Vendedor
             // 
@@ -313,8 +327,9 @@
             this.btn_Vendedor.IconSize = 28;
             this.btn_Vendedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Vendedor.Location = new System.Drawing.Point(0, 0);
+            this.btn_Vendedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Vendedor.Name = "btn_Vendedor";
-            this.btn_Vendedor.Size = new System.Drawing.Size(159, 23);
+            this.btn_Vendedor.Size = new System.Drawing.Size(212, 28);
             this.btn_Vendedor.TabIndex = 4;
             this.btn_Vendedor.Text = "Vendedor";
             this.btn_Vendedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -329,10 +344,11 @@
             this.btn_MenuVendas.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_MenuVendas.IconSize = 32;
             this.btn_MenuVendas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_MenuVendas.Location = new System.Drawing.Point(0, 252);
+            this.btn_MenuVendas.Location = new System.Drawing.Point(0, 310);
+            this.btn_MenuVendas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_MenuVendas.Name = "btn_MenuVendas";
-            this.btn_MenuVendas.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btn_MenuVendas.Size = new System.Drawing.Size(159, 38);
+            this.btn_MenuVendas.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btn_MenuVendas.Size = new System.Drawing.Size(212, 47);
             this.btn_MenuVendas.TabIndex = 4;
             this.btn_MenuVendas.Text = "Vendas";
             this.btn_MenuVendas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -347,9 +363,10 @@
             this.pn_SubMenuGerente.Controls.Add(this.btn_CadFun);
             this.pn_SubMenuGerente.Controls.Add(this.btn_Monitoramento);
             this.pn_SubMenuGerente.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pn_SubMenuGerente.Location = new System.Drawing.Point(0, 138);
+            this.pn_SubMenuGerente.Location = new System.Drawing.Point(0, 170);
+            this.pn_SubMenuGerente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pn_SubMenuGerente.Name = "pn_SubMenuGerente";
-            this.pn_SubMenuGerente.Size = new System.Drawing.Size(159, 114);
+            this.pn_SubMenuGerente.Size = new System.Drawing.Size(212, 140);
             this.pn_SubMenuGerente.TabIndex = 3;
             // 
             // btn_Relatorio
@@ -364,9 +381,10 @@
             this.btn_Relatorio.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Relatorio.IconSize = 28;
             this.btn_Relatorio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Relatorio.Location = new System.Drawing.Point(0, 92);
+            this.btn_Relatorio.Location = new System.Drawing.Point(0, 112);
+            this.btn_Relatorio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Relatorio.Name = "btn_Relatorio";
-            this.btn_Relatorio.Size = new System.Drawing.Size(159, 23);
+            this.btn_Relatorio.Size = new System.Drawing.Size(212, 28);
             this.btn_Relatorio.TabIndex = 8;
             this.btn_Relatorio.Text = "Relatorios";
             this.btn_Relatorio.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -384,9 +402,10 @@
             this.btn_CadForn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_CadForn.IconSize = 28;
             this.btn_CadForn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_CadForn.Location = new System.Drawing.Point(0, 69);
+            this.btn_CadForn.Location = new System.Drawing.Point(0, 84);
+            this.btn_CadForn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_CadForn.Name = "btn_CadForn";
-            this.btn_CadForn.Size = new System.Drawing.Size(159, 23);
+            this.btn_CadForn.Size = new System.Drawing.Size(212, 28);
             this.btn_CadForn.TabIndex = 7;
             this.btn_CadForn.Text = "Cadastro Fornecedores";
             this.btn_CadForn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -405,9 +424,10 @@
             this.btn_CadProd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_CadProd.IconSize = 28;
             this.btn_CadProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_CadProd.Location = new System.Drawing.Point(0, 46);
+            this.btn_CadProd.Location = new System.Drawing.Point(0, 56);
+            this.btn_CadProd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_CadProd.Name = "btn_CadProd";
-            this.btn_CadProd.Size = new System.Drawing.Size(159, 23);
+            this.btn_CadProd.Size = new System.Drawing.Size(212, 28);
             this.btn_CadProd.TabIndex = 6;
             this.btn_CadProd.Text = "Cadastro Produtos";
             this.btn_CadProd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -426,9 +446,10 @@
             this.btn_CadFun.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_CadFun.IconSize = 28;
             this.btn_CadFun.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_CadFun.Location = new System.Drawing.Point(0, 23);
+            this.btn_CadFun.Location = new System.Drawing.Point(0, 28);
+            this.btn_CadFun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_CadFun.Name = "btn_CadFun";
-            this.btn_CadFun.Size = new System.Drawing.Size(159, 23);
+            this.btn_CadFun.Size = new System.Drawing.Size(212, 28);
             this.btn_CadFun.TabIndex = 5;
             this.btn_CadFun.Text = "Cadastro Funcionarios";
             this.btn_CadFun.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -448,8 +469,9 @@
             this.btn_Monitoramento.IconSize = 28;
             this.btn_Monitoramento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Monitoramento.Location = new System.Drawing.Point(0, 0);
+            this.btn_Monitoramento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Monitoramento.Name = "btn_Monitoramento";
-            this.btn_Monitoramento.Size = new System.Drawing.Size(159, 23);
+            this.btn_Monitoramento.Size = new System.Drawing.Size(212, 28);
             this.btn_Monitoramento.TabIndex = 4;
             this.btn_Monitoramento.Text = "Monitoramento";
             this.btn_Monitoramento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -464,10 +486,11 @@
             this.Btn_MenuGerente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Btn_MenuGerente.IconSize = 32;
             this.Btn_MenuGerente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_MenuGerente.Location = new System.Drawing.Point(0, 100);
+            this.Btn_MenuGerente.Location = new System.Drawing.Point(0, 123);
+            this.Btn_MenuGerente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Btn_MenuGerente.Name = "Btn_MenuGerente";
-            this.Btn_MenuGerente.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.Btn_MenuGerente.Size = new System.Drawing.Size(159, 38);
+            this.Btn_MenuGerente.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.Btn_MenuGerente.Size = new System.Drawing.Size(212, 47);
             this.Btn_MenuGerente.TabIndex = 1;
             this.Btn_MenuGerente.Text = "Gerenciamento";
             this.Btn_MenuGerente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -479,8 +502,9 @@
             this.pn_Logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.pn_Logo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pn_Logo.Location = new System.Drawing.Point(0, 0);
+            this.pn_Logo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pn_Logo.Name = "pn_Logo";
-            this.pn_Logo.Size = new System.Drawing.Size(159, 100);
+            this.pn_Logo.Size = new System.Drawing.Size(212, 123);
             this.pn_Logo.TabIndex = 0;
             this.pn_Logo.Tag = "Fixo";
             // 
@@ -491,9 +515,10 @@
             this.pn_MenuSup.Controls.Add(this.icon_mod);
             this.pn_MenuSup.Controls.Add(this.btn_Sair);
             this.pn_MenuSup.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pn_MenuSup.Location = new System.Drawing.Point(159, 0);
+            this.pn_MenuSup.Location = new System.Drawing.Point(212, 0);
+            this.pn_MenuSup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pn_MenuSup.Name = "pn_MenuSup";
-            this.pn_MenuSup.Size = new System.Drawing.Size(624, 37);
+            this.pn_MenuSup.Size = new System.Drawing.Size(832, 46);
             this.pn_MenuSup.TabIndex = 1;
             this.pn_MenuSup.Tag = "Fixo";
             // 
@@ -504,9 +529,10 @@
             this.btn_Layout.IconColor = System.Drawing.Color.Black;
             this.btn_Layout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Layout.IconSize = 30;
-            this.btn_Layout.Location = new System.Drawing.Point(533, 0);
+            this.btn_Layout.Location = new System.Drawing.Point(711, 0);
+            this.btn_Layout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Layout.Name = "btn_Layout";
-            this.btn_Layout.Size = new System.Drawing.Size(29, 37);
+            this.btn_Layout.Size = new System.Drawing.Size(39, 46);
             this.btn_Layout.TabIndex = 5;
             this.btn_Layout.UseVisualStyleBackColor = true;
             this.btn_Layout.Click += new System.EventHandler(this.iconButton2_Click);
@@ -520,9 +546,10 @@
             this.icon_mod.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.icon_mod.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icon_mod.IconSize = 25;
-            this.icon_mod.Location = new System.Drawing.Point(562, 0);
+            this.icon_mod.Location = new System.Drawing.Point(750, 0);
+            this.icon_mod.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.icon_mod.Name = "icon_mod";
-            this.icon_mod.Size = new System.Drawing.Size(31, 37);
+            this.icon_mod.Size = new System.Drawing.Size(41, 46);
             this.icon_mod.TabIndex = 4;
             this.icon_mod.UseVisualStyleBackColor = true;
             this.icon_mod.Click += new System.EventHandler(this.icon_mod_Click);
@@ -536,9 +563,10 @@
             this.btn_Sair.IconColor = System.Drawing.Color.Red;
             this.btn_Sair.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Sair.IconSize = 30;
-            this.btn_Sair.Location = new System.Drawing.Point(593, 0);
+            this.btn_Sair.Location = new System.Drawing.Point(791, 0);
+            this.btn_Sair.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Sair.Name = "btn_Sair";
-            this.btn_Sair.Size = new System.Drawing.Size(31, 37);
+            this.btn_Sair.Size = new System.Drawing.Size(41, 46);
             this.btn_Sair.TabIndex = 2;
             this.btn_Sair.UseVisualStyleBackColor = true;
             this.btn_Sair.Click += new System.EventHandler(this.btn_Sair_Click);
@@ -547,9 +575,10 @@
             // 
             this.pnlConteudo.Controls.Add(this.cyberProgressBar1);
             this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlConteudo.Location = new System.Drawing.Point(159, 37);
+            this.pnlConteudo.Location = new System.Drawing.Point(212, 46);
+            this.pnlConteudo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlConteudo.Name = "pnlConteudo";
-            this.pnlConteudo.Size = new System.Drawing.Size(624, 603);
+            this.pnlConteudo.Size = new System.Drawing.Size(832, 742);
             this.pnlConteudo.TabIndex = 2;
             // 
             // cyberProgressBar1
@@ -577,7 +606,8 @@
             this.cyberProgressBar1.LinearGradient_Background = false;
             this.cyberProgressBar1.LinearGradient_Value = false;
             this.cyberProgressBar1.LinearGradientPen = false;
-            this.cyberProgressBar1.Location = new System.Drawing.Point(108, 147);
+            this.cyberProgressBar1.Location = new System.Drawing.Point(144, 181);
+            this.cyberProgressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cyberProgressBar1.Maximum = 100;
             this.cyberProgressBar1.Minimum = 0;
             this.cyberProgressBar1.Name = "cyberProgressBar1";
@@ -586,7 +616,7 @@
             this.cyberProgressBar1.RGB = false;
             this.cyberProgressBar1.Rounding = true;
             this.cyberProgressBar1.RoundingInt = 70;
-            this.cyberProgressBar1.Size = new System.Drawing.Size(303, 23);
+            this.cyberProgressBar1.Size = new System.Drawing.Size(404, 28);
             this.cyberProgressBar1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.cyberProgressBar1.StartDrawingValue = 0;
             this.cyberProgressBar1.TabIndex = 0;
@@ -601,15 +631,16 @@
             // 
             // Principla
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(783, 640);
+            this.ClientSize = new System.Drawing.Size(1044, 788);
             this.Controls.Add(this.pnlConteudo);
             this.Controls.Add(this.pn_MenuSup);
             this.Controls.Add(this.pn_Principal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(766, 590);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1021, 726);
             this.Name = "Principla";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Principla";

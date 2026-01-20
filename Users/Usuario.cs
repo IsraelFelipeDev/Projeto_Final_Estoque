@@ -22,8 +22,9 @@ namespace Projeto_FinalOficial
         public string Bairro { get; set; }
         public string Rua { get; set; }
         public string Numero { get; set; }
-        
-        
+        public string CEP { get; set; }
+
+
 
         public string CargoFuncionario { get; set; }
 
@@ -90,6 +91,41 @@ namespace Projeto_FinalOficial
 
                 };
             List<Usuario> lista = ExecutarConsulta(query, ObterObjeto, parametros);
+            return lista.FirstOrDefault();
+        }
+        public virtual Usuario VerificaçãoSenhaGerente(string Nome, string Senha)
+        {
+            string query = $"SELECT * FROM {NomeTabela} WHERE Nome = @Nome AND Senha = @Senha ";
+            var parametros = new Dictionary<string, object>
+                {
+                    {"@Nome",Nome },
+                    {"@Senha",Senha }
+
+                };
+            List<Usuario> lista = ExecutarConsulta(query, ObterObjeto, parametros);
+            return lista.FirstOrDefault();
+        }
+        // Note que agora só recebe UM parâmetro: termoBusca
+        public virtual Usuario BuscarPorNomeOuCPF(string termoBusca)
+        {
+            // ATENÇÃO À MÁGICA DO SQL AQUI:
+            // 1. Nome LIKE CONCAT('%', @termo, '%') -> Procura qualquer nome que CONTENHA o texto digitado (busca parcial).
+            // 2. OR CPF = @termo -> Ou procura um CPF que seja EXATAMENTE igual ao texto digitado.
+
+            string query = $@"SELECT * FROM {NomeTabela} 
+                      WHERE Nome LIKE CONCAT('%', @termo, '%') 
+                         OR CPF = @termo";
+
+            var parametros = new Dictionary<string, object>
+            {
+        // Passamos o mesmo valor para os dois lados da condição OR no SQL
+            {"@termo", termoBusca }
+            };
+
+            // Executa a consulta (assumindo que seus métodos auxiliares funcionam)
+            List<Usuario> lista = ExecutarConsulta(query, ObterObjeto, parametros);
+
+            // Retorna o primeiro encontrado ou null
             return lista.FirstOrDefault();
         }
 

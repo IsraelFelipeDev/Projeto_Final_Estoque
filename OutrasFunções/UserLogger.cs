@@ -28,7 +28,7 @@ namespace Projeto_FinalOficial
             string query = "INSERT INTO log_sistema (nome_usuario, acao, formulario, data_hora) VALUES (@nome, @acao, @form, @data)";
 
             // Tratamento para evitar erro se nome for nulo
-            string nomeUsuario = !string.IsNullOrEmpty(Sessão.Nome) ? Sessão.Nome : "Desconhecido";
+            string nomeUsuario = !string.IsNullOrEmpty(Sessao.Nome) ? Sessao.Nome : "Desconhecido";
 
             var parametros = new Dictionary<string, object>
             {

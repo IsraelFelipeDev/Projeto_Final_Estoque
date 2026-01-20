@@ -127,9 +127,6 @@ namespace Projeto_FinalOficial
             _logger.LogOpen(this);
         }
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

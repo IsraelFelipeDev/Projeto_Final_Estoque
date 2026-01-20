@@ -28,9 +28,9 @@ namespace Projeto_FinalOficial
             if (txt_Login.Text == usuarioAdm && txt_Senha.Text == senhaAdm)
             {
                 // ADICIONE ESTAS LINHAS:
-                Sessão.Nome = "Administrador";
-                Sessão.Cargo = "Gerente"; // Define o cargo mestre
-                Sessão.Id = 0;
+                Sessao.Nome = "Administrador";
+                Sessao.Cargo = "Gerente"; // Define o cargo mestre
+                Sessao.ID = 0;
                 // ----------------------
 
                 MessageBox.Show("Login realizado com sucesso! ");
@@ -49,9 +49,9 @@ namespace Projeto_FinalOficial
 
                 if (usuarioEcontrado != null)
                 {
-                    Sessão.Nome = usuarioEcontrado.Nome;
-                    Sessão.Cargo = usuarioEcontrado.CargoFuncionario;
-                    Sessão.Id = usuarioEcontrado.Id;
+                    Sessao.Nome = usuarioEcontrado.Nome;
+                    Sessao.Cargo = usuarioEcontrado.CargoFuncionario;
+                    Sessao.ID = usuarioEcontrado.Id;
 
                     MessageBox.Show("Login realizado com sucesso! ");
                     Principla formMenu = new Principla();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Projeto_FinalOficial
@@ -10,7 +11,7 @@ namespace Projeto_FinalOficial
         {
             InitializeComponent();
         }
-       
+
 
         private void UC_CadastroFuncionario_Load(object sender, EventArgs e)
         {
@@ -42,7 +43,8 @@ namespace Projeto_FinalOficial
                string.IsNullOrWhiteSpace(txt_Rua.Text) ||
                string.IsNullOrWhiteSpace(txt_Numero.Text) ||
                string.IsNullOrWhiteSpace(cmb_Cargo.Text) ||
-               string.IsNullOrWhiteSpace(dtp_DataNasc.Text))
+               string.IsNullOrWhiteSpace(txt_CEP.Text) ||
+            string.IsNullOrWhiteSpace(dtp_DataNasc.Text))
             {
                 MessageBox.Show("Por favor, preencha todos os campos.");
                 return;
@@ -79,13 +81,12 @@ namespace Projeto_FinalOficial
                 usuario.Numero = txt_Numero.Text;
                 usuario.CargoFuncionario = cmb_Cargo.Text;
                 usuario.DataNascimento = dtp_DataNasc.Value;
+                usuario.CEP = txt_CEP.Text;
 
                 bool sucesso = usuario.InserirDados();
 
                 MessageBox.Show($"Cadastro de {cmb_Cargo.Text} realizado com sucesso!");
-                Form1 acesso = new Form1();
-                this.Hide();
-                acesso.Show();
+
 
 
             }
@@ -118,5 +119,40 @@ namespace Projeto_FinalOficial
         {
 
         }
+
+        private async void txt_CEP_Leave(object sender, EventArgs e)
+        {
+            // Adicione este método dentro do UC_CadastroFuncionario
+
+            string cepDigitado = txt_CEP.Text;
+
+            if (string.IsNullOrWhiteSpace(cepDigitado)) return;
+
+            try
+            {
+                // Chama o serviço que criamos
+                var endereco = await ViaCepService.BuscarEndereco(cepDigitado);
+
+                if (endereco != null)
+                {
+                    txt_Rua.Text = endereco.logradouro;
+                    txt_Bairro.Text = endereco.bairro;
+                    txt_Cidade.Text = endereco.localidade;
+                    txt_Estado.Text = endereco.uf;
+                    txt_Numero.Focus(); // Pula para o número para facilitar
+                }
+                else
+                {
+                    MessageBox.Show("CEP não encontrado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar CEP: " + ex.Message);
+            }
+        }
     }
 }
+    
+
+
