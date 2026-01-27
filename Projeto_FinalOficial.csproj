@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IntermediateOutputPath>C:\Users\Israe\AppData\Local\Temp\vsD8A3.tmp\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IntermediateOutputPath>C:\Users\Israe\AppData\Local\Temp\vsD8A3.tmp\Release\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
@@ -142,15 +147,40 @@
     <Compile Include="CadastroCliente.Designer.cs">
       <DependentUpon>CadastroCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="CadastroFornecedor.cs" />
+    <Compile Include="CalculoFrete.cs" />
     <Compile Include="CepEndereços.cs" />
+    <Compile Include="PedidosCompra.cs" />
+    <Compile Include="UC_EntradaNota.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_EntradaNota.Designer.cs">
+      <DependentUpon>UC_EntradaNota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FazerPedido.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FazerPedido.Designer.cs">
+      <DependentUpon>FazerPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InteligenciaCotação.cs" />
+    <Compile Include="PanelSombreado.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Cliente.cs" />
+    <Compile Include="DetalheProdutos.cs" />
+    <Compile Include="ErrosTecnicos.cs" />
     <Compile Include="FluxoCaixa.cs" />
+    <Compile Include="Fornecedores.cs" />
     <Compile Include="ImpressoraService.cs" />
     <Compile Include="ItemVenda.cs" />
     <Compile Include="OutrasFunções\Auditoria.cs" />
     <Compile Include="OutrasFunções\Conexao.cs" />
+    <Compile Include="PedidoCompraImpressão.cs" />
+    <Compile Include="ProdutoFornecedorCatalogo.cs" />
     <Compile Include="Produtos.cs" />
     <Compile Include="OutrasFunções\UserLogger.cs" />
+    <Compile Include="ProdutoVariacao.cs" />
     <Compile Include="UC_Cartão.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -247,6 +277,12 @@
     <EmbeddedResource Include="CadastroCliente.resx">
       <DependentUpon>CadastroCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC_EntradaNota.resx">
+      <DependentUpon>UC_EntradaNota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FazerPedido.resx">
+      <DependentUpon>FazerPedido.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC_Cartão.resx">
       <DependentUpon>UC_Cartão.cs</DependentUpon>
     </EmbeddedResource>
@@ -295,6 +331,7 @@
     <EmbeddedResource Include="UserControls\Gerente_UC\UC_CadastroFuncionario.resx">
       <DependentUpon>UC_CadastroFuncionario.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

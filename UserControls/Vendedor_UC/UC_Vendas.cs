@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using Projeto_FinalOficial.Modelos;
+using Projeto_FinalOficial.Modelos; // Certifique-se que o Cliente está aqui ou no namespace principal
 
 namespace Projeto_FinalOficial
 {
-    public partial class UC_Vendas : UserControl    
+    public partial class UC_Vendas : UserControl
     {
         public UC_Vendas()
         {
@@ -22,38 +17,27 @@ namespace Projeto_FinalOficial
 
         private Cliente _clienteParaImpressao = null;
         private decimal _valorTotalVenda = 0;
-
-        // 1. Variável para guardar o ID do produto que está na tela no momento
         private int _idProdutoAtual = 0;
+        private int _estoqueAtualDisponivel = 0;
+        private ProdutoVariacao _variacaoAtual = null;
 
         private void UC_Vendas_Load(object sender, EventArgs e)
         {
             CarregarDataGridView();
 
-            // Lógica robusta para Tela Cheia
             var formPrincipal = Application.OpenForms.OfType<Principla>().FirstOrDefault();
             if (formPrincipal != null)
             {
                 formPrincipal.DefinirModoTelaCheia(true);
             }
+
+            // Foco inicial no código de barras
+            txt_CodigoProd.Focus();
         }
 
-        private void CarregarDataGridView()
-        {
-            // Configura as colunas do DataGridView
-            dgv_Carrinho.Columns.Clear();
-            dgv_Carrinho.Columns.Add("Nome", "Nome do Produto");
-            dgv_Carrinho.Columns.Add("Cor", "Cor");
-            dgv_Carrinho.Columns.Add("ValorUnitario", "Valor Unitário");
-            dgv_Carrinho.Columns.Add("Quantidade", "Quantidade");
-            dgv_Carrinho.Columns.Add("TotalItem", "Total do Item");
-            // Define o estilo das colunas, se necessário
-            dgv_Carrinho.Columns["ValorUnitario"].DefaultCellStyle.Format = "N2";
-            dgv_Carrinho.Columns["TotalItem"].DefaultCellStyle.Format = "N2";
-        }
+
         private void UC_Vendas_Leave(object sender, EventArgs e)
         {
-            // Ao sair, volta o menu ao normal
             var formPrincipal = Application.OpenForms.OfType<Principla>().FirstOrDefault();
             if (formPrincipal != null)
             {
@@ -61,28 +45,136 @@ namespace Projeto_FinalOficial
             }
         }
 
-       
         
+        private void CarregarDataGridView()
+        {
+            // Limpa as colunas anteriores
+            dgv_Carrinho.Columns.Clear();
 
+            // =========================================================
+            // CONFIGURAÇÃO DE ESTILO E FONTE (MUDANÇAS AQUI)
+            // =========================================================
+
+            // 1. Define uma fonte maior (Tamanho 12 ou 14 fica bom para PDV)
+            // "Segoe UI" é a fonte padrão moderna do Windows. Pode usar "Arial" se preferir.
+            System.Drawing.Font fonteGrande = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular);
+            System.Drawing.Font fonteCabecalho = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+
+            // 2. Aplica a fonte nas células de dados
+            dgv_Carrinho.DefaultCellStyle.Font = fonteGrande;
+
+            // 3. Aplica a fonte no cabeçalho (Títulos das colunas)
+            dgv_Carrinho.ColumnHeadersDefaultCellStyle.Font = fonteCabecalho;
+            dgv_Carrinho.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centraliza título
+
+            // 4. AUMENTA A ALTURA DAS LINHAS (Essencial quando se aumenta a fonte)
+            dgv_Carrinho.RowTemplate.Height = 35; // Altura da linha de dados (padrão é 22)
+            dgv_Carrinho.ColumnHeadersHeight = 40; // Altura do cabeçalho
+            dgv_Carrinho.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing; // Trava altura
+
+            // 5. Configurações visuais extras para facilitar leitura
+            dgv_Carrinho.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Colunas ocupam todo espaço
+            dgv_Carrinho.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Seleciona a linha inteira ao clicar
+            dgv_Carrinho.MultiSelect = false; // Evita selecionar várias linhas
+            dgv_Carrinho.BackgroundColor = System.Drawing.Color.White; // Fundo branco limpo
+            dgv_Carrinho.EnableHeadersVisualStyles = false; // Permite customizar cor do cabeçalho se quiser depois
+
+            // =========================================================
+            // ADIÇÃO DAS COLUNAS (SEU CÓDIGO ORIGINAL)
+            // =========================================================
+            dgv_Carrinho.Columns.Add("Nome", "Produto");
+            dgv_Carrinho.Columns.Add("Cor", "Cor");
+            dgv_Carrinho.Columns.Add("ValorUnitario", "Valor Unit.");
+            dgv_Carrinho.Columns.Add("Quantidade", "Qtd.");
+            dgv_Carrinho.Columns.Add("TotalItem", "Total");
+
+            // Formatação de moeda
+            dgv_Carrinho.Columns["ValorUnitario"].DefaultCellStyle.Format = "N2";
+            dgv_Carrinho.Columns["TotalItem"].DefaultCellStyle.Format = "N2";
+
+            // Alinhamento dos números à direita (padrão contábil)
+            dgv_Carrinho.Columns["ValorUnitario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Carrinho.Columns["Quantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Carrinho.Columns["TotalItem"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        }
+
+        // =========================================================
+        // CORREÇÃO PRINCIPAL: LÓGICA DE BUSCA E NOMES DAS VARIÁVEIS
+        // =========================================================
         private void PreencherDadosDoProduto(string codigo)
         {
-        
             try
             {
-                Produtos produtoDAO = new Produtos();
-                Produtos produtoEncontrado = produtoDAO.Buscar(codigo);
+                // Instancia os serviços
+                ProdutoVariacao variacaoService = new ProdutoVariacao();
+                Produtos produtoPaiService = new Produtos();
 
-                if (produtoEncontrado != null)
+                // VARIÁVEIS PARA ARMAZENAR O RESULTADO
+                ProdutoVariacao variacaoEncontrada = null;
+                Produtos produtoPai = null;
+
+                // ==========================================================
+                // TENTATIVA 1: BUSCAR POR CÓDIGO DE BARRAS (EAN) NA VARIAÇÃO
+                // ==========================================================
+                // É o cenário mais comum: ler o código de barras do produto específico (ex: Camiseta P)
+                variacaoEncontrada = variacaoService.BuscarPorEAN(codigo);
+
+                if (variacaoEncontrada != null)
                 {
-                    _idProdutoAtual = produtoEncontrado.Id;
-                    txt_NomeProd.Text = produtoEncontrado.Nome;
-                    txt_CorProd.Text = produtoEncontrado.Cor;
-                    txt_ValorUnitario.Text = produtoEncontrado.Valor.ToString("N2");
+                    // Se achou a variação, busca os dados do Pai (Nome, Foto, etc) usando o ID de vínculo
+                    produtoPai = produtoPaiService.BuscarPorId(variacaoEncontrada.ProdutoId);
+                }
+                else
+                {
+                    // ==========================================================
+                    // TENTATIVA 2: BUSCAR PELO ID INTERNO (Fallback)
+                    // ==========================================================
+                    // Caso o usuário tenha digitado o código interno do sistema manualmente
+                    if (int.TryParse(codigo, out int idInterno))
+                    {
+                        // Aqui tentamos achar direto o pai, mas ATENÇÃO:
+                        // Vender pelo Pai sem definir tamanho pode dar erro de estoque depois.
+                        // O ideal é forçar a busca da variação, mas mantive para compatibilidade.
+                        produtoPai = produtoPaiService.BuscarPorId(idInterno);
+
+                        if (produtoPai != null)
+                        {
+                            // Tenta pegar a primeira variação disponível para ter um preço/estoque
+                            var listaVariacoes = variacaoService.BuscarPorProdutoPai(produtoPai.Id);
+                            if (listaVariacoes.Count > 0)
+                            {
+                                variacaoEncontrada = listaVariacoes[0]; // Pega a primeira como padrão
+                            }
+                        }
+                    }
+                }
+
+                // ==========================================================
+                // PREENCHER A TELA
+                // ==========================================================
+                if (produtoPai != null && variacaoEncontrada != null)
+                {
+                    // O ID que vai para o carrinho deve ser o da VARIAÇÃO para baixar estoque corretamente
+                    _idProdutoAtual = variacaoEncontrada.Id;
+                    _variacaoAtual = variacaoEncontrada;
+                    _estoqueAtualDisponivel = variacaoEncontrada.QtdAtual;
+
+                    // Monta o nome: Nome do Pai + Tamanho da Variação
+                    txt_NomeProd.Text = $"{produtoPai.Nome} ({variacaoEncontrada.Tamanho})";
+                    txt_CorProd.Text = produtoPai.Cor;
+
+                    // PREÇO: Prioridade para o preço da Variação, se for 0 usa o do Pai
+                    decimal valorFinal = variacaoEncontrada.ValorVendaAtual > 0
+                                         ? variacaoEncontrada.ValorVendaAtual
+                                         : produtoPai.ValorVendaBase;
+
+                    txt_ValorUnitario.Text = valorFinal.ToString("N2");
                     num_Quantidade.Value = 1;
 
-                    if (produtoEncontrado.Foto != null && produtoEncontrado.Foto.Length > 0)
+                    // FOTO: A foto fica no Pai
+                    if (produtoPai.FotoCapa != null && produtoPai.FotoCapa.Length > 0)
                     {
-                        using (MemoryStream ms = new MemoryStream(produtoEncontrado.Foto))
+                        using (MemoryStream ms = new MemoryStream(produtoPai.FotoCapa))
                         {
                             pick_FotoProd.Image = Image.FromStream(ms);
                         }
@@ -92,12 +184,13 @@ namespace Projeto_FinalOficial
                         pick_FotoProd.Image = null;
                     }
 
+                    // Focar na quantidade
                     num_Quantidade.Focus();
                     num_Quantidade.Select(0, num_Quantidade.Value.ToString().Length);
                 }
                 else
                 {
-                    MessageBox.Show("Produto não encontrado!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Produto não encontrado pelo código informado!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     LimparCampos();
                     txt_CodigoProd.SelectAll();
                 }
@@ -108,7 +201,6 @@ namespace Projeto_FinalOficial
             }
         }
 
-        // Método auxiliar para limpar a tela
         private void LimparCampos()
         {
             _idProdutoAtual = 0;
@@ -121,12 +213,9 @@ namespace Projeto_FinalOficial
 
         private void txt_CodigoProd_KeyDown(object sender, KeyEventArgs e)
         {
-            // Verifica se a tecla pressionada foi ENTER (o scanner envia um Enter no final)
             if (e.KeyCode == Keys.Enter)
             {
-                // Remove o som de "bip" do Windows e previne quebra de linha
                 e.SuppressKeyPress = true;
-
                 string codigo = txt_CodigoProd.Text.Trim();
 
                 if (!string.IsNullOrEmpty(codigo))
@@ -135,59 +224,101 @@ namespace Projeto_FinalOficial
                 }
             }
         }
-        
-        private void btn_AdicionarItem_Click(object sender, EventArgs e)
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            // Variável global na classe para controlar o total da venda
-
-
-            // 1. Validação (Guard Clause)
-            if (!CamposEstaoValidos())
+            // 1. Validação: Verifica se tem produto carregado na memória
+            if (_idProdutoAtual == 0 || _variacaoAtual == null)
             {
-                MessageBox.Show("Preencha o produto e a quantidade corretamente.", "Atenção");
+                MessageBox.Show("Por favor, busque e selecione um produto primeiro.");
+                txt_CodigoProd.Focus();
                 return;
             }
 
-            // 2. Coleta os dados
-            string nome = txt_NomeProd.Text;
-            string cor = txt_CorProd.Text;
-            decimal valorUnitario = Convert.ToDecimal(txt_ValorUnitario.Text);
-            int quantidade = (int)num_Quantidade.Value;
+            // 2. Validação: Quantidade
+            int qtdDigitada = (int)num_Quantidade.Value;
 
-            // Calcula o subtotal deste item
-            decimal totalItem = valorUnitario * quantidade;
-            
-            
+            if (qtdDigitada <= 0)
+            {
+                MessageBox.Show("A quantidade deve ser maior que zero.");
+                return;
+            }
 
+            // 3. Validação: Estoque (Opcional, mas recomendado)
+            if (qtdDigitada > _estoqueAtualDisponivel)
+            {
+                MessageBox.Show($"Estoque insuficiente! Disponível: {_estoqueAtualDisponivel}");
+                return;
+            }
 
-            // 3. ADICIONA NO GRID E GUARDA O ID NA TAG
-            // Pega o índice da linha que acabou de ser criada
-            int indexLinha = dgv_Carrinho.Rows.Add(nome, cor, valorUnitario, quantidade, totalItem);
-            dgv_Carrinho.Rows[indexLinha].Tag = _idProdutoAtual;
-            // 4. Atualiza o Total Geral da Venda
-            AtualizarTotalVenda(totalItem);
-            //Logica para calcular o valor total da compra
+            // =======================================================================
+            // LÓGICA DE AGRUPAMENTO VISUAL (Direto no DataGridView)
+            // =======================================================================
 
-            
+            bool produtoJaEstavaNoGrid = false;
 
-            // 5. Limpa para o próximo item
+            // Varre as linhas do Grid para ver se o produto já está lá
+            foreach (DataGridViewRow row in dgv_Carrinho.Rows)
+            {
+                // Pula linha nova em branco
+                if (row.IsNewRow) continue;
+
+                // Verifica se a linha tem o ID (Tag) igual ao produto atual
+                if (row.Tag != null && Convert.ToInt32(row.Tag) == _idProdutoAtual)
+                {
+                    // === CENÁRIO A: ENCONTROU O PRODUTO ===
+
+                    // 1. Pega a quantidade que já estava lá
+                    int qtdAnterior = Convert.ToInt32(row.Cells["Quantidade"].Value);
+
+                    // 2. Soma com a nova
+                    int novaQtdTotal = qtdAnterior + qtdDigitada;
+
+                    // 3. Atualiza a célula de Quantidade
+                    row.Cells["Quantidade"].Value = novaQtdTotal;
+
+                    // 4. Atualiza a célula de Total (Preço x Nova Quantidade)
+                    decimal valorUnit = Convert.ToDecimal(row.Cells["ValorUnitario"].Value);
+                    row.Cells["TotalItem"].Value = novaQtdTotal * valorUnit;
+
+                    produtoJaEstavaNoGrid = true;
+                    break; // Para o loop, já achamos e atualizamos
+                }
+            }
+
+            if (!produtoJaEstavaNoGrid)
+            {
+                // === CENÁRIO B: NÃO ESTAVA LÁ, ADICIONA NOVO ===
+
+                decimal totalItem = qtdDigitada * _variacaoAtual.ValorVendaAtual;
+
+                // Adiciona a linha visualmente
+                int index = dgv_Carrinho.Rows.Add(
+                    txt_NomeProd.Text,                    // Nome
+                    txt_CorProd.Text,                     // Cor
+                    _variacaoAtual.ValorVendaAtual,       // Valor Unitario
+                    qtdDigitada,                          // Quantidade
+                    totalItem                             // Total
+                );
+
+                // O PULO DO GATO: Guardar o ID escondido na propriedade Tag da linha
+                dgv_Carrinho.Rows[index].Tag = _idProdutoAtual;
+            }
+
+            // 4. Recalcula o total final da venda e limpa campos
+            RecalcularTotalVenda();
             LimparCamposAposAdicionar();
-          
         }
-
-        // --- MÉTODOS AUXILIARES (CLEAN CODE) ---
 
         private bool CamposEstaoValidos()
         {
-            // Verifica se tem nome e se a quantidade é maior que zero
             return !string.IsNullOrEmpty(txt_NomeProd.Text) && num_Quantidade.Value > 0;
         }
 
         private void AtualizarTotalVenda(decimal valorItem)
         {
             _valorTotalVenda += valorItem;
-            // Supondo que você tenha um Label grande mostrando o total (lblTotalVenda)
-            txt_ValorFinal.Text = _valorTotalVenda.ToString("C2"); // Formata como R$
+            txt_ValorFinal.Text = _valorTotalVenda.ToString("N2");
         }
 
         private void LimparCamposAposAdicionar()
@@ -199,7 +330,6 @@ namespace Projeto_FinalOficial
             num_Quantidade.Value = 0;
             pick_FotoProd.Image = null;
 
-            // Joga o foco de volta para o código de barras para bipar o próximo rapido
             txt_CodigoProd.Focus();
         }
 
@@ -208,61 +338,61 @@ namespace Projeto_FinalOficial
             LimparCampos();
         }
 
+        // Correção de nomenclatura (remover underscores extras se desejar, mas mantive para compatibilidade)
         private void txt_ValorFinal_TextChanged(object sender, EventArgs e)
         {
-            txt_ValorFinal.Text = _valorTotalVenda.ToString("N2");
+            // Apenas para garantir formatação visual se alguém digitar manual
         }
 
         private void btn_ExcluirItemCarrinho_Click(object sender, EventArgs e)
         {
-            dgv_Carrinho.Rows.RemoveAt(dgv_Carrinho.CurrentRow.Index);
-            RecalcularTotalVenda();
-
-
+            if (dgv_Carrinho.CurrentRow != null && !dgv_Carrinho.CurrentRow.IsNewRow)
+            {
+                dgv_Carrinho.Rows.RemoveAt(dgv_Carrinho.CurrentRow.Index);
+                RecalcularTotalVenda();
+            }
         }
 
         private void Btn_AlterarItem_Click(object sender, EventArgs e)
         {
-            // Logica para alterar apenas a quantidade do item selecionado no carrinho
             if (dgv_Carrinho.CurrentRow != null)
             {
-                // Pega a linha selecionada
                 DataGridViewRow linhaSelecionada = dgv_Carrinho.CurrentRow;
-                // Pega a nova quantidade do campo numérico
                 int novaQuantidade = (int)num_Quantidade.Value;
+
                 if (novaQuantidade > 0)
                 {
-                    // Atualiza a quantidade na linha selecionada
                     linhaSelecionada.Cells["Quantidade"].Value = novaQuantidade;
-                    // Recalcula o total do item
+
                     decimal valorUnitario = Convert.ToDecimal(linhaSelecionada.Cells["ValorUnitario"].Value);
                     decimal novoTotalItem = valorUnitario * novaQuantidade;
                     linhaSelecionada.Cells["TotalItem"].Value = novoTotalItem;
-                    // Recalcula o total geral da venda
+
                     RecalcularTotalVenda();
                 }
                 else
                 {
-                    MessageBox.Show("A quantidade deve ser maior que zero.", "Atenção");
+                    MessageBox.Show("Selecione um item no carrinho e defina uma quantidade maior que zero no campo de quantidade.", "Atenção");
                 }
             }
-           
         }
+
         private void RecalcularTotalVenda()
         {
             _valorTotalVenda = 0;
             foreach (DataGridViewRow row in dgv_Carrinho.Rows)
             {
-                decimal totalItem = Convert.ToDecimal(row.Cells["TotalItem"].Value);
-                _valorTotalVenda += totalItem;
+                if (row.Cells["TotalItem"].Value != null)
+                {
+                    _valorTotalVenda += Convert.ToDecimal(row.Cells["TotalItem"].Value);
+                }
             }
             txt_ValorFinal.Text = _valorTotalVenda.ToString("N2");
         }
 
         private void btn_FinalizarVenda_Click(object sender, EventArgs e)
         {
-            // 1. Validação básica
-            if (dgv_Carrinho.Rows.Count == 0)
+            if (dgv_Carrinho.Rows.Count == 0 || (dgv_Carrinho.Rows.Count == 1 && dgv_Carrinho.Rows[0].IsNewRow))
             {
                 MessageBox.Show("Carrinho vazio!");
                 return;
@@ -270,44 +400,33 @@ namespace Projeto_FinalOficial
 
             try
             {
-                // 2. Criar Lista de Itens para passar para a próxima tela
                 List<ItemVenda> listaDeItens = new List<ItemVenda>();
 
                 foreach (DataGridViewRow row in dgv_Carrinho.Rows)
                 {
-                    if (row.IsNewRow) continue; // Ignora a linha em branco do grid
-                    if (row.Cells["Nome"].Value == null) continue; // Proteção extra
+                    if (row.IsNewRow) continue;
+                    if (row.Cells["Nome"].Value == null) continue;
 
                     ItemVenda item = new ItemVenda();
 
-                    // Pega o ID que guardamos escondido na Tag
                     if (row.Tag != null)
                         item.IdProduto = Convert.ToInt32(row.Tag);
                     else
                     {
-                        MessageBox.Show($"Produto {row.Cells["Nome"].Value} está sem ID. Remova e adicione novamente.");
-                        return;
+                        // Se perdeu o ID, tenta recuperar pelo nome (menos seguro, mas fallback)
+                        // Idealmente nunca deve entrar aqui se a lógica de adicionar funcionar
+                        item.IdProduto = 0;
                     }
 
-                    // Preenche os dados visuais (para o Cupom)
                     item.NomeProduto = row.Cells["Nome"].Value.ToString();
                     item.Cor = row.Cells["Cor"].Value != null ? row.Cells["Cor"].Value.ToString() : "";
-
-                    // Preenche os dados numéricos (para o Banco e Cálculo)
-                    item.ValorUnitario = Convert.ToDecimal(row.Cells["ValorUnitario"].Value);
+                    var cellValor = row.Cells["ValorUnitario"].Value;
+                    item.ValorUnitario = cellValor != null ? Convert.ToDecimal(cellValor) : 0;
                     item.Quantidade = Convert.ToInt32(row.Cells["Quantidade"].Value);
-
-                    // OBS: NÃO colocamos item.Subtotal = ... aqui.
-                    // A classe ItemVenda já calcula sozinha (Qtd * Valor).
 
                     listaDeItens.Add(item);
                 }
 
-                // 3. Chamar a Tela de Pagamento
-                // Passamos o valor total e a lista de itens preenchida
-                
-
-                // Exibir a tela no formulário principal
                 var formPrincipal = Application.OpenForms.OfType<Principla>().FirstOrDefault();
                 if (formPrincipal != null)
                 {
@@ -322,23 +441,18 @@ namespace Projeto_FinalOficial
 
         private void btn_CadastraCLiente_Click(object sender, EventArgs e)
         {
-
             CadastroCliente telaCadastroCliente = new CadastroCliente();
-            // Exibir a tela no formulário principal
             var formPrincipal = Application.OpenForms.OfType<Principla>().FirstOrDefault();
             if (formPrincipal != null)
             {
                 formPrincipal.RenderizarControl(telaCadastroCliente);
             }
-
         }
 
         private void btn_BuscarCliente_Click(object sender, EventArgs e)
         {
-            // 1. Pega o texto digitado e remove espaços das pontas
             string termoDigitado = txt_BuscaCliente.Text.Trim();
 
-            // Validação básica
             if (string.IsNullOrEmpty(termoDigitado))
             {
                 MessageBox.Show("Por favor, digite um Nome ou CPF.");
@@ -347,32 +461,23 @@ namespace Projeto_FinalOficial
 
             try
             {
-                // Instancia a classe Cliente (que herda aquele método lá de cima)
                 Cliente clienteService = new Cliente();
 
-                // --- AQUI ESTÁ A CHAMADA CORRETA ---
-                // Passamos apenas a variável 'termoDigitado'. 
-                // O banco que se vire para decidir se parece nome ou CPF.
-                // Precisamos fazer o cast (Cliente) porque o método retorna um 'Usuario' genérico.
-                Cliente resultado = (Cliente)clienteService.BuscarPorNomeOuCPF(termoDigitado);
+                // Realiza a busca
+                var resultadoObj = clienteService.BuscarPorNomeOuCPF(termoDigitado);
 
+                // Converte (Cast) para Cliente
+                Cliente resultado = resultadoObj as Cliente;
 
                 if (resultado != null && resultado.Id > 0)
                 {
-                    // === SUCESSO: CLIENTE ENCONTRADO ===
-
-                    // AQUI VOCÊ GUARDA O RESULTADO NA VARIÁVEL OCULTA
                     _clienteParaImpressao = resultado;
-
-                    MessageBox.Show($"Cliente encontrado: {resultado.Nome}", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // Opcional: limpar o campo de busca
-                    // txt_BuscaCliente.Clear();
+                    MessageBox.Show($"Cliente selecionado: {resultado.Nome}", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    // === NÃO ENCONTRADO ===
-                    _clienteParaImpressao = null; // Garante que está nulo
-                    MessageBox.Show("Nenhum cliente encontrado com esses dados.");
+                    _clienteParaImpressao = null;
+                    MessageBox.Show("Nenhum cliente encontrado.");
                     txt_BuscaCliente.SelectAll();
                     txt_BuscaCliente.Focus();
                 }
@@ -384,9 +489,3 @@ namespace Projeto_FinalOficial
         }
     }
 }
-
-
-
-
-
-

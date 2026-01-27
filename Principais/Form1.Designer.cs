@@ -41,6 +41,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.eye_Icon = new FontAwesome.Sharp.IconButton();
             this.LOG = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -63,7 +64,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.Location = new System.Drawing.Point(41, 394);
-            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(185, 44);
             this.kryptonButton1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -80,7 +81,7 @@
             this.moonLabel2.AutoSize = true;
             this.moonLabel2.BackColor = System.Drawing.Color.Transparent;
             this.moonLabel2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.moonLabel2.Location = new System.Drawing.Point(37, 260);
+            this.moonLabel2.Location = new System.Drawing.Point(4, 269);
             this.moonLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.moonLabel2.Name = "moonLabel2";
             this.moonLabel2.Size = new System.Drawing.Size(46, 16);
@@ -89,8 +90,8 @@
             // 
             // txt_Senha
             // 
-            this.txt_Senha.Location = new System.Drawing.Point(41, 281);
-            this.txt_Senha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Senha.Location = new System.Drawing.Point(8, 290);
+            this.txt_Senha.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Senha.Name = "txt_Senha";
             this.txt_Senha.Size = new System.Drawing.Size(203, 31);
             this.txt_Senha.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -104,7 +105,7 @@
             this.moonLabel1.AutoSize = true;
             this.moonLabel1.BackColor = System.Drawing.Color.Transparent;
             this.moonLabel1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.moonLabel1.Location = new System.Drawing.Point(37, 190);
+            this.moonLabel1.Location = new System.Drawing.Point(4, 199);
             this.moonLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.moonLabel1.Name = "moonLabel1";
             this.moonLabel1.Size = new System.Drawing.Size(82, 16);
@@ -113,8 +114,8 @@
             // 
             // txt_Login
             // 
-            this.txt_Login.Location = new System.Drawing.Point(41, 208);
-            this.txt_Login.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Login.Location = new System.Drawing.Point(8, 217);
+            this.txt_Login.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Login.Name = "txt_Login";
             this.txt_Login.Size = new System.Drawing.Size(203, 31);
             this.txt_Login.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -155,7 +156,7 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(25, 210);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(273, 164);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -166,7 +167,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.pictureBox3.Location = new System.Drawing.Point(85, 210);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(455, 164);
             this.pictureBox3.TabIndex = 13;
@@ -176,7 +177,7 @@
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(181)))), ((int)(((byte)(181)))));
             this.pictureBox4.Location = new System.Drawing.Point(57, 198);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(460, 190);
             this.pictureBox4.TabIndex = 14;
@@ -187,18 +188,36 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(9)))), ((int)(((byte)(9)))));
+            this.panel2.Controls.Add(this.eye_Icon);
             this.panel2.Controls.Add(this.moonLabel2);
             this.panel2.Controls.Add(this.kryptonButton1);
             this.panel2.Controls.Add(this.txt_Senha);
             this.panel2.Controls.Add(this.LOG);
             this.panel2.Controls.Add(this.moonLabel1);
             this.panel2.Controls.Add(this.txt_Login);
-            this.panel2.Location = new System.Drawing.Point(549, 23);
+            this.panel2.Location = new System.Drawing.Point(1086, 11);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(273, 865);
             this.panel2.TabIndex = 15;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // eye_Icon
+            // 
+            this.eye_Icon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(9)))), ((int)(((byte)(9)))));
+            this.eye_Icon.FlatAppearance.BorderSize = 0;
+            this.eye_Icon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.eye_Icon.ForeColor = System.Drawing.Color.Transparent;
+            this.eye_Icon.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            this.eye_Icon.IconColor = System.Drawing.Color.Black;
+            this.eye_Icon.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.eye_Icon.IconSize = 28;
+            this.eye_Icon.Location = new System.Drawing.Point(218, 290);
+            this.eye_Icon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.eye_Icon.Name = "eye_Icon";
+            this.eye_Icon.Size = new System.Drawing.Size(49, 33);
+            this.eye_Icon.TabIndex = 13;
+            this.eye_Icon.UseVisualStyleBackColor = false;
+            this.eye_Icon.Click += new System.EventHandler(this.eye_Icon_Click);
             // 
             // LOG
             // 
@@ -218,7 +237,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
             this.pictureBox1.Location = new System.Drawing.Point(1489, 14);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(273, 889);
             this.pictureBox1.TabIndex = 16;
@@ -244,8 +263,10 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimumSize = new System.Drawing.Size(1021, 724);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load_1);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -273,6 +294,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label LOG;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private FontAwesome.Sharp.IconButton eye_Icon;
     }
 }
 

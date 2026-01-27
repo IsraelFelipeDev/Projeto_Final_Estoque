@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using System.Threading;
-using System.Threading.Tasks; // Necessário para Task.Delay
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Linq; // Necessário para linq
-using Projeto_FinalOficial.Modelos; // Assumindo que Sessao e UserLogger estão aqui ou ajustados
+using System.Linq;
+using Projeto_FinalOficial.Modelos;
 
 namespace Projeto_FinalOficial
 {
     public partial class Principla : Form
     {
-        // --- CONSTANTES PARA EVITAR ERROS DE DIGITAÇÃO ---
+        // --- CONSTANTES ---
         private const string CARGO_GERENTE = "Gerente";
         private const string CARGO_VENDEDOR = "Vendedor";
         private const string CARGO_ESTOQUISTA = "Estoquista";
@@ -18,13 +18,13 @@ namespace Projeto_FinalOficial
         private bool modoEscuroAtivo = false;
         private readonly UserLogger _logger = new UserLogger();
 
-        // Variável global para armazenar o controle atual (navegação)
+        // Variável global para armazenar o controle atual
         private UserControl controleAtivo;
 
         // Configuração da animação do Menu
-        int panelMinSize = 50;
-        int panelMaxSize = 200;
-        int step = 10;
+        int panelMinSize = 60; // Ajustado levemente para caber ícones centralizados
+        int panelMaxSize = 220; // Ajustado para o novo layout
+        int step = 20; // Aumentei o passo para a animação ser mais fluida e rápida
 
         public Principla()
         {
@@ -32,62 +32,93 @@ namespace Projeto_FinalOficial
             ConfigurarEstadoInicial();
         }
 
+       
         private void ConfigurarEstadoInicial()
         {
             CustomizarSubMenus();
             cyberProgressBar1.Visible = false;
             AplicarPermissoesDeCargo();
+
+            // --- ADICIONE ESTAS LINHAS AQUI ---
+
+            // 1. Configurar o Timer (caso não esteja configurado no Designer)
+            if (timerSidebar == null)
+            {
+                timerSidebar = new System.Windows.Forms.Timer();
+                this.components.Add(timerSidebar); // Adiciona ao container de componentes
+            }
+
+            timerSidebar.Interval = 10; // Velocidade da animação (menor = mais rápido)
+            timerSidebar.Tick += timerSidebar_Tick; // Conecta o "tic-tac" do relógio ao código
+
+            // 2. Conectar os eventos do Mouse ao Painel Principal
+            // Removemos antes para não duplicar, caso já exista
+            pn_Principal.MouseEnter -= pn_Principal_MouseEnter;
+            pn_Principal.MouseEnter += pn_Principal_MouseEnter;
+
+            pn_Principal.MouseLeave -= pn_Principal_MouseLeave;
+            pn_Principal.MouseLeave += pn_Principal_MouseLeave;
+
+            // 3. (Opcional) Fazer o mesmo para os botões dentro do painel
+            // Isso evita que o menu feche se você passar o mouse devagar sobre um botão
+            foreach (Control c in pn_Principal.Controls)
+            {
+                c.MouseEnter += pn_Principal_MouseEnter;
+                // Não adicione MouseLeave nos botões filhos, deixe o Timer gerenciar a saída
+            }
         }
 
         private void AplicarPermissoesDeCargo()
         {
-            // Se não for gerente, esconde os botões administrativos
             if (Sessao.Cargo != CARGO_GERENTE)
             {
-                Btn_MenuGerente.Visible = false;
-                btn_SubMenuFinanceiro.Visible = false;
-                subMenuFinanceiro.Visible = false;
+                // Verifica se o botão existe antes de tentar esconder (para evitar null reference)
+                if (Btn_MenuGerente != null) Btn_MenuGerente.Visible = false;
+                if (btn_SubMenuFinanceiro != null) btn_SubMenuFinanceiro.Visible = false;
+                if (subMenuFinanceiro != null) subMenuFinanceiro.Visible = false;
             }
         }
 
         private void CustomizarSubMenus()
         {
-            pn_SubMenuGerente.Visible = false;
-            pn_SubMenuVendedor.Visible = false;
-            pn_SubMenuEstoque.Visible = false;
+            if (pn_SubMenuGerente != null) pn_SubMenuGerente.Visible = false;
+            if (pn_SubMenuVendedor != null) pn_SubMenuVendedor.Visible = false;
+            if (pn_SubMenuEstoque != null) pn_SubMenuEstoque.Visible = false;
+            if (subMenuFinanceiro != null) subMenuFinanceiro.Visible = false;
+
         }
 
         // --- SISTEMA DE NAVEGAÇÃO (CORE) ---
         public void RenderizarControl(UserControl novoControl)
         {
-            // 1. Limpeza de memória do controle anterior
+            // 1. Limpeza de memória
             if (controleAtivo != null)
             {
                 pnlConteudo.Controls.Remove(controleAtivo);
                 controleAtivo.Dispose();
             }
 
-            // 2. Configuração do novo controle
+            // 2. Configuração
             controleAtivo = novoControl;
             novoControl.Dock = DockStyle.Fill;
 
-            // 3. Adição à tela
+            // 3. Adição
             pnlConteudo.Controls.Add(novoControl);
-
-            // 4. Garante que o novo controle ganhe foco (opcional, mas bom para UX)
             novoControl.Focus();
         }
 
         // --- MANIPULAÇÃO DE SUBMENUS ---
         private void EsconderSubMenusAtivos()
         {
-            if (pn_SubMenuGerente.Visible) pn_SubMenuGerente.Visible = false;
-            if (pn_SubMenuVendedor.Visible) pn_SubMenuVendedor.Visible = false;
-            if (pn_SubMenuEstoque.Visible) pn_SubMenuEstoque.Visible = false;
+            if (pn_SubMenuGerente != null && pn_SubMenuGerente.Visible) pn_SubMenuGerente.Visible = false;
+            if (pn_SubMenuVendedor != null && pn_SubMenuVendedor.Visible) pn_SubMenuVendedor.Visible = false;
+            if (pn_SubMenuEstoque != null && pn_SubMenuEstoque.Visible) pn_SubMenuEstoque.Visible = false;
         }
 
         private void AlternarSubMenu(Panel subMenu)
         {
+            if (subMenu == null) return;
+
             if (subMenu.Visible == false)
             {
                 EsconderSubMenusAtivos();
@@ -99,7 +130,7 @@ namespace Projeto_FinalOficial
             }
         }
 
-        // --- EVENTOS DE TELA E JANELA ---
+        // --- EVENTOS DE JANELA ---
         private void icon_mod_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
@@ -123,30 +154,15 @@ namespace Projeto_FinalOficial
             }
         }
 
-        // --- MENU GERENTE ---
-        private void Btn_MenuGerente_Click(object sender, EventArgs e) => AlternarSubMenu(pn_SubMenuGerente);
+        // GERENTE
+        private void Btn_MenuGerente_Click_1(object sender, EventArgs e) => AlternarSubMenu(pn_SubMenuGerente);
 
-        // AQUI ESTAVA O PROBLEMA DE TRAVAMENTO: Use async/await
-        private async void btn_CadFun_Click(object sender, EventArgs e)
+        private void btn_Monitoramento_Click_1(object sender, EventArgs e)
         {
-            _logger.LogClick(sender, this);
-
-            // Animação Assíncrona (Não trava a tela)
-            cyberProgressBar1.Visible = true;
-            cyberProgressBar1.Value = 0;
-
-            for (int i = 0; i <= 100; i += 2) // Acelerado para UX melhor
-            {
-                cyberProgressBar1.Value = i;
-                await Task.Delay(1); // Libera a thread de UI para desenhar
-            }
-
-            cyberProgressBar1.Visible = false;
             EsconderSubMenusAtivos();
-
-            RenderizarControl(new UC_CadastroFuncionario());
+            _logger.LogClick(sender, this);
+            RenderizarControl(new UC_Monitoramento());
         }
-
         private void btn_CadProd_Click(object sender, EventArgs e)
         {
             EsconderSubMenusAtivos();
@@ -154,30 +170,60 @@ namespace Projeto_FinalOficial
             RenderizarControl(new CadastroProdutos());
         }
 
-        private void btn_Monitoramento_Click(object sender, EventArgs e)
+        private async void btn_CadFun_Click(object sender, EventArgs e)
         {
-            EsconderSubMenusAtivos();
             _logger.LogClick(sender, this);
-            RenderizarControl(new UC_Monitoramento());
+
+            cyberProgressBar1.Visible = true;
+            cyberProgressBar1.Value = 0;
+
+            // Task.Run para não travar a UI enquanto processa o loop
+            await Task.Run(async () =>
+            {
+                for (int i = 0; i <= 100; i += 5)
+                {
+                    // Invoke necessário pois estamos em outra thread
+                    this.Invoke((MethodInvoker)delegate {
+                        cyberProgressBar1.Value = i;
+                    });
+                    await Task.Delay(10);
+                }
+            });
+
+            cyberProgressBar1.Visible = false;
+            EsconderSubMenusAtivos();
+            RenderizarControl(new UC_CadastroFuncionario());
+
         }
 
-        private void btn_CadForn_Click(object sender, EventArgs e)
+        
+
+        private void btn_CadForn_Click_1(object sender, EventArgs e)
         {
             EsconderSubMenusAtivos();
             _logger.LogClick(sender, this);
             RenderizarControl(new UC_CadastroFornecedores());
         }
 
-        // --- MENU VENDAS ---
-        private void btn_MenuVendas_Click(object sender, EventArgs e) => AlternarSubMenu(pn_SubMenuVendedor);
 
-        private void btn_Vendedor_Click(object sender, EventArgs e)
+        //VENDEDOR
+        private void btn_MenuVendas_Click_1(object sender, EventArgs e) => AlternarSubMenu(pn_SubMenuVendedor);
+        
+
+       
+
+        private void btn_Desemp_Click_1(object sender, EventArgs e)
+        {
+            EsconderSubMenusAtivos();
+            _logger.LogClick(sender, this);
+            MessageBox.Show("Módulo de Relatórios em desenvolvimento.");
+        }
+
+        private void btn_Vendedor_Click_1(object sender, EventArgs e)
         {
             EsconderSubMenusAtivos();
             _logger.LogClick(sender, this);
 
-            // Se for Gerente ou Vendedor, o sistema deixa passar direto (conforme sua regra)
-            // Se for Estoquista tentando vender, pede senha
             if (Sessao.Cargo == CARGO_GERENTE || Sessao.Cargo == CARGO_VENDEDOR)
             {
                 VerificarFluxoCaixa(null);
@@ -191,21 +237,13 @@ namespace Projeto_FinalOficial
             }
         }
 
-        private void btn_Desemp_Click(object sender, EventArgs e)
-        {
-            EsconderSubMenusAtivos();
-            _logger.LogClick(sender, this);
 
-            // ATENÇÃO: Aqui não devemos chamar UC_Pagamento, pois pagamento depende de uma venda ativa.
-            // Aqui deve ser a tela de Relatórios ou Dashboard.
-            MessageBox.Show("Tela de Desempenho/Relatórios em construção.");
-            // RenderizarControl(new UC_Relatorios()); 
-        }
 
-        // --- MENU ESTOQUE ---
-        private void btn_MenuEstoque_Click(object sender, EventArgs e) => AlternarSubMenu(pn_SubMenuEstoque);
+        // ESTOQUISTA
+        private void btn_MenuEstoque_Click_1(object sender, EventArgs e) => AlternarSubMenu(pn_SubMenuEstoque);
+        
 
-        private void btn_EstoqGeral_Click(object sender, EventArgs e)
+        private void btn_EstoqGeral_Click_1(object sender, EventArgs e)
         {
             EsconderSubMenusAtivos();
             _logger.LogClick(sender, this);
@@ -218,36 +256,64 @@ namespace Projeto_FinalOficial
             {
                 SolicitarAutorizacaoGerente((nome) => AbrirTelaEstoque());
             }
+
         }
 
-        private void btn_FazerPed_Click(object sender, EventArgs e)
+        private void btn_FazerPed_Click_1(object sender, EventArgs e)
         {
             EsconderSubMenusAtivos();
             _logger.LogClick(sender, this);
-            // RenderizarControl(new UC_FazerPedido());
+             RenderizarControl(new UC_FazerPedido());
         }
 
-        private void btn_LançarNota_Click(object sender, EventArgs e)
+        private void btn_LançarNota_Click_1(object sender, EventArgs e)
         {
             EsconderSubMenusAtivos();
             _logger.LogClick(sender, this);
-            // RenderizarControl(new UC_LancarNota());
+             RenderizarControl(new UC_EntradaNota());
         }
+
+
+
+
+
+
+
+        //Financeiro
+        private void btn_SubMenuFinanceiro_Click_1(object sender, EventArgs e) => AlternarSubMenu(subMenuFinanceiro);
+      
+
+        private void btn_SalarioFunc_Click(object sender, EventArgs e)
+        {
+            EsconderSubMenusAtivos();
+           // RenderizarControl(new UC_SalarioFuncionarios());
+
+        }
+
+        private void btn_ContasPagar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Lucro_Click(object sender, EventArgs e)
+        {
+
+        }
+        
 
         // --- TEMA (DARK MODE) ---
         private void iconButton2_Click(object sender, EventArgs e)
         {
             modoEscuroAtivo = !modoEscuroAtivo;
 
+            // Configura cores bases
             if (modoEscuroAtivo)
             {
-                this.BackColor = Color.FromArgb(30, 30, 30);
-                this.ForeColor = Color.FromArgb(189, 9, 9);
+                this.BackColor = Color.FromArgb(20, 20, 20); // Cinza bem escuro
             }
             else
             {
-                this.BackColor = Color.White;
-                this.ForeColor = Color.Black;
+                this.BackColor = Color.WhiteSmoke;
             }
 
             AtualizarCoresRecursivo(this, modoEscuroAtivo);
@@ -257,8 +323,7 @@ namespace Projeto_FinalOficial
         {
             Color corFundo = escuro ? Color.FromArgb(30, 30, 30) : Color.White;
             Color corTexto = escuro ? Color.White : Color.Black;
-            Font fontTexto = escuro ? new Font("Segoe UI", 8, FontStyle.Bold) : new Font("Segoe UI", 8, FontStyle.Regular);
-            Color corFundoContainer = escuro ? Color.FromArgb(45, 45, 48) : Color.WhiteSmoke;
+            Color corPainel = escuro ? Color.FromArgb(45, 45, 48) : Color.White;
 
             foreach (Control c in container.Controls)
             {
@@ -266,13 +331,16 @@ namespace Projeto_FinalOficial
 
                 if (c is Label)
                 {
-                    c.Font = fontTexto;
                     c.ForeColor = corTexto;
                 }
-                else if (c is UserControl || c is Panel)
+                else if (c is Panel || c is UserControl)
                 {
-                    c.BackColor = corFundoContainer;
-                    c.ForeColor = corTexto;
+                    // Não altera a cor do Menu Principal se for vermelho fixo
+                    if (c.Name != "pn_Principal")
+                    {
+                        c.BackColor = corPainel;
+                        c.ForeColor = corTexto;
+                    }
                     AtualizarCoresRecursivo(c, escuro);
                 }
                 else if (c is GroupBox)
@@ -283,13 +351,41 @@ namespace Projeto_FinalOficial
             }
         }
 
-        // --- ANIMAÇÃO MENU LATERAL ---
+        // --- LÓGICA DE ANIMAÇÃO DO MENU (CORRIGIDA) ---
+
+        private void Principla_Load_1(object sender, EventArgs e)
+        {
+            _logger.LogOpen(this);
+
+            // NOVO: Salva as tags de forma recursiva para garantir que funcione em qualquer layout
+            SalvarTagsRecursivo(pn_Principal);
+        }
+
+        // Método recursivo auxiliar para salvar o texto na TAG
+        private void SalvarTagsRecursivo(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is Button btn && string.IsNullOrEmpty((string)btn.Tag))
+                {
+                    btn.Tag = btn.Text; // Salva o texto original
+                }
+
+                if (c.HasChildren)
+                {
+                    SalvarTagsRecursivo(c);
+                }
+            }
+        }
+
         private void timerSidebar_Tick(object sender, EventArgs e)
         {
+            // Verifica se o mouse está sobre o painel principal
             bool mouseOver = pn_Principal.ClientRectangle.Contains(pn_Principal.PointToClient(Cursor.Position));
 
             if (mouseOver)
             {
+                // EXPANDIR
                 if (pn_Principal.Width < panelMaxSize)
                 {
                     pn_Principal.Width += step;
@@ -298,14 +394,17 @@ namespace Projeto_FinalOficial
                 {
                     pn_Principal.Width = panelMaxSize;
                     timerSidebar.Stop();
-                    ShowButtonText();
+                    // Mostra o texto APÓS expandir totalmente
+                    AlterarTextoBotoesRecursivo(pn_Principal, true);
                 }
             }
             else
             {
+                // RECOLHER
                 if (pn_Principal.Width == panelMaxSize)
                 {
-                    HideButtonText();
+                    // Esconde o texto ANTES de começar a recolher
+                    AlterarTextoBotoesRecursivo(pn_Principal, false);
                 }
 
                 if (pn_Principal.Width > panelMinSize)
@@ -320,62 +419,49 @@ namespace Projeto_FinalOficial
             }
         }
 
-        private void HideButtonText()
-        {
-            foreach (Control c in pn_Principal.Controls)
-            {
-                if (c is Button) c.Text = "";
-            }
-        }
+        private void pn_Principal_MouseLeave(object sender, EventArgs e) => timerSidebar.Start();
+        private void pn_Principal_MouseEnter(object sender, EventArgs e) => timerSidebar.Start();
 
-        private void ShowButtonText()
+        // NOVO: Método recursivo para mostrar/esconder texto (funciona com Panels aninhados)
+        private void AlterarTextoBotoesRecursivo(Control parent, bool mostrar)
         {
-            foreach (Control c in pn_Principal.Controls)
+            foreach (Control c in parent.Controls)
             {
-                if (c is Button && c.Tag != null)
+                if (c is Button btn && c.Tag != null)
                 {
-                    c.Text = c.Tag.ToString();
+                    if (mostrar)
+                    {
+                        btn.Text = c.Tag.ToString();
+                        btn.ImageAlign = ContentAlignment.MiddleLeft;
+                        btn.Padding = new Padding(10, 0, 0, 0); // Ajuste estético
+                    }
+                    else
+                    {
+                        btn.Text = "";
+                        btn.ImageAlign = ContentAlignment.MiddleCenter;
+                        btn.Padding = new Padding(0);
+                    }
+                }
+
+                if (c.HasChildren)
+                {
+                    AlterarTextoBotoesRecursivo(c, mostrar);
                 }
             }
         }
 
-        private void pn_Principal_MouseLeave(object sender, EventArgs e) => timerSidebar.Start();
-        private void pn_Principal_MouseEnter(object sender, EventArgs e) => timerSidebar.Start();
-
-        private void Principla_Load_1(object sender, EventArgs e)
-        {
-            _logger.LogOpen(this);
-            // Salva o texto dos botões na Tag para recuperar depois da animação
-            Btn_MenuGerente.Tag = Btn_MenuGerente.Text;
-            btn_MenuVendas.Tag = btn_MenuVendas.Text;
-            btn_MenuEstoque.Tag = btn_MenuEstoque.Text;
-        }
-
-        private void btn_SubMenuFinanceiro_Click(object sender, EventArgs e)
-        {
-            EsconderSubMenusAtivos();
-            // RenderizarControl(new UC_Financeiro());
-        }
-
-        // --- LÓGICA DE NEGÓCIO: FLUXO DE CAIXA E PERMISSÕES ---
-
+        // --- LÓGICA DE NEGÓCIO ---
         private void VerificarFluxoCaixa(string nomeGerenteAutorizador)
         {
-            // 1. Caixa Aberto? Vai pra Venda
             if (Sessao.IDCaixaAtual > 0)
             {
                 RenderizarControl(new UC_Vendas());
             }
-            // 2. Caixa Fechado? Abre tela de Abertura
             else
             {
                 UC_AberturaCaixa telaAbertura = new UC_AberturaCaixa(
                     nomeGerenteAutorizador,
-                    () =>
-                    {
-                        // Callback executado APÓS o caixa abrir com sucesso
-                        RenderizarControl(new UC_Vendas());
-                    }
+                    () => { RenderizarControl(new UC_Vendas()); }
                 );
                 RenderizarControl(telaAbertura);
             }
@@ -385,20 +471,21 @@ namespace Projeto_FinalOficial
         {
             using (Form formPopup = new Form())
             {
-                formPopup.Text = "Autorização de Gerente";
+                formPopup.Text = "Autorização";
                 formPopup.StartPosition = FormStartPosition.CenterParent;
-                formPopup.Size = new Size(424, 249);
+                formPopup.Size = new Size(652, 367);
                 formPopup.FormBorderStyle = FormBorderStyle.None;
-                formPopup.ShowInTaskbar = false;
 
-                string nomeGerenteCapturado = "";
+                // Criação simples de borda ou fundo
+                formPopup.BackColor = Color.DimGray;
+                formPopup.Padding = new Padding(1); // Borda falsa
 
                 UC_ValidacaoGerente ucValidacao = new UC_ValidacaoGerente(
                     acaoAposLiberacao: (nome) =>
                     {
-                        nomeGerenteCapturado = nome;
                         formPopup.DialogResult = DialogResult.OK;
                         formPopup.Close();
+                        acaoSeAutorizado(nome);
                     },
                     acaoCancelar: () =>
                     {
@@ -409,11 +496,7 @@ namespace Projeto_FinalOficial
 
                 ucValidacao.Dock = DockStyle.Fill;
                 formPopup.Controls.Add(ucValidacao);
-
-                if (formPopup.ShowDialog(this) == DialogResult.OK)
-                {
-                    acaoSeAutorizado(nomeGerenteCapturado);
-                }
+                formPopup.ShowDialog(this);
             }
         }
 
@@ -424,10 +507,9 @@ namespace Projeto_FinalOficial
 
         public void DefinirModoTelaCheia(bool telaCheia)
         {
-            if (telaCheia)
-                pn_Principal.Visible = false;
-            else
-                pn_Principal.Visible = true;
+            pn_Principal.Visible = !telaCheia;
         }
+
+        
     }
 }

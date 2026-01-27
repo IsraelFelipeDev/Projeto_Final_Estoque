@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using System;
 using System.Windows.Forms;
 
 namespace Projeto_FinalOficial
@@ -16,6 +17,10 @@ namespace Projeto_FinalOficial
 
             // Configuração visual da senha
             txtSenhaGerente.PasswordChar = '*';
+        }
+        private void UC_ValidacaoGerente_Load(object sender, EventArgs e)
+        {
+            txtSenhaGerente.UseSystemPasswordChar = true;
         }
 
 
@@ -60,6 +65,25 @@ namespace Projeto_FinalOficial
         {
             _acaoCancelar?.Invoke(); // Limpa a tela ou volta ao início
         }
+
+        private void eye_Icon_Click(object sender, EventArgs e)
+        {
+            // Verifica se a senha está sendo ocultada pelo sistema (bolinhas)
+            if (txtSenhaGerente.UseSystemPasswordChar)
+            {
+                // AÇÃO: MOSTRAR SENHA
+                txtSenhaGerente.UseSystemPasswordChar = false;
+                eye_Icon.IconChar = IconChar.EyeSlash; // Muda para ícone "Ocultar" (Olho cortado)
+            }
+            else
+            {
+                // AÇÃO: OCULTAR SENHA
+                txtSenhaGerente.UseSystemPasswordChar = true;
+                eye_Icon.IconChar = IconChar.Eye; // Muda para ícone "Mostrar" (Olho aberto)
+            }
+        }
+
+        
     }
 }
 

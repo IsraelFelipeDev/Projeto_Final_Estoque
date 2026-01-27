@@ -282,5 +282,214 @@ namespace Projeto_FinalOficial.Servicos
             y += 5;
             g.DrawString("Obrigado pela preferência!", _fonteNormal, pincel, margemEsq + (larguraUtil / 2), y, centro);
         }
+    
+    // Variável local para armazenar o pedido durante a impressão
+        private PedidoCompraImpressao _pedidoParaImprimir;
+
+        // Método Público para chamar a impressão
+        public void ImprimirPedidoCompra(PedidoCompraImpressao pedido)
+        {
+            _pedidoParaImprimir = pedido;
+
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += new PrintPageEventHandler(MontarLayoutNotaFiscal);
+            pd.DocumentName = $"Pedido_Compra_{pedido.IdPedido}";
+
+            // Configura A4
+            pd.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1169);
+            pd.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40); // Margens um pouco menores para caber as caixas
+
+            PrintDialog dialog = new PrintDialog();
+            dialog.Document = pd;
+
+            // DICA: Para salvar como PDF automaticamente, você pode configurar aqui,
+            // mas deixar o Dialog permite o usuário escolher "Microsoft Print to PDF".
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                pd.Print();
+            }
+        }
+
+        // Lógica de Desenho estilo DANFE / Nota Fiscal
+        private void MontarLayoutNotaFiscal(object sender, PrintPageEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            float top = e.MarginBounds.Top;
+            float left = e.MarginBounds.Left;
+            float right = e.MarginBounds.Right;
+            float width = e.MarginBounds.Width;
+            float y = top;
+
+            Pen canetaFina = new Pen(Color.Black, 1);
+            Pen canetaGrossa = new Pen(Color.Black, 2);
+            Brush pincel = Brushes.Black;
+
+            // Fontes específicas para NF
+            Font fontTituloGrande = new Font("Arial", 14, FontStyle.Bold);
+            Font fontLabel = new Font("Arial", 6, FontStyle.Regular); // "CNPJ", "DATA", etc.
+            Font fontConteudo = new Font("Arial", 8, FontStyle.Regular); // O texto em si
+            Font fontConteudoBold = new Font("Arial", 8, FontStyle.Bold);
+
+            // =========================================================
+            // HELPER: Função local para desenhar caixas com título pequeno
+            // =========================================================
+            void DesenharCampo(string label, string valor, float x, float yPos, float w, float h, bool destaque = false)
+            {
+                g.DrawRectangle(canetaFina, x, yPos, w, h);
+                g.DrawString(label, fontLabel, Brushes.Gray, x + 2, yPos + 2);
+
+                // Centraliza verticalmente o valor
+                float yTexto = yPos + (h / 2) - 2;
+                Font f = destaque ? fontConteudoBold : fontConteudo;
+                g.DrawString(valor, f, pincel, x + 3, yTexto);
+            }
+
+            // =========================================================
+            // 1. CABEÇALHO (IDENTIFICAÇÃO)
+            // =========================================================
+            float alturaCabecalho = 80;
+
+            // Caixa Grande do Fornecedor (Emitente Simulada)
+            g.DrawRectangle(canetaGrossa, left, y, width, alturaCabecalho);
+
+            // Coluna da Esquerda (Dados do Fornecedor)
+            g.DrawString(_pedidoParaImprimir.FornecedorNome.ToUpper(), fontTituloGrande, pincel, left + 10, y + 10);
+            g.DrawString(_pedidoParaImprimir.FornecedorEndereco, fontConteudo, pincel, left + 10, y + 40);
+            g.DrawString("CNPJ: " + _pedidoParaImprimir.FornecedorCNPJ, fontConteudoBold, pincel, left + 10, y + 55);
+
+            // Coluna da Direita (Dados do Pedido - Fixo estilo DANFE)
+            float xDir = left + (width * 0.6f); // 60% da largura
+            g.DrawLine(canetaFina, xDir, y, xDir, y + alturaCabecalho); // Linha divisória vertical
+
+            g.DrawString("PEDIDO DE COMPRA", fontTituloGrande, pincel, xDir + 10, y + 10);
+            g.DrawString("Nº " + _pedidoParaImprimir.IdPedido.ToString("D6"), new Font("Arial", 12, FontStyle.Bold), Brushes.Red, xDir + 10, y + 35);
+            g.DrawString("NATUREZA DA OPERAÇÃO", fontLabel, Brushes.Gray, xDir + 10, y + 55);
+            g.DrawString("COMPRA DE MERCADORIAS", fontConteudo, pincel, xDir + 10, y + 65);
+
+            y += alturaCabecalho + 10;
+
+            // =========================================================
+            // 2. DESTINATÁRIO (SUA LOJA)
+            // =========================================================
+            // Título da Seção
+            g.FillRectangle(Brushes.LightGray, left, y, width, 15);
+            g.DrawRectangle(canetaFina, left, y, width, 15);
+            g.DrawString("DESTINATÁRIO / REMETENTE", fontConteudoBold, pincel, left + 5, y + 2);
+            y += 15;
+
+            // Linha 1: Nome e CNPJ
+            DesenharCampo("NOME / RAZÃO SOCIAL", _pedidoParaImprimir.LojaNome, left, y, width * 0.7f, 30);
+            DesenharCampo("CNPJ / CPF", _pedidoParaImprimir.LojaCNPJ, left + (width * 0.7f), y, width * 0.3f, 30);
+            y += 30;
+
+            // Linha 2: Endereço e Data Emissão
+            DesenharCampo("ENDEREÇO", _pedidoParaImprimir.LojaEndereco, left, y, width * 0.7f, 30);
+            DesenharCampo("DATA DA EMISSÃO", _pedidoParaImprimir.DataEmissao.ToString("dd/MM/yyyy"), left + (width * 0.7f), y, width * 0.3f, 30);
+            y += 35; // Espaço extra
+
+            // =========================================================
+            // 3. ITENS DO PEDIDO (GRID)
+            // =========================================================
+            g.FillRectangle(Brushes.LightGray, left, y, width, 15);
+            g.DrawRectangle(canetaFina, left, y, width, 15);
+            g.DrawString("DADOS DO PRODUTO / SERVIÇO", fontConteudoBold, pincel, left + 5, y + 2);
+            y += 15;
+
+            // Cabeçalhos das Colunas
+            float hHeader = 20;
+            float[] cols = { 0.1f, 0.45f, 0.1f, 0.1f, 0.12f, 0.13f }; // Porcentagens da largura
+                                                                      // 0=Cód, 1=Desc, 2=Un, 3=Qtd, 4=Unit, 5=Total
+
+            float xAtual = left;
+            string[] headers = { "CÓDIGO", "DESCRIÇÃO DO PRODUTO", "UN", "QTD", "VL. UNIT", "VL. TOTAL" };
+
+            // Desenha cabeçalho
+            for (int i = 0; i < cols.Length; i++)
+            {
+                float wCol = width * cols[i];
+                g.DrawRectangle(canetaFina, xAtual, y, wCol, hHeader);
+                // Centraliza texto
+                StringFormat sf = new StringFormat { Alignment = (i >= 3) ? StringAlignment.Far : StringAlignment.Near, LineAlignment = StringAlignment.Center };
+                RectangleF rect = new RectangleF(xAtual + 2, y, wCol - 4, hHeader);
+                g.DrawString(headers[i], fontLabel, pincel, rect, sf);
+                xAtual += wCol;
+            }
+            y += hHeader;
+
+            // Desenha Itens
+            foreach (var item in _pedidoParaImprimir.Itens)
+            {
+                float hLinha = 20;
+                xAtual = left;
+
+                // Dados a imprimir
+                string[] dados = {
+                    item.Codigo,
+                    item.Descricao, // Aqui você pode concatenar a COR se quiser: item.Descricao + " - " + item.Cor
+                    item.Unidade,
+                    item.Quantidade.ToString(),
+                    item.ValorUnitario.ToString("N2"),
+                    item.Total.ToString("N2")
+                };
+
+                for (int i = 0; i < cols.Length; i++)
+                {
+                    float wCol = width * cols[i];
+                    g.DrawRectangle(canetaFina, xAtual, y, wCol, hLinha);
+
+                    StringFormat sf = new StringFormat { Alignment = (i >= 3) ? StringAlignment.Far : StringAlignment.Near, LineAlignment = StringAlignment.Center };
+                    RectangleF rect = new RectangleF(xAtual + 2, y, wCol - 4, hLinha);
+
+                    g.DrawString(dados[i], fontConteudo, pincel, rect, sf);
+                    xAtual += wCol;
+                }
+                y += hLinha;
+            }
+
+            y += 10;
+
+            // =========================================================
+            // 4. CÁLCULO DO IMPOSTO (TOTAIS E FRETE)
+            // =========================================================
+            g.FillRectangle(Brushes.LightGray, left, y, width, 15);
+            g.DrawRectangle(canetaFina, left, y, width, 15);
+            g.DrawString("CÁLCULO DO IMPOSTO E TOTAIS", fontConteudoBold, pincel, left + 5, y + 2);
+            y += 15;
+
+            // Caixa única dividida horizontalmente
+            float hTotais = 35;
+
+            // Vamos dividir em 4 caixas: Base Calculo (vazio), Valor Frete, Prazo, Total Nota
+            float wBox = width / 4;
+
+            DesenharCampo("BASE DE CÁLCULO ICMS", "0,00", left, y, wBox, hTotais);
+
+            // FRETE
+            DesenharCampo("VALOR DO FRETE", _pedidoParaImprimir.ValorFrete.ToString("C2"), left + wBox, y, wBox, hTotais);
+
+            // PRAZO (Usando campo de 'Outras Despesas' ou similar visualmente)
+            DesenharCampo("PRAZO DE ENTREGA", $"{_pedidoParaImprimir.PrazoEntregaDias} DIAS ÚTEIS", left + (wBox * 2), y, wBox, hTotais);
+
+            // TOTAL NOTA
+            DesenharCampo("VALOR TOTAL DO PEDIDO", _pedidoParaImprimir.TotalGeral.ToString("C2"), left + (wBox * 3), y, wBox, hTotais, true);
+
+            y += hTotais + 20;
+
+            // =========================================================
+            // 5. DADOS ADICIONAIS / RODAPÉ
+            // =========================================================
+            g.FillRectangle(Brushes.LightGray, left, y, width, 15);
+            g.DrawRectangle(canetaFina, left, y, width, 15);
+            g.DrawString("DADOS ADICIONAIS", fontConteudoBold, pincel, left + 5, y + 2);
+            y += 15;
+
+            string observacoes = "Documento gerado automaticamente pelo Sistema Crimson Suit.\n" +
+                                 "Este documento não possui valor fiscal, servindo apenas para conferência e solicitação de compra.";
+
+            g.DrawRectangle(canetaFina, left, y, width, 60);
+            g.DrawString("INFORMAÇÕES COMPLEMENTARES", fontLabel, Brushes.Gray, left + 2, y + 2);
+            g.DrawString(observacoes, fontConteudo, pincel, new RectangleF(left + 2, y + 15, width - 4, 45));
+
+        }
     }
 }

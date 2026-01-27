@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using Projeto_FinalOficial.Modelos;
+using System;
 using System.Drawing.Text;
 using System.Windows.Forms;
 using static Projeto_FinalOficial.Sessao;
@@ -12,9 +14,14 @@ namespace Projeto_FinalOficial
         public Form1()
         {
             InitializeComponent();
-            
-            
+
+
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            txt_Senha.UseSystemPasswordChar = true;
+        }
+
 
         private void kryptonButton1_Click(object sender, System.EventArgs e)
         {
@@ -42,6 +49,7 @@ namespace Projeto_FinalOficial
 
             try
             {
+               
                 Usuario usuario = new GerenteUser();
 
                 Usuario usuarioEcontrado = usuario.BuscarLogin(txt_Login.Text, txt_Senha.Text);
@@ -54,6 +62,8 @@ namespace Projeto_FinalOficial
                     Sessao.ID = usuarioEcontrado.Id;
 
                     MessageBox.Show("Login realizado com sucesso! ");
+                    
+                    
                     Principla formMenu = new Principla();
                     formMenu.ShowDialog();
                     this.Hide();
@@ -61,6 +71,7 @@ namespace Projeto_FinalOficial
                 else
                 {
                     MessageBox.Show("Usuário ou senha incorretos. ");
+                    
                 }
 
 
@@ -68,32 +79,29 @@ namespace Projeto_FinalOficial
             }
             catch (Exception ex)
             {
+                ErrosTecnicos.Tratar(ex, "Erro ao conectar ao sistema.");
 
-                MessageBox.Show("Erro ao conectar: " + ex.Message);
+                //MessageBox.Show("Erro ao conectar: " + ex.Message);
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
-        //Principla acesso = new Principla();
-        //   this.Hide();
-        //acesso.ShowDialog();
-
+       
+            private void eye_Icon_Click(object sender, EventArgs e)
+            {
+                // Verifica se a senha está sendo ocultada pelo sistema (bolinhas)
+                if (txt_Senha.UseSystemPasswordChar)
+                {
+                // AÇÃO: MOSTRAR SENHA
+                txt_Senha.UseSystemPasswordChar = false;
+                eye_Icon.IconChar = IconChar.EyeSlash; // Muda para ícone "Ocultar" (Olho cortado)
+                }
+                else
+                 {
+                // AÇÃO: OCULTAR SENHA
+                txt_Senha.UseSystemPasswordChar = true;
+                eye_Icon.IconChar = IconChar.Eye; // Muda para ícone "Mostrar" (Olho aberto)
+            }
+        }     
     }
-
 }
 

@@ -83,7 +83,7 @@
             // btn_ResponsavelCaixa
             // 
             this.btn_ResponsavelCaixa.Location = new System.Drawing.Point(216, 78);
-            this.btn_ResponsavelCaixa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_ResponsavelCaixa.Margin = new System.Windows.Forms.Padding(4);
             this.btn_ResponsavelCaixa.Name = "btn_ResponsavelCaixa";
             this.btn_ResponsavelCaixa.Size = new System.Drawing.Size(163, 31);
             this.btn_ResponsavelCaixa.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -95,7 +95,7 @@
             // btn_GerenteLib
             // 
             this.btn_GerenteLib.Location = new System.Drawing.Point(216, 128);
-            this.btn_GerenteLib.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_GerenteLib.Margin = new System.Windows.Forms.Padding(4);
             this.btn_GerenteLib.Name = "btn_GerenteLib";
             this.btn_GerenteLib.Size = new System.Drawing.Size(163, 31);
             this.btn_GerenteLib.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -107,7 +107,7 @@
             // txtValorInicial
             // 
             this.txtValorInicial.Location = new System.Drawing.Point(216, 193);
-            this.txtValorInicial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtValorInicial.Margin = new System.Windows.Forms.Padding(4);
             this.txtValorInicial.Name = "txtValorInicial";
             this.txtValorInicial.Size = new System.Drawing.Size(163, 31);
             this.txtValorInicial.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -119,8 +119,8 @@
             // btn_Abrir
             // 
             this.btn_Abrir.AutoSize = true;
-            this.btn_Abrir.Location = new System.Drawing.Point(385, 342);
-            this.btn_Abrir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Abrir.Location = new System.Drawing.Point(392, 298);
+            this.btn_Abrir.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Abrir.Name = "btn_Abrir";
             this.btn_Abrir.Size = new System.Drawing.Size(129, 36);
             this.btn_Abrir.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -134,8 +134,8 @@
             // kryptonButton2
             // 
             this.kryptonButton2.AutoSize = true;
-            this.kryptonButton2.Location = new System.Drawing.Point(55, 342);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonButton2.Location = new System.Drawing.Point(48, 312);
+            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Size = new System.Drawing.Size(129, 36);
             this.kryptonButton2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -158,9 +158,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UC_AberturaCaixa";
-            this.Size = new System.Drawing.Size(617, 401);
+            this.Size = new System.Drawing.Size(652, 367);
             this.Load += new System.EventHandler(this.UC_AberturaCaixa_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();

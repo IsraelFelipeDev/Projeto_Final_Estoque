@@ -39,6 +39,7 @@
             this.txtSenhaGerente = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.btnCancelar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnAutorizar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.eye_Icon = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // panel1
@@ -46,29 +47,29 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(565, 39);
+            this.panel1.Size = new System.Drawing.Size(622, 39);
             this.panel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(558, 39);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(615, 39);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(7, 267);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(7, 322);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 300);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 355);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(558, 6);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(615, 6);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // flowLayoutPanel3
@@ -76,9 +77,9 @@
             this.flowLayoutPanel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 39);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(7, 261);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(7, 316);
             this.flowLayoutPanel3.TabIndex = 3;
             // 
             // label1
@@ -117,7 +118,7 @@
             // txtUserGerente
             // 
             this.txtUserGerente.Location = new System.Drawing.Point(200, 98);
-            this.txtUserGerente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUserGerente.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserGerente.Name = "txtUserGerente";
             this.txtUserGerente.Size = new System.Drawing.Size(172, 31);
             this.txtUserGerente.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -128,8 +129,8 @@
             // 
             // txtSenhaGerente
             // 
-            this.txtSenhaGerente.Location = new System.Drawing.Point(200, 145);
-            this.txtSenhaGerente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSenhaGerente.Location = new System.Drawing.Point(200, 150);
+            this.txtSenhaGerente.Margin = new System.Windows.Forms.Padding(4);
             this.txtSenhaGerente.Name = "txtSenhaGerente";
             this.txtSenhaGerente.Size = new System.Drawing.Size(172, 31);
             this.txtSenhaGerente.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -141,8 +142,8 @@
             // btnCancelar
             // 
             this.btnCancelar.AutoSize = true;
-            this.btnCancelar.Location = new System.Drawing.Point(107, 244);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(107, 264);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(133, 37);
             this.btnCancelar.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -156,8 +157,8 @@
             // btnAutorizar
             // 
             this.btnAutorizar.AutoSize = true;
-            this.btnAutorizar.Location = new System.Drawing.Point(304, 244);
-            this.btnAutorizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAutorizar.Location = new System.Drawing.Point(304, 264);
+            this.btnAutorizar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAutorizar.Name = "btnAutorizar";
             this.btnAutorizar.Size = new System.Drawing.Size(133, 37);
             this.btnAutorizar.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -168,10 +169,30 @@
             this.btnAutorizar.Values.Text = "Confirmar";
             this.btnAutorizar.Click += new System.EventHandler(this.btnAutorizar_Click_1);
             // 
+            // eye_Icon
+            // 
+            this.eye_Icon.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.eye_Icon.BackColor = System.Drawing.Color.Transparent;
+            this.eye_Icon.FlatAppearance.BorderSize = 0;
+            this.eye_Icon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.eye_Icon.ForeColor = System.Drawing.Color.Transparent;
+            this.eye_Icon.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            this.eye_Icon.IconColor = System.Drawing.Color.Black;
+            this.eye_Icon.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.eye_Icon.IconSize = 28;
+            this.eye_Icon.Location = new System.Drawing.Point(379, 148);
+            this.eye_Icon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.eye_Icon.Name = "eye_Icon";
+            this.eye_Icon.Size = new System.Drawing.Size(49, 33);
+            this.eye_Icon.TabIndex = 14;
+            this.eye_Icon.UseVisualStyleBackColor = false;
+            this.eye_Icon.Click += new System.EventHandler(this.eye_Icon_Click);
+            // 
             // UC_ValidacaoGerente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.eye_Icon);
             this.Controls.Add(this.btnAutorizar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtSenhaGerente);
@@ -183,9 +204,10 @@
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UC_ValidacaoGerente";
-            this.Size = new System.Drawing.Size(565, 306);
+            this.Size = new System.Drawing.Size(622, 361);
+            this.Load += new System.EventHandler(this.UC_ValidacaoGerente_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +226,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtSenhaGerente;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancelar;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAutorizar;
+        private FontAwesome.Sharp.IconButton eye_Icon;
     }
 }
