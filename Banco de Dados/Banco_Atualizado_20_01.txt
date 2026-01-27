@@ -1,0 +1,455 @@
+-- ==================================================================================
+-- SCRIPT LIMPO E ESTRUTURADO - PROJETO FINAL OFICIAL
+-- DATA: 26/01/2026
+-- ==================================================================================
+
+DROP DATABASE IF EXISTS Projeto_FinalOficial;
+CREATE DATABASE Projeto_FinalOficial;
+USE Projeto_FinalOficial;
+
+-- Desabilitar verificação de FK temporariamente para criação das tabelas
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ==================================================================================
+-- 1. TABELAS DE BASE E CADASTROS
+-- ==================================================================================
+
+CREATE TABLE Usuarios (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    DataNascimento DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CPF VARCHAR(14) NOT NULL UNIQUE,
+    Email VARCHAR(120),
+    Telefone VARCHAR(20),
+    CEP VARCHAR(10),
+    Cidade VARCHAR(50),
+    Estado VARCHAR(50),
+    Rua VARCHAR(50),
+    Bairro VARCHAR(50),
+    Numero VARCHAR(10),
+    Senha VARCHAR(30),
+    Cargo ENUM('Gerente','Vendedor','Estoquista')
+) ENGINE = InnoDB;
+
+CREATE TABLE Clientes (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    CPF VARCHAR(14) NOT NULL UNIQUE,
+    Telefone VARCHAR(20),
+    CEP VARCHAR(10),
+    Cidade VARCHAR(50),
+    Estado VARCHAR(50),
+    Rua VARCHAR(50),
+    Bairro VARCHAR(50),
+    Numero VARCHAR(10)
+) ENGINE = InnoDB;
+
+CREATE TABLE Fornecedores (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    NomeFantasia VARCHAR(150) NOT NULL,
+    RazaoSocial VARCHAR(150),
+    CNPJ VARCHAR(20) UNIQUE NOT NULL,
+    Telefone VARCHAR(20),
+    CEP VARCHAR(10),
+    Cidade VARCHAR(50),
+    Estado VARCHAR(50),
+    Rua VARCHAR(50),
+    Bairro VARCHAR(50),
+    Numero VARCHAR(10),
+    DataCadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB;
+
+CREATE TABLE Grades (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL UNIQUE
+) ENGINE = InnoDB;
+
+CREATE TABLE Categorias (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL UNIQUE
+) ENGINE = InnoDB;
+
+CREATE TABLE Estilos (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL UNIQUE
+) ENGINE = InnoDB;
+
+-- CORREÇÃO APLICADA: CategoriaId adicionado
+CREATE TABLE Composicoes (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL UNIQUE,
+    CategoriaId INT NULL, 
+    FOREIGN KEY (CategoriaId) REFERENCES Categorias(Id)
+) ENGINE = InnoDB;
+
+-- CORREÇÃO APLICADA: CategoriaId adicionado
+CREATE TABLE Modelagens (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL UNIQUE,
+    CategoriaId INT NULL, 
+    FOREIGN KEY (CategoriaId) REFERENCES Categorias(Id)
+) ENGINE = InnoDB;
+
+CREATE TABLE PDV_Caixa (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    DataAbertura DATETIME DEFAULT NOW(),
+    DataFechamento DATETIME NULL,
+    ValorInicial DECIMAL(10, 2), 
+    ValorFinal DECIMAL(10, 2) NULL,
+    UsuarioResponsavel VARCHAR(100), 
+    GerenteLiberacao VARCHAR(100) NULL, 
+    StatusCaixa VARCHAR(20) DEFAULT 'Aberto'
+) ENGINE = InnoDB;
+
+-- ==================================================================================
+-- 2. TABELAS COM DEPENDÊNCIAS DE NÍVEL 1
+-- ==================================================================================
+
+CREATE TABLE Fornecedores_Condicoes (
+    FornecedorId INT PRIMARY KEY,
+    PrazoEntregaDias INT NOT NULL DEFAULT 7,
+    TaxaFretePadrao DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    FOREIGN KEY (FornecedorId) REFERENCES Fornecedores(Id) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE Fornecedores_Categorias (
+    FornecedorId INT NOT NULL,
+    CategoriaId INT NOT NULL,
+    PRIMARY KEY (FornecedorId, CategoriaId),
+    FOREIGN KEY (FornecedorId) REFERENCES Fornecedores(Id) ON DELETE CASCADE,
+    FOREIGN KEY (CategoriaId) REFERENCES Categorias(Id)
+) ENGINE = InnoDB;
+
+CREATE TABLE Grades_Tamanhos (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    GradeId INT NOT NULL,
+    Tamanho VARCHAR(10) NOT NULL,
+    OrdemExibicao INT NOT NULL,
+    FOREIGN KEY (GradeId) REFERENCES Grades(Id) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE SubCategorias (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    CategoriaPaiId INT NOT NULL,
+    Nome VARCHAR(50) NOT NULL,
+    GradePadraoId INT NOT NULL,
+    FOREIGN KEY (CategoriaPaiId) REFERENCES Categorias(Id),
+    FOREIGN KEY (GradePadraoId) REFERENCES Grades(Id),
+    UNIQUE KEY UK_Cat_Sub (CategoriaPaiId, Nome)
+) ENGINE = InnoDB;
+
+-- ==================================================================================
+-- 3. CATÁLOGO DE PRODUTOS
+-- ==================================================================================
+
+CREATE TABLE Produtos (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(150) NOT NULL,
+    Descricao TEXT,
+    Categoria VARCHAR(50), 
+    SubCategoria VARCHAR(50),
+    Estilo VARCHAR(50),
+    Colecao VARCHAR(50),
+    Composicao VARCHAR(100),
+    Modelagem VARCHAR(50),
+    Cor VARCHAR(50),
+    ValorCompra DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    ValorVendaBase DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    FotoCapa LONGBLOB,
+    DataCadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB;
+
+CREATE TABLE Produtos_Variacoes (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    ProdutoId INT NOT NULL,
+    Tamanho VARCHAR(10) NOT NULL,
+    CodigoBarrasEAN VARCHAR(50) UNIQUE NULL,
+    ValorVendaAtual DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    QtdAtual INT DEFAULT 0,
+    QtdMin INT DEFAULT 0,
+    QtdMax INT DEFAULT 0,
+    FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE Produtos_Fornecedores_Catalogo (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    ProdutoPaiId INT NOT NULL,
+    FornecedorId INT NOT NULL,
+    PrecoCustoTabela DECIMAL(10, 2) NOT NULL,
+    CodigoProdutoNoFornecedor VARCHAR(50),
+    IsFornecedorPrincipal BOOLEAN DEFAULT FALSE,
+    DataUltimaAtualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (ProdutoPaiId) REFERENCES Produtos(Id) ON DELETE CASCADE,
+    FOREIGN KEY (FornecedorId) REFERENCES Fornecedores(Id) ON DELETE CASCADE,
+    UNIQUE KEY UK_Produto_Fornecedor (ProdutoPaiId, FornecedorId)
+) ENGINE = InnoDB;    
+
+-- ==================================================================================
+-- 4. VENDAS E OPERACIONAL
+-- ==================================================================================
+
+CREATE TABLE Vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    Id_Cliente INT NULL,
+    ID_FluxoCaixa INT NOT NULL,       
+    data_venda DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    valor_total DECIMAL(10,2) NOT NULL,
+    forma_pagamento VARCHAR(50),
+    obs TEXT,
+    FOREIGN KEY (Id_Cliente) REFERENCES Clientes(Id),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id),
+    FOREIGN KEY (ID_FluxoCaixa) REFERENCES PDV_Caixa(ID)
+) ENGINE = InnoDB;
+
+CREATE TABLE Itens_Venda (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_venda INT NOT NULL,
+    id_variacao INT NOT NULL, 
+    quantidade INT NOT NULL,
+    valor_unitario DECIMAL(10,2) NOT NULL,
+    subtotal DECIMAL(10,2),
+    FOREIGN KEY (id_venda) REFERENCES Vendas(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_variacao) REFERENCES Produtos_Variacoes(Id)
+) ENGINE = InnoDB;
+
+CREATE TABLE pagamentos_venda (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_venda INT NOT NULL,
+    tipo_pagamento VARCHAR(50), 
+    valor DECIMAL(10,2),
+    FOREIGN KEY (id_venda) REFERENCES Vendas(id) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE log_sistema (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_usuario VARCHAR(100) NOT NULL,
+    acao VARCHAR(150) NOT NULL,
+    formulario VARCHAR(100),
+    data_hora DATETIME,
+    INDEX IX_UserLogs_Data (data_hora DESC)
+) ENGINE = InnoDB;
+
+-- ==================================================================================
+-- 5. PEDIDOS DE COMPRA
+-- ==================================================================================
+
+CREATE TABLE PedidosCompra (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    FornecedorId INT NOT NULL,
+    DataPedido DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Status VARCHAR(20) DEFAULT 'Pendente',
+    ValorTotal DECIMAL(10,2),
+    ValorFrete DECIMAL(10,2) DEFAULT 0.00,
+    PrazoEntregaDias INT DEFAULT 0,
+    Observacoes TEXT,
+    FOREIGN KEY (FornecedorId) REFERENCES Fornecedores(Id)
+) ENGINE = InnoDB;
+
+CREATE TABLE ItensPedidoCompra (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    PedidoId INT NOT NULL,
+    VariacaoId INT NOT NULL, 
+    Quantidade INT NOT NULL,
+    CustoUnitario DECIMAL(10,2) NOT NULL,
+    NomeProdutoSnapshot VARCHAR(200), -- Opcional: Para guardar o nome histórico
+    FOREIGN KEY (PedidoId) REFERENCES PedidosCompra(Id) ON DELETE CASCADE,
+    FOREIGN KEY (VariacaoId) REFERENCES Produtos_Variacoes(Id)
+) ENGINE = InnoDB;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- ==================================================================================
+-- 6. VIEWS (VERSÕES FINAIS CORRIGIDAS)
+-- ==================================================================================
+
+-- 6.1 View Estoque Geral
+CREATE OR REPLACE VIEW vw_EstoqueGeral AS
+SELECT 
+    pv.Id AS IdVariacao,
+    p.Id AS IdProdutoPai,
+    p.Nome AS Descricao,
+    pv.CodigoBarrasEAN,
+    p.Categoria,
+    p.SubCategoria,
+    pv.Tamanho,
+    p.Cor, 
+    pv.QtdMin,
+    pv.QtdMax,
+    pv.QtdAtual
+FROM Produtos_Variacoes pv
+INNER JOIN Produtos p ON pv.ProdutoId = p.Id;
+
+-- 6.2 View Cotações (Inteligência de Compra)
+CREATE OR REPLACE VIEW vw_CotacoesPorVariacao AS
+SELECT 
+    pv.Id AS IdVariacao,
+    p.Id AS IdProdutoPai,
+    CONCAT(p.Nome, ' - ', pv.Tamanho) AS DescricaoCompleta,
+    f.Id AS IdFornecedor,
+    f.NomeFantasia AS NomeFornecedor,
+    pfc.PrecoCustoTabela,
+    IFNULL(fc.PrazoEntregaDias, 7) AS PrazoEntregaDias,
+    IFNULL(fc.TaxaFretePadrao, 0) AS TaxaFretePadrao
+FROM Produtos_Variacoes pv
+INNER JOIN Produtos p ON pv.ProdutoId = p.Id
+INNER JOIN Produtos_Fornecedores_Catalogo pfc ON p.Id = pfc.ProdutoPaiId
+INNER JOIN Fornecedores f ON pfc.FornecedorId = f.Id
+LEFT JOIN Fornecedores_Condicoes fc ON f.Id = fc.FornecedorId;
+
+-- 6.3 View Detalhada (Usada no Front-End para preencher Grids)
+CREATE OR REPLACE VIEW vw_ProdutosDetalhados AS
+SELECT 
+    pv.Id AS IdVariacao,
+    CONCAT(p.Nome, ' - ', pv.Tamanho) AS NomeProduto,
+    IFNULL(pv.QtdAtual, 0) AS EstoqueAtual,
+    IFNULL(pv.QtdMin, 0) AS EstoqueMinimo,
+    IFNULL(pv.QtdMax, 0) AS EstoqueMaximo
+FROM Produtos_Variacoes pv
+INNER JOIN Produtos p ON pv.ProdutoId = p.Id;
+
+-- ==================================================================================
+-- 7. CARGA DE DADOS DE BASE (Essencial para o sistema funcionar)
+-- ==================================================================================
+
+-- 7.1. Inserir Grades
+INSERT INTO Grades (Nome) VALUES 
+('Vestuário Adulto (Letra)'), 
+('Calçados/Numérico BR'), 
+('Tamanho Único / Acessórios'),
+('Costume/Terno Adulto (Numérico)'),
+('Vestuário Inferior (Calças/Bermudas)');
+
+-- 7.2. Inserir Tamanhos das Grades
+-- (Usando variáveis para garantir integridade caso IDs mudem)
+SET @gradeLetra = (SELECT Id FROM Grades WHERE Nome = 'Vestuário Adulto (Letra)');
+INSERT INTO Grades_Tamanhos (GradeId, Tamanho, OrdemExibicao) VALUES 
+(@gradeLetra, 'PP', 1), (@gradeLetra, 'P', 2), (@gradeLetra, 'M', 3), 
+(@gradeLetra, 'G', 4), (@gradeLetra, 'GG', 5), (@gradeLetra, 'XG', 6);
+
+SET @gradeNumero = (SELECT Id FROM Grades WHERE Nome = 'Calçados/Numérico BR');
+INSERT INTO Grades_Tamanhos (GradeId, Tamanho, OrdemExibicao) VALUES 
+(@gradeNumero, '34', 1), (@gradeNumero, '35', 2), (@gradeNumero, '36', 3), 
+(@gradeNumero, '37', 4), (@gradeNumero, '38', 5), (@gradeNumero, '39', 6), 
+(@gradeNumero, '40', 7), (@gradeNumero, '41', 8), (@gradeNumero, '42', 9),
+(@gradeNumero, '43', 10), (@gradeNumero, '44', 11);
+
+SET @gradeUnica = (SELECT Id FROM Grades WHERE Nome = 'Tamanho Único / Acessórios');
+INSERT INTO Grades_Tamanhos (GradeId, Tamanho, OrdemExibicao) VALUES 
+(@gradeUnica, 'UN', 1);
+
+SET @gradeTerno = (SELECT Id FROM Grades WHERE Nome = 'Costume/Terno Adulto (Numérico)');
+INSERT INTO Grades_Tamanhos (GradeId, Tamanho, OrdemExibicao) VALUES 
+(@gradeTerno, '46', 1), (@gradeTerno, '48', 2), (@gradeTerno, '50', 3),
+(@gradeTerno, '52', 4), (@gradeTerno, '54', 5), (@gradeTerno, '56', 6), (@gradeTerno, '58', 7);
+
+SET @gradeCalca = (SELECT Id FROM Grades WHERE Nome = 'Vestuário Inferior (Calças/Bermudas)');
+INSERT INTO Grades_Tamanhos (GradeId, Tamanho, OrdemExibicao) VALUES 
+(@gradeCalca, '36', 1), (@gradeCalca, '38', 2), (@gradeCalca, '40', 3),
+(@gradeCalca, '42', 4), (@gradeCalca, '44', 5), (@gradeCalca, '46', 6),
+(@gradeCalca, '48', 7), (@gradeCalca, '50', 8), (@gradeCalca, '52', 9), (@gradeCalca, '54', 10);
+
+-- 7.3. Inserir Categorias Pai
+INSERT INTO Categorias (Nome) VALUES ('Vestuário'), ('Calçados'), ('Acessórios');
+SET @catVestuario = (SELECT Id FROM Categorias WHERE Nome = 'Vestuário');
+SET @catCalcados = (SELECT Id FROM Categorias WHERE Nome = 'Calçados');
+SET @catAcessorios = (SELECT Id FROM Categorias WHERE Nome = 'Acessórios');
+
+-- 7.4. Inserir SubCategorias
+INSERT INTO SubCategorias (CategoriaPaiId, Nome, GradePadraoId) VALUES 
+(@catVestuario, 'Camisetas', @gradeLetra),
+(@catVestuario, 'Camisas Sociais', @gradeLetra),
+(@catVestuario, 'Costumes/Ternos', @gradeTerno),
+(@catVestuario, 'Calças Jeans/Sarja', @gradeCalca),
+(@catCalcados, 'Tênis', @gradeNumero),
+(@catCalcados, 'Sapatos Sociais', @gradeNumero),
+(@catAcessorios, 'Relógios', @gradeUnica),
+(@catAcessorios, 'Bonés', @gradeUnica);
+
+-- 7.5 Inserir Estilos
+INSERT INTO Estilos (Nome) VALUES ('Casual'), ('Streetwear'), ('Social'), ('Esportivo'), ('Vintage');
+
+-- 7.6 Inserir Composicoes (Com Categoria ID)
+INSERT INTO Composicoes (Nome, CategoriaId) VALUES 
+('100% Algodão', NULL), 
+('Poliéster', NULL), 
+('Algodão com Elastano', NULL), 
+('Viscose', NULL), 
+('Linho', NULL),
+('Couro Legítimo', NULL),
+('Material Sintético', NULL),
+('Aço Inox', @catAcessorios),
+('Ouro / Dourado', @catAcessorios),
+('Prata', @catAcessorios),
+('Silicone', @catAcessorios),
+('Camurça', @catCalcados),
+('Nobuck', @catCalcados),
+('Mesh / Tecido Respirável', @catCalcados),
+('Lona', @catCalcados),
+('Verniz', @catCalcados),
+('Nylon', @catCalcados);
+
+-- 7.7 Inserir Modelagens (Com Categoria ID)
+INSERT INTO Modelagens (Nome, CategoriaId) VALUES 
+('Slim Fit', @catVestuario), 
+('Regular', @catVestuario), 
+('Oversized', @catVestuario), 
+('Skinny', @catVestuario), 
+('Alfaiataria', @catVestuario),
+('Tamanho Único / Padrão', @catAcessorios),
+('Forma Normal', @catCalcados), 
+('Forma Pequena', @catCalcados), 
+('Forma Grande', @catCalcados);
+
+-- 7.8 Usuário Administrador (Para você conseguir logar)
+INSERT INTO Usuarios (Nome, CPF, Senha, Cargo) 
+VALUES ('Administrador', '000.000.000-00', 'admin', 'Gerente');
+
+SELECT 'Banco de dados REINICIADO e LIMPO com sucesso!' AS Status;
+
+USE Projeto_FinalOficial;
+
+-- 1. View para a TELA 1 (Lista de Pedidos Pendentes)
+-- Essa view vai alimentar o grid onde tem o ícone de PDF e Lixeira
+CREATE OR REPLACE VIEW vw_PedidosPendentes AS
+SELECT 
+    pc.Id AS PedidoId,
+    f.NomeFantasia AS Fornecedor,
+    pc.DataPedido,
+    pc.ValorTotal,
+    pc.Status
+FROM PedidosCompra pc
+JOIN Fornecedores f ON pc.FornecedorId = f.Id
+WHERE pc.Status = 'Pendente'; 
+
+-- 2. View para a TELA 2 (Itens para Conferência)
+-- Essa view mostra os produtos, cores e quantidades para o estoquista conferir
+CREATE OR REPLACE VIEW vw_ItensRecebimento AS
+SELECT 
+    ipc.PedidoId,
+    ipc.VariacaoId,
+    p.Nome AS Produto,
+    pv.CodigoBarrasEAN AS EAN,
+    p.Categoria,
+    p.Cor,
+    pv.Tamanho,
+    ipc.Quantidade AS QtdComprada
+FROM ItensPedidoCompra ipc
+JOIN Produtos_Variacoes pv ON ipc.VariacaoId = pv.Id
+JOIN Produtos p ON pv.ProdutoId = p.Id;
+
+select * from pdv_caixa;
+select * from Usuarios;
+SELECT Id, CodigoBarrasEAN, ValorVendaAtual FROM Produtos_Variacoes;
+
+
+-- 1. Desativa a trava de segurança
+SET SQL_SAFE_UPDATES = 0;
+
+-- 2. Executa a atualização
+UPDATE Produtos_Variacoes 
+SET ValorVendaAtual = 100.00 
+WHERE ValorVendaAtual = 0 OR ValorVendaAtual IS NULL;
+
+-- 3. Ativa a trava de segurança novamente (boa prática)
+SET SQL_SAFE_UPDATES = 1;
