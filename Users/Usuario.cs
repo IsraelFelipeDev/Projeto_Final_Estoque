@@ -105,7 +105,43 @@ namespace Projeto_FinalOficial
             List<Usuario> lista = ExecutarConsulta(query, ObterObjeto, parametros);
             return lista.FirstOrDefault();
         }
-        // Note que agora só recebe UM parâmetro: termoBusca
+        public virtual string ValidarGerenteCompleto(string nomeDigitado, string senhaDigitada)
+        {
+            try
+            {
+                // Agora a busca verifica se o NOME bate, se a SENHA bate E se é GERENTE
+                string query = $@"SELECT * FROM {NomeTabela} 
+                                  WHERE Nome = @Nome 
+                                  AND Senha = @Senha 
+                                  AND Cargo = 'Gerente'";
+
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@Nome", nomeDigitado },
+                    { "@Senha", senhaDigitada }
+                };
+
+                // Executa a consulta no banco
+                List<Usuario> lista = ExecutarConsulta(query, ObterObjeto, parametros);
+
+                Usuario usuarioEncontrado = lista.FirstOrDefault();
+
+                // Se encontrou alguém, retorna o nome dele
+                if (usuarioEncontrado != null)
+                {
+                    return usuarioEncontrado.Nome;
+                }
+            }
+            catch (Exception)
+            {
+                return null; // Retorna nulo em caso de erro
+            }
+
+            return null; // Retorna nulo se as credenciais estiverem erradas
+        }
+    
+
+// Note que agora só recebe UM parâmetro: termoBusca
         public virtual Usuario BuscarPorNomeOuCPF(string termoBusca)
         {
             // ATENÇÃO À MÁGICA DO SQL AQUI:
@@ -128,7 +164,6 @@ namespace Projeto_FinalOficial
             // Retorna o primeiro encontrado ou null
             return lista.FirstOrDefault();
         }
-
     }
 }
     

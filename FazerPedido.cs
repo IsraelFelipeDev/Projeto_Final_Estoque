@@ -1,4 +1,5 @@
-﻿using Projeto_FinalOficial.Servicos;
+﻿using Projeto_FinalOficial.Modelos; // Ajuste conforme seus namespaces reais
+using Projeto_FinalOficial.Servicos;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,9 +15,7 @@ namespace Projeto_FinalOficial
         // ============================================================================
         // 1. VARIÁVEIS GLOBAIS
         // ============================================================================
-        // Inicializamos a lista aqui para NUNCA ser null (evita o erro fatal)
         private List<ItemTelaPedido> _itensNoCarrinho = new List<ItemTelaPedido>();
-
         private ServicoCotacaoInteligente _servicoCotacao;
         private CotacaoDAL _dal;
 
@@ -24,14 +23,13 @@ namespace Projeto_FinalOficial
         // 2. CONSTRUTORES
         // ============================================================================
 
-        // Construtor Padrão (Vazio)
         public UC_FazerPedido()
         {
             InitializeComponent();
             InicializarTudo();
         }
 
-        // Construtor 2: Recebe dados do ESTOQUE (ItemPedidoTransfer) e converte
+        // Construtor que recebe dados vindos do Estoque
         public UC_FazerPedido(List<ItemPedidoTransfer> itensDoEstoque)
         {
             InitializeComponent();
@@ -41,9 +39,7 @@ namespace Projeto_FinalOficial
             {
                 foreach (var item in itensDoEstoque)
                 {
-                    // BUSCAR DADOS ATUALIZADOS DO BANCO
-                    // Assumindo que seu DAL tem um método para pegar detalhes pelo ID
-                    // Se não tiver, você pode usar o método de busca existente
+                    // Busca dados atualizados do banco para garantir consistência
                     var dadosProduto = _dal.BuscarProdutosParaAdicionar(item.NomeProduto)
                                            .AsEnumerable()
                                            .FirstOrDefault(r => (int)r["IdVariacao"] == item.IdVariacao);
@@ -62,7 +58,6 @@ namespace Projeto_FinalOficial
                         IdVariacao = item.IdVariacao,
                         NomeProduto = item.NomeProduto,
                         Quantidade = item.QtdSugestao,
-                        // CORREÇÃO: Preenche com os dados reais
                         EstoqueAtual = estAtual,
                         EstoqueMinimo = estMin,
                         EstoqueMaximo = estMax
@@ -71,7 +66,6 @@ namespace Projeto_FinalOficial
             }
         }
 
-        // Método auxiliar para iniciar serviços e configurações visuais
         private void InicializarTudo()
         {
             _servicoCotacao = new ServicoCotacaoInteligente();
@@ -82,13 +76,12 @@ namespace Projeto_FinalOficial
         }
 
         // ============================================================================
-        // 3. EVENTO LOAD (Carregamento da Tela)
+        // 3. EVENTO LOAD
         // ============================================================================
         private void UC_FazerPedido_Load_1(object sender, EventArgs e)
         {
             try
             {
-                // Se a lista tem itens (vinda do construtor), carrega no grid
                 if (_itensNoCarrinho.Count > 0)
                 {
                     CarregarGridPrincipalPelaLista();
@@ -96,7 +89,7 @@ namespace Projeto_FinalOficial
                 }
                 else
                 {
-                    pnlTopo.Visible = false; // Esconde o painel verde de resumo
+                    pnlTopo.Visible = false; // Esconde o painel de resumo
                 }
             }
             catch (Exception ex)
@@ -114,10 +107,10 @@ namespace Projeto_FinalOficial
             dgvItens.Columns.Clear();
             dgvItens.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvItens.RowTemplate.Height = 40;
-            dgvItens.DefaultCellStyle.Font = new Font("Segoe UI", 14F);
+            dgvItens.DefaultCellStyle.Font = new Font("Segoe UI", 12F); // Fonte ajustada
 
-            // IMPORTANTE: Evita crash quando o ComboBox tenta desenhar um valor que não existe
-            dgvItens.DataError += DgvItens_DataError;
+            // Evita crash de DataError em Combos
+            dgvItens.DataError += (s, e) => { e.Cancel = true; };
 
             // --- Colunas ---
             dgvItens.Columns.Add(new DataGridViewTextBoxColumn { Name = "IdVariacao", Visible = false });
@@ -137,13 +130,14 @@ namespace Projeto_FinalOficial
 
             dgvItens.Columns.Add(new DataGridViewTextBoxColumn { Name = "Qtd", HeaderText = "Qtd", FillWeight = 50 });
 
+            // Coluna Frete (ReadOnly para exibir o cálculo rateado)
             dgvItens.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Frete",
-                HeaderText = "Frete (R$)",
+                HeaderText = "Frete (Rateio)",
                 ReadOnly = true,
-                FillWeight = 60,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2", Alignment = DataGridViewContentAlignment.MiddleRight }
+                FillWeight = 70,
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2", Alignment = DataGridViewContentAlignment.MiddleRight, ForeColor = Color.DarkBlue }
             });
 
             dgvItens.Columns.Add(new DataGridViewTextBoxColumn
@@ -163,12 +157,6 @@ namespace Projeto_FinalOficial
             dgvItens.Columns.Add(colCombo);
         }
 
-        private void DgvItens_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.ThrowException = false;
-            e.Cancel = true;
-        }
-
         private void ConfigurarGridBusca()
         {
             dgvResultadosBusca.Visible = false;
@@ -181,7 +169,7 @@ namespace Projeto_FinalOficial
         }
 
         // ============================================================================
-        // 5. LÓGICA DE DADOS (CARREGAR GRID E COMBOS)
+        // 5. CARREGAMENTO DE DADOS (GRIDS E COMBOS)
         // ============================================================================
         private void CarregarGridPrincipalPelaLista()
         {
@@ -197,6 +185,7 @@ namespace Projeto_FinalOficial
                 row.Cells["EstMin"].Value = item.EstoqueMinimo;
                 row.Cells["EstMax"].Value = item.EstoqueMaximo;
                 row.Cells["Qtd"].Value = item.Quantidade;
+                row.Cells["Frete"].Value = 0; // Inicia zerado
 
                 CarregarComboDeFornecedoresDaLinha(row, item.IdVariacao);
             }
@@ -213,7 +202,7 @@ namespace Projeto_FinalOficial
 
                 if (dtOfertas.Rows.Count > 0)
                 {
-                    Random rnd = new Random();
+                    Random rnd = new Random(); // Simulação de variação de preço (Remover em produção se tiver preço real)
                     foreach (DataRow dbRow in dtOfertas.Rows)
                     {
                         int idForn = Convert.ToInt32(dbRow["IdFornecedor"]);
@@ -223,7 +212,8 @@ namespace Projeto_FinalOficial
                         if (dbRow["PrecoCustoTabela"] != DBNull.Value)
                         {
                             decimal precoBase = Convert.ToDecimal(dbRow["PrecoCustoTabela"]);
-                            double fator = 0.85 + (rnd.NextDouble() * (1.15 - 0.85));
+                            // Apenas simulando uma variação para testes, usar valor real do banco
+                            double fator = 0.95 + (rnd.NextDouble() * 0.10);
                             preco = precoBase * (decimal)fator;
                         }
 
@@ -233,7 +223,7 @@ namespace Projeto_FinalOficial
                 }
                 else
                 {
-                    listaOpcoes.Rows.Add(0, "(Sem fornecedores vinculados)");
+                    listaOpcoes.Rows.Add(0, "(Sem fornecedores)");
                 }
 
                 var cellCombo = (DataGridViewComboBoxCell)row.Cells["cmbFornecedor"];
@@ -241,9 +231,9 @@ namespace Projeto_FinalOficial
                 cellCombo.DisplayMember = "TextoExibicao";
                 cellCombo.ValueMember = "IdFornecedor";
             }
-            catch (Exception ex)
+            catch
             {
-                // Ignora erro visual silenciosamente ou loga se necessário
+                // Log de erro opcional
             }
         }
 
@@ -267,7 +257,7 @@ namespace Projeto_FinalOficial
 
             if (_itensNoCarrinho.Any(x => x.IdVariacao == id))
             {
-                MessageBox.Show("Já está na lista.");
+                MessageBox.Show("Este item já está na lista.");
                 dgvResultadosBusca.Visible = false;
                 return;
             }
@@ -279,11 +269,12 @@ namespace Projeto_FinalOficial
                 EstoqueAtual = Convert.ToInt32(row.Cells["EstoqueAtual"].Value),
                 EstoqueMinimo = Convert.ToInt32(row.Cells["EstoqueMinimo"].Value),
                 EstoqueMaximo = Convert.ToInt32(row.Cells["EstoqueMaximo"].Value),
-                Quantidade = 10
+                Quantidade = 10 // Qtd Padrão
             };
 
             _itensNoCarrinho.Add(novoItem);
 
+            // Adiciona visualmente ao grid
             int idx = dgvItens.Rows.Add();
             var gridRow = dgvItens.Rows[idx];
             gridRow.Cells["IdVariacao"].Value = novoItem.IdVariacao;
@@ -292,6 +283,7 @@ namespace Projeto_FinalOficial
             gridRow.Cells["EstMin"].Value = novoItem.EstoqueMinimo;
             gridRow.Cells["EstMax"].Value = novoItem.EstoqueMaximo;
             gridRow.Cells["Qtd"].Value = novoItem.Quantidade;
+            gridRow.Cells["Frete"].Value = 0;
 
             CarregarComboDeFornecedoresDaLinha(gridRow, novoItem.IdVariacao);
 
@@ -300,11 +292,11 @@ namespace Projeto_FinalOficial
         }
 
         // ============================================================================
-        // 7. COTAÇÃO INTELIGENTE
+        // 7. COTAÇÃO INTELIGENTE (COM CORREÇÃO DE FRETE VISUAL)
         // ============================================================================
         private void btnCalcularInteligencia_Click(object sender, EventArgs e)
         {
-            SincronizarListaMemoria(); // Atualiza qtds editadas no grid para a lista
+            SincronizarListaMemoria();
 
             if (_itensNoCarrinho.Count == 0) return;
 
@@ -320,110 +312,125 @@ namespace Projeto_FinalOficial
             {
                 var melhorCenario = cenarios.First();
 
-                // Aplica a sugestão e recebe os totais calculados
-                var (freteTotal, maiorPrazo) = AplicarSugestaoNoGrid(melhorCenario);
+                // APLICA O RESULTADO NO GRID COM O RATEIO CORRETO
+                var (freteTotalReal, maiorPrazo) = AplicarSugestaoNoGrid(melhorCenario);
 
                 // Atualiza Painel de Resumo
                 pnlTopo.Visible = true;
                 decimal custoProdutos = melhorCenario.CustoTotalGeral;
-                decimal custoFinal = custoProdutos + freteTotal;
+                decimal custoFinal = custoProdutos + freteTotalReal;
 
                 lblResumo.Text = $"VENCEDOR: {melhorCenario.NomeFornecedor.ToUpper()}  |  " +
                                  $"PRODUTOS: {custoProdutos:C2}  |  " +
-                                 $"FRETE: {freteTotal:C2}  |  " +
+                                 $"FRETE TOTAL: {freteTotalReal:C2}  |  " +
                                  $"TOTAL GERAL: {custoFinal:C2}  |  " +
-                                 $"ENTREGA EM: {maiorPrazo} DIAS";
+                                 $"ENTREGA: {maiorPrazo} DIAS";
                 pnlTopo.BackColor = Color.LightGreen;
 
-                string explicacao = "Análise da Inteligência de Compras:\n\n" +
-                                    $"O fornecedor '{melhorCenario.NomeFornecedor}' foi escolhido como a Melhor Opção.\n\n" +
-                                    "CRITÉRIOS DA ESCOLHA:\n" +
-                                    $"1. Disponibilidade: Ele possui todos os itens.\n" +
-                                    $"2. Custo Total: {custoFinal:C2}.\n" +
-                                    $"3. Agilidade: Entrega em {maiorPrazo} dias.\n\n" +
-                                    "Deseja gerar o pedido agora?";
-
-                MessageBox.Show(explicacao, "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"O fornecedor '{melhorCenario.NomeFornecedor}' venceu a cotação.\n" +
+                                $"Valor Total: {custoFinal:C2} (Produtos + Frete)\n" +
+                                $"O valor do frete foi rateado visualmente entre os itens.",
+                                "Inteligência de Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Não foi possível encontrar uma cotação completa para todos os itens.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Não foi possível encontrar uma cotação completa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private (decimal freteTotal, int maiorPrazo) AplicarSugestaoNoGrid(CenarioCotacao cenario)
+        /// <summary>
+        /// Aplica o fornecedor vencedor e calcula o frete rateado por item
+        /// </summary>
+        private (decimal freteTotalReal, int maiorPrazo) AplicarSugestaoNoGrid(CenarioCotacao cenario)
         {
+            int idVencedor = cenario.IdFornecedor;
             int maxPrazo = 0;
-            int qtdTotalItensParaOFornecedor = 0;
-            bool fornecedorFoiSelecionado = false;
+            int qtdTotalParaOFornecedor = 0;
 
-            // 1. Aplica o fornecedor nas linhas e conta a quantidade total
+            // PASSO 1: Calcular o volume TOTAL para este fornecedor (para saber o divisor do rateio)
             foreach (DataGridViewRow row in dgvItens.Rows)
             {
                 var cellCombo = (DataGridViewComboBoxCell)row.Cells["cmbFornecedor"];
-                if (cellCombo.Items.Count == 0) continue;
+                bool fornecedorExisteNoItem = false;
 
-                int idVencedor = cenario.IdFornecedor;
-
-                // Tenta selecionar o fornecedor no combo
+                // Verifica se o fornecedor vencedor existe na lista de opções deste produto
                 foreach (DataRowView item in cellCombo.Items)
                 {
                     if (Convert.ToInt32(item["IdFornecedor"]) == idVencedor)
                     {
-                        cellCombo.Value = idVencedor;
-                        fornecedorFoiSelecionado = true;
+                        fornecedorExisteNoItem = true;
+                        break;
+                    }
+                }
 
-                        // Estética: Limpa o frete individual da tela para não confundir
-                        // Ou mostra um valor simbólico de "rateio"
-                        row.Cells["Frete"].Value = 0;
+                if (fornecedorExisteNoItem)
+                {
+                    if (row.Cells["Qtd"].Value != null)
+                    {
+                        qtdTotalParaOFornecedor += Convert.ToInt32(row.Cells["Qtd"].Value);
+                    }
+                }
+            }
 
-                        // Prazo (Simulado)
+            if (qtdTotalParaOFornecedor == 0) return (0, 0);
+
+            // PASSO 2: Calcular o Valor Real do Frete (Regra de Negócio)
+            decimal taxaFixaEntrega = 35.00m;
+            decimal taxaPorUnidade = 0.10m;
+            decimal freteTotalReal = taxaFixaEntrega + (qtdTotalParaOFornecedor * taxaPorUnidade);
+
+            // PASSO 3: Preencher o Grid aplicando o Rateio Proporcional
+            foreach (DataGridViewRow row in dgvItens.Rows)
+            {
+                var cellCombo = (DataGridViewComboBoxCell)row.Cells["cmbFornecedor"];
+
+                foreach (DataRowView item in cellCombo.Items)
+                {
+                    if (Convert.ToInt32(item["IdFornecedor"]) == idVencedor)
+                    {
+                        cellCombo.Value = idVencedor; // Seleciona o fornecedor
+
+                        int qtdItem = Convert.ToInt32(row.Cells["Qtd"].Value);
+
+                        // FÓRMULA DO RATEIO: (QtdItem / QtdTotal) * FreteTotal
+                        decimal freteDesteItem = 0;
+                        if (qtdTotalParaOFornecedor > 0)
+                        {
+                            freteDesteItem = (decimal)qtdItem / qtdTotalParaOFornecedor * freteTotalReal;
+                        }
+
+                        row.Cells["Frete"].Value = freteDesteItem; // Exibe o valor fracionado
+
+                        // Prazo Simulado
                         int prazoItem = 13;
                         row.Cells["Prazo"].Value = prazoItem;
                         if (prazoItem > maxPrazo) maxPrazo = prazoItem;
-
-                        // Soma quantidade para cálculo de frete por volume
-                        int qtdLinha = Convert.ToInt32(row.Cells["Qtd"].Value);
-                        qtdTotalItensParaOFornecedor += qtdLinha;
 
                         break;
                     }
                 }
             }
 
-            // 2. Calcula o Frete Realista (Apenas 1 vez por fornecedor)
-            decimal freteTotal = 0;
-            if (fornecedorFoiSelecionado)
-            {
-                decimal taxaFixaEntrega = 35.00m;       // Valor fixo do caminhão/correio
-                decimal taxaPorUnidade = 0.10m;         // R$ 0,10 por peça (peso)
-
-                freteTotal = taxaFixaEntrega + (qtdTotalItensParaOFornecedor * taxaPorUnidade);
-            }
-
-            return (freteTotal, maxPrazo);
+            return (freteTotalReal, maxPrazo);
         }
+
         private void SincronizarListaMemoria()
         {
             foreach (DataGridViewRow row in dgvItens.Rows)
             {
-                // Pula linhas vazias ou inválidas
                 if (row.Cells["IdVariacao"].Value == null) continue;
-
                 int id = Convert.ToInt32(row.Cells["IdVariacao"].Value);
 
-                // Tenta ler a quantidade editada pelo usuário
                 int novaQtd = 0;
                 if (row.Cells["Qtd"].Value != null)
                 {
                     int.TryParse(row.Cells["Qtd"].Value.ToString(), out novaQtd);
                 }
 
-                // Busca o item na lista da memória e atualiza
                 var itemMemoria = _itensNoCarrinho.FirstOrDefault(x => x.IdVariacao == id);
                 if (itemMemoria != null)
                 {
-                    itemMemoria.Quantidade = novaQtd > 0 ? novaQtd : 1; // Garante mínimo de 1
+                    itemMemoria.Quantidade = novaQtd > 0 ? novaQtd : 1;
                 }
             }
         }
@@ -433,23 +440,18 @@ namespace Projeto_FinalOficial
         // ============================================================================
         private void btnSalvar_Click_1(object sender, EventArgs e)
         {
-            // 1. Garante que o que está no Grid reflete na lista em memória
             SincronizarListaMemoria();
 
             // Dicionários para agrupar os dados por Fornecedor
-            // Chave = ID do Fornecedor
             var pedidosParaProcessar = new Dictionary<int, List<ItemPedidoFinal>>();
             var prazosPorFornecedor = new Dictionary<int, int>();
-            var qtdTotalPorFornecedor = new Dictionary<int, int>(); // Novo: para cálculo de volume
+            var qtdTotalPorFornecedor = new Dictionary<int, int>();
 
             bool haItensParaSalvar = false;
 
-            // =================================================================================
-            // ETAPA 1: ITERAR O GRID E AGRUPAR ITENS POR FORNECEDOR
-            // =================================================================================
+            // ETAPA 1: AGRUPAMENTO
             foreach (DataGridViewRow row in dgvItens.Rows)
             {
-                // Validações básicas da linha
                 if (row.Cells["cmbFornecedor"].Value == null) continue;
 
                 int idForn = 0;
@@ -458,19 +460,15 @@ namespace Projeto_FinalOficial
 
                 haItensParaSalvar = true;
 
-                // Extração de dados da linha
                 int idVariacao = Convert.ToInt32(row.Cells["IdVariacao"].Value);
                 int quantidade = Convert.ToInt32(row.Cells["Qtd"].Value);
-                string nomeProduto = row.Cells["Produto"].Value?.ToString() ?? "PRODUTO SEM NOME";
-
-                // O prazo consideramos o maior entre os itens daquele fornecedor
+                string nomeProduto = row.Cells["Produto"].Value?.ToString() ?? "PRODUTO";
                 int prazoItem = row.Cells["Prazo"].Value != null ? Convert.ToInt32(row.Cells["Prazo"].Value) : 7;
 
-                // Tenta extrair preço do texto do Combo (Ex: "Forn A - R$ 50,00")
+                // Captura preço do texto do combo
                 decimal precoCapturado = 0;
                 var cellCombo = (DataGridViewComboBoxCell)row.Cells["cmbFornecedor"];
                 string textoCombo = cellCombo.EditedFormattedValue?.ToString() ?? "";
-
                 try
                 {
                     if (textoCombo.Contains("R$"))
@@ -481,7 +479,6 @@ namespace Projeto_FinalOficial
                 }
                 catch { precoCapturado = 0; }
 
-                // Inicializa as listas/contadores para este fornecedor se for a primeira vez que ele aparece
                 if (!pedidosParaProcessar.ContainsKey(idForn))
                 {
                     pedidosParaProcessar[idForn] = new List<ItemPedidoFinal>();
@@ -489,7 +486,6 @@ namespace Projeto_FinalOficial
                     qtdTotalPorFornecedor[idForn] = 0;
                 }
 
-                // Adiciona o item à lista do fornecedor
                 pedidosParaProcessar[idForn].Add(new ItemPedidoFinal
                 {
                     IdVariacao = idVariacao,
@@ -498,17 +494,13 @@ namespace Projeto_FinalOficial
                     NomeProduto = nomeProduto
                 });
 
-                // Atualiza totais para cálculo posterior
                 qtdTotalPorFornecedor[idForn] += quantidade;
 
-                // Mantém o maior prazo (se um item demora 15 dias e outro 2, o pedido todo leva 15)
                 if (prazoItem > prazosPorFornecedor[idForn])
                     prazosPorFornecedor[idForn] = prazoItem;
             }
 
-            // =================================================================================
-            // ETAPA 2: PROCESSAR, CALCULAR FRETE FINAL E SALVAR
-            // =================================================================================
+            // ETAPA 2: GERAÇÃO DOS PEDIDOS
             if (haItensParaSalvar)
             {
                 ImpressoraService impressora = new ImpressoraService();
@@ -520,24 +512,19 @@ namespace Projeto_FinalOficial
                     int prazoMaximo = prazosPorFornecedor[idFornecedor];
                     int totalItensVolume = qtdTotalPorFornecedor[idFornecedor];
 
-                    // --- LÓGICA DE FRETE REALISTA ---
-                    // Taxa fixa de entrega (ex: R$ 35,00) + R$ 0,10 por unidade de produto
+                    // Recalcula o Frete Total Oficial para Salvar no Banco (Garante precisão)
                     decimal taxaFixa = 35.00m;
                     decimal taxaVariavel = totalItensVolume * 0.10m;
                     decimal valorFreteTotal = taxaFixa + taxaVariavel;
-                    // --------------------------------
 
-                    // Busca dados cadastrais do fornecedor para impressão
                     var dadosFornecedor = _dal.ObterFornecedorPorId(idFornecedor);
 
-                    // Salva no banco de dados e recupera o ID do pedido gerado
                     int idNovoPedido = _dal.SalvarPedidoUnico(idFornecedor, listaItens, valorFreteTotal, prazoMaximo);
 
                     if (idNovoPedido > 0)
                     {
                         contadorPedidos++;
 
-                        // Monta o objeto para impressão
                         var pedidoPrint = new PedidoCompraImpressao
                         {
                             IdPedido = idNovoPedido,
@@ -548,7 +535,7 @@ namespace Projeto_FinalOficial
                             LojaNome = "CRIMSON SUIT LTDA",
                             LojaCNPJ = "10.897.345/0001-00",
                             LojaEndereco = "Rua Rio de Janeiro, 473 - Centro - BH/MG",
-                            ValorFrete = valorFreteTotal, // Aqui vai o frete único recalculado
+                            ValorFrete = valorFreteTotal,
                             PrazoEntregaDias = prazoMaximo
                         };
 
@@ -564,7 +551,6 @@ namespace Projeto_FinalOficial
                             });
                         }
 
-                        // Pergunta se deseja imprimir
                         if (MessageBox.Show($"Pedido Nº {idNovoPedido} gerado para {dadosFornecedor.Nome}.\nValor Frete: {valorFreteTotal:C2}\nDeseja salvar o PDF?",
                             "Sucesso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
@@ -573,9 +559,7 @@ namespace Projeto_FinalOficial
                     }
                 }
 
-                MessageBox.Show($"Processo concluído! {contadorPedidos} pedidos gerados com sucesso.");
-
-                // Limpa a tela após concluir
+                MessageBox.Show($"Processo concluído! {contadorPedidos} pedidos gerados.");
                 dgvItens.Rows.Clear();
                 _itensNoCarrinho.Clear();
                 pnlTopo.Visible = false;

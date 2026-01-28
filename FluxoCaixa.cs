@@ -1,32 +1,29 @@
-﻿using System;
-using MySql.Data.MySqlClient; // Certifique-se de ter esta biblioteca
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
 
 namespace Projeto_FinalOficial.Modelos
 {
     public class FluxoCaixa
     {
-    
-
+        // Propriedades
         public int ID { get; set; }
         public DateTime DataAbertura { get; set; }
-
-        // O "?" significa que aceita NULO (pois ao abrir, ainda não tem data de fechamento)
         public DateTime? DataFechamento { get; set; }
-
-        public decimal ValorInicial { get; set; } // Fundo de Troco
-        public decimal? ValorFinal { get; set; }   // Valor contado na mão (Gaveta)
-        public decimal? TotalVendasSistema { get; set; } // Valor que o sistema calculou
-
+        public decimal ValorInicial { get; set; }
+        public decimal? ValorFinal { get; set; }
         public string UsuarioResponsavel { get; set; }
         public string GerenteLiberacao { get; set; }
-        public string Status { get; set; } // "Aberto" ou "Fechado"
+        public string StatusCaixa { get; set; }
 
-        // Variável de conexão (Ajuste para puxar da sua classe de Conexão se tiver uma)
-        private readonly string _Conexao = Conexao.ConexãoServidor; 
+        // ⚠️ IMPORTANTE: Ajuste sua string de conexão aqui se não tiver a classe Conexao
+        // Se você tiver a classe Conexao, mantenha: Conexao.ConexãoServidor
+        //private readonly string _Conexao = Conexao.ConexãoServidor();
+        private readonly string _Conexao = Conexao.ConexãoServidor;
+
         // --- MÉTODOS ---
 
-        // 1. ABRIR CAIXA (Retorna o ID gerado)
+        // 1. ABRIR CAIXA
         public int AbrirCaixa()
         {
             int idGerado = 0;
@@ -35,7 +32,6 @@ namespace Projeto_FinalOficial.Modelos
             {
                 conexao.Open();
 
-                // O comando SQL insere e logo depois pede o ID gerado (SELECT LAST_INSERT_ID())
                 string sql = @"INSERT INTO PDV_Caixa 
                                (DataAbertura, ValorInicial, UsuarioResponsavel, GerenteLiberacao, StatusCaixa) 
                                VALUES 
@@ -47,64 +43,114 @@ namespace Projeto_FinalOficial.Modelos
                 {
                     cmd.Parameters.AddWithValue("@ValorInicial", this.ValorInicial);
                     cmd.Parameters.AddWithValue("@UsuarioResponsavel", this.UsuarioResponsavel);
-                   cmd.Parameters.AddWithValue("@DataAbertura", this.DataAbertura);
-                    // Se não tiver gerente (null), gravamos DBNull no banco
+
+                    // Tratamento para Gerente (pode ser nulo na abertura se não precisar de senha)
                     if (string.IsNullOrEmpty(this.GerenteLiberacao))
                         cmd.Parameters.AddWithValue("@GerenteLiberacao", DBNull.Value);
                     else
                         cmd.Parameters.AddWithValue("@GerenteLiberacao", this.GerenteLiberacao);
 
-                    // ExecuteScalar executa o INSERT e retorna o resultado do SELECT LAST_INSERT_ID()
-                    // Convertemos para int para usar no programa
                     idGerado = Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
-
-            return idGerado; // Retorna, por exemplo, 540
+            return idGerado;
         }
 
-        // 2. BUSCAR TOTAL VENDIDO (Para saber quanto o sistema acusa)
-        public decimal BuscarTotalVendasSistema(int idCaixa)
+        // 2. BUSCAR TOTAL VENDIDO (Soma das vendas para exibir na tela)
+        public (decimal valorInicial, decimal totalVendas) ObterResumoFechamento(int idCaixa)
         {
-            decimal total = 0;
+            decimal vInicial = 0;
+            decimal vVendas = 0;
 
-            using (MySqlConnection conexao = new MySqlConnection(_Conexao))
+            using (var conn = new MySqlConnection(_Conexao))
             {
-                conexao.Open();
-                // Soma todas as vendas vinculadas a este ID de caixa
-                string sql = "SELECT IFNULL(SUM(ValorTotal), 0) FROM Vendas WHERE ID_FluxoCaixa = @ID";
+                conn.Open();
 
-                using (MySqlCommand cmd = new MySqlCommand(sql, conexao))
+                // Busca Valor Inicial e Soma das Vendas
+                string sql = @"
+                    SELECT 
+                        c.ValorInicial, 
+                        COALESCE(SUM(v.valor_total), 0) as TotalVendas
+                    FROM PDV_Caixa c
+                    LEFT JOIN Vendas v ON c.ID = v.ID_FluxoCaixa
+                    WHERE c.ID = @id
+                    GROUP BY c.ValorInicial";
+
+                using (var cmd = new MySqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ID", idCaixa);
-                    total = Convert.ToDecimal(cmd.ExecuteScalar());
+                    cmd.Parameters.AddWithValue("@id", idCaixa);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            vInicial = reader.GetDecimal("ValorInicial");
+                            vVendas = reader.GetDecimal("TotalVendas");
+                        }
+                    }
                 }
             }
-            return total;
+            return (vInicial, vVendas);
         }
 
-        // 3. FECHAR CAIXA (Atualiza com os valores finais)
-        public void FecharCaixa(int idCaixa, decimal valorNaGaveta, decimal totalSistema)
+        // 3. BUSCAR LISTA DE VENDAS (Para o Grid)
+        public DataTable ObterVendasDoCaixa(int idCaixa)
         {
-            using (MySqlConnection conexao = new MySqlConnection(_Conexao))
+            DataTable dt = new DataTable();
+            using (var conn = new MySqlConnection(_Conexao))
             {
-                conexao.Open();
+                conn.Open();
+                string sql = @"
+                    SELECT 
+                        id AS 'Cód.', 
+                        data_venda AS 'Hora', 
+                        forma_pagamento AS 'Pagamento', 
+                        valor_total AS 'Valor'
+                    FROM Vendas 
+                    WHERE ID_FluxoCaixa = @id
+                    ORDER BY data_venda DESC";
 
-                string sql = @"UPDATE PDV_Caixa
-                               SET DataFechamento = NOW(), 
-                                   ValorFinal = @ValorFinal, 
-                                   ValorTotalVendas = @TotalSistema, 
-                                   StatusCaixa = 'Fechado'
-                               WHERE ID = @ID";
-
-                using (MySqlCommand cmd = new MySqlCommand(sql, conexao))
+                using (var dataAdapter = new MySqlDataAdapter(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ValorFinal", valorNaGaveta);
-                    cmd.Parameters.AddWithValue("@TotalSistema", totalSistema);
-                    cmd.Parameters.AddWithValue("@ID", idCaixa);
-
-                    cmd.ExecuteNonQuery();
+                    dataAdapter.SelectCommand.Parameters.AddWithValue("@id", idCaixa);
+                    dataAdapter.Fill(dt);
                 }
+            }
+            return dt;
+        }
+
+        // 4. FECHAR CAIXA
+        public bool FecharCaixa(int idCaixa, decimal valorFinal, string nomeGerente)
+        {
+            try
+            {
+                using (MySqlConnection conexao = new MySqlConnection(_Conexao))
+                {
+                    conexao.Open();
+
+                    // Removi 'ValorTotalVendas' pois não existe na sua tabela PDV_Caixa original
+                    string sql = @"UPDATE PDV_Caixa
+                                   SET DataFechamento = NOW(), 
+                                       ValorFinal = @ValorFinal, 
+                                       StatusCaixa = 'Fechado',
+                                       GerenteLiberacao = @Gerente
+                                   WHERE ID = @ID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conexao))
+                    {
+                        cmd.Parameters.AddWithValue("@ValorFinal", valorFinal);
+                        cmd.Parameters.AddWithValue("@Gerente", nomeGerente);
+                        cmd.Parameters.AddWithValue("@ID", idCaixa);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // É bom saber se deu erro
+                Console.WriteLine("Erro ao fechar caixa: " + ex.Message);
+                return false;
             }
         }
     }

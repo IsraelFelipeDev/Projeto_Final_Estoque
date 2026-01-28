@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_Letreiro = new System.Windows.Forms.Label();
             this.txt_CodigoProd = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txt_ValorUnitario = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.pick_FotoProd = new ReaLTaiizor.Controls.HopePictureBox();
@@ -57,10 +57,34 @@
             this.btn_BuscarCliente = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.moonLabel7 = new ReaLTaiizor.Controls.MoonLabel();
             this.panelSombreado1 = new PanelSombreado();
+            this.btn_FecharCaixa = new FontAwesome.Sharp.IconButton();
+            this.pn_FechamentoCaixa = new PanelSombreado();
+            this.kryptonGroupBox1 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
+            this.panelSombreado4 = new PanelSombreado();
+            this.btn_CancelarFechamento = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btn_ConfirmarFechamento = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.panelSombreado3 = new PanelSombreado();
+            this.dgv_ListaVendas = new System.Windows.Forms.DataGridView();
+            this.panelSombreado2 = new PanelSombreado();
+            this.lbl_ValorFechamentoCaixa = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbl_TotalVendido = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbl_ValorInicial = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pick_FotoProd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Carrinho)).BeginInit();
             this.panelSombreado1.SuspendLayout();
+            this.pn_FechamentoCaixa.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).BeginInit();
+            this.kryptonGroupBox1.Panel.SuspendLayout();
+            this.kryptonGroupBox1.SuspendLayout();
+            this.panelSombreado4.SuspendLayout();
+            this.panelSombreado3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ListaVendas)).BeginInit();
+            this.panelSombreado2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -68,7 +92,7 @@
             this.panel1.BackColor = System.Drawing.Color.LimeGreen;
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lbl_Letreiro);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
@@ -94,19 +118,19 @@
             this.panel2.Size = new System.Drawing.Size(1, 494);
             this.panel2.TabIndex = 2;
             // 
-            // label1
+            // lbl_Letreiro
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("OCR A Extended", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(582, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(242, 32);
-            this.label1.TabIndex = 0;
-            this.label1.Tag = "Fixo";
-            this.label1.Text = " Caixa Livre";
+            this.lbl_Letreiro.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbl_Letreiro.AutoSize = true;
+            this.lbl_Letreiro.Font = new System.Drawing.Font("OCR A Extended", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Letreiro.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_Letreiro.Location = new System.Drawing.Point(582, 12);
+            this.lbl_Letreiro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Letreiro.Name = "lbl_Letreiro";
+            this.lbl_Letreiro.Size = new System.Drawing.Size(242, 32);
+            this.lbl_Letreiro.TabIndex = 0;
+            this.lbl_Letreiro.Tag = "Fixo";
+            this.lbl_Letreiro.Text = " Caixa Livre";
             // 
             // txt_CodigoProd
             // 
@@ -185,7 +209,7 @@
             this.moonLabel2.AutoSize = true;
             this.moonLabel2.BackColor = System.Drawing.Color.Transparent;
             this.moonLabel2.ForeColor = System.Drawing.Color.DimGray;
-            this.moonLabel2.Location = new System.Drawing.Point(193, 431);
+            this.moonLabel2.Location = new System.Drawing.Point(225, 430);
             this.moonLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.moonLabel2.Name = "moonLabel2";
             this.moonLabel2.Size = new System.Drawing.Size(77, 16);
@@ -195,7 +219,7 @@
             // num_Quantidade
             // 
             this.num_Quantidade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.num_Quantidade.Location = new System.Drawing.Point(195, 451);
+            this.num_Quantidade.Location = new System.Drawing.Point(214, 450);
             this.num_Quantidade.Margin = new System.Windows.Forms.Padding(4);
             this.num_Quantidade.Name = "num_Quantidade";
             this.num_Quantidade.Size = new System.Drawing.Size(88, 32);
@@ -211,11 +235,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_Carrinho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Carrinho.Location = new System.Drawing.Point(50, 52);
+            this.dgv_Carrinho.Location = new System.Drawing.Point(50, 49);
             this.dgv_Carrinho.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_Carrinho.Name = "dgv_Carrinho";
             this.dgv_Carrinho.RowHeadersWidth = 51;
-            this.dgv_Carrinho.Size = new System.Drawing.Size(732, 400);
+            this.dgv_Carrinho.Size = new System.Drawing.Size(691, 400);
             this.dgv_Carrinho.TabIndex = 15;
             // 
             // btn_AdicionarItem
@@ -256,7 +280,7 @@
             // Btn_AlterarItem
             // 
             this.Btn_AlterarItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btn_AlterarItem.Location = new System.Drawing.Point(470, 472);
+            this.Btn_AlterarItem.Location = new System.Drawing.Point(429, 472);
             this.Btn_AlterarItem.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_AlterarItem.Name = "Btn_AlterarItem";
             this.Btn_AlterarItem.Size = new System.Drawing.Size(136, 39);
@@ -276,7 +300,7 @@
             this.btn_FinalizarVenda.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_FinalizarVenda.IconSize = 43;
             this.btn_FinalizarVenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_FinalizarVenda.Location = new System.Drawing.Point(595, 669);
+            this.btn_FinalizarVenda.Location = new System.Drawing.Point(554, 669);
             this.btn_FinalizarVenda.Margin = new System.Windows.Forms.Padding(4);
             this.btn_FinalizarVenda.Name = "btn_FinalizarVenda";
             this.btn_FinalizarVenda.Size = new System.Drawing.Size(187, 62);
@@ -342,7 +366,7 @@
             // btn_ExcluirItemCarrinho
             // 
             this.btn_ExcluirItemCarrinho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ExcluirItemCarrinho.Location = new System.Drawing.Point(637, 472);
+            this.btn_ExcluirItemCarrinho.Location = new System.Drawing.Point(596, 472);
             this.btn_ExcluirItemCarrinho.Margin = new System.Windows.Forms.Padding(4);
             this.btn_ExcluirItemCarrinho.Name = "btn_ExcluirItemCarrinho";
             this.btn_ExcluirItemCarrinho.Size = new System.Drawing.Size(120, 39);
@@ -361,7 +385,7 @@
             this.moonLabel6.BackColor = System.Drawing.Color.Transparent;
             this.moonLabel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.moonLabel6.ForeColor = System.Drawing.Color.Black;
-            this.moonLabel6.Location = new System.Drawing.Point(662, 577);
+            this.moonLabel6.Location = new System.Drawing.Point(621, 577);
             this.moonLabel6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.moonLabel6.Name = "moonLabel6";
             this.moonLabel6.Size = new System.Drawing.Size(111, 28);
@@ -371,7 +395,7 @@
             // txt_ValorFinal
             // 
             this.txt_ValorFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_ValorFinal.Location = new System.Drawing.Point(595, 621);
+            this.txt_ValorFinal.Location = new System.Drawing.Point(554, 621);
             this.txt_ValorFinal.Margin = new System.Windows.Forms.Padding(4);
             this.txt_ValorFinal.Name = "txt_ValorFinal";
             this.txt_ValorFinal.ReadOnly = true;
@@ -451,18 +475,254 @@
             this.panelSombreado1.Controls.Add(this.btn_FinalizarVenda);
             this.panelSombreado1.Controls.Add(this.moonLabel6);
             this.panelSombreado1.Controls.Add(this.txt_ValorFinal);
-            this.panelSombreado1.Location = new System.Drawing.Point(498, 59);
+            this.panelSombreado1.Location = new System.Drawing.Point(539, 59);
             this.panelSombreado1.Margin = new System.Windows.Forms.Padding(7);
             this.panelSombreado1.Name = "panelSombreado1";
             this.panelSombreado1.Padding = new System.Windows.Forms.Padding(10);
-            this.panelSombreado1.Size = new System.Drawing.Size(812, 745);
+            this.panelSombreado1.Size = new System.Drawing.Size(771, 745);
             this.panelSombreado1.TabIndex = 32;
+            // 
+            // btn_FecharCaixa
+            // 
+            this.btn_FecharCaixa.IconChar = FontAwesome.Sharp.IconChar.CashRegister;
+            this.btn_FecharCaixa.IconColor = System.Drawing.Color.Black;
+            this.btn_FecharCaixa.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_FecharCaixa.Location = new System.Drawing.Point(413, 66);
+            this.btn_FecharCaixa.Name = "btn_FecharCaixa";
+            this.btn_FecharCaixa.Size = new System.Drawing.Size(116, 80);
+            this.btn_FecharCaixa.TabIndex = 34;
+            this.btn_FecharCaixa.Text = "Fechar Caixa";
+            this.btn_FecharCaixa.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_FecharCaixa.UseVisualStyleBackColor = true;
+            this.btn_FecharCaixa.Click += new System.EventHandler(this.btn_FecharCaixa_Click);
+            // 
+            // pn_FechamentoCaixa
+            // 
+            this.pn_FechamentoCaixa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.pn_FechamentoCaixa.Controls.Add(this.kryptonGroupBox1);
+            this.pn_FechamentoCaixa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pn_FechamentoCaixa.Location = new System.Drawing.Point(0, 59);
+            this.pn_FechamentoCaixa.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
+            this.pn_FechamentoCaixa.Name = "pn_FechamentoCaixa";
+            this.pn_FechamentoCaixa.Padding = new System.Windows.Forms.Padding(10);
+            this.pn_FechamentoCaixa.Size = new System.Drawing.Size(1310, 745);
+            this.pn_FechamentoCaixa.TabIndex = 35;
+            // 
+            // kryptonGroupBox1
+            // 
+            this.kryptonGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonGroupBox1.CaptionOverlap = 0D;
+            this.kryptonGroupBox1.CaptionStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
+            this.kryptonGroupBox1.CaptionVisible = false;
+            this.kryptonGroupBox1.CausesValidation = false;
+            this.kryptonGroupBox1.Location = new System.Drawing.Point(178, 49);
+            this.kryptonGroupBox1.Name = "kryptonGroupBox1";
+            // 
+            // kryptonGroupBox1.Panel
+            // 
+            this.kryptonGroupBox1.Panel.Controls.Add(this.panelSombreado4);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.panelSombreado3);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.panelSombreado2);
+            this.kryptonGroupBox1.Size = new System.Drawing.Size(926, 628);
+            this.kryptonGroupBox1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonGroupBox1.StateCommon.Border.Rounding = 100;
+            this.kryptonGroupBox1.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.kryptonGroupBox1.TabIndex = 0;
+            this.kryptonGroupBox1.Values.Heading = "";
+            // 
+            // panelSombreado4
+            // 
+            this.panelSombreado4.BackColor = System.Drawing.Color.Transparent;
+            this.panelSombreado4.Controls.Add(this.btn_CancelarFechamento);
+            this.panelSombreado4.Controls.Add(this.btn_ConfirmarFechamento);
+            this.panelSombreado4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelSombreado4.Location = new System.Drawing.Point(305, 474);
+            this.panelSombreado4.Margin = new System.Windows.Forms.Padding(0);
+            this.panelSombreado4.Name = "panelSombreado4";
+            this.panelSombreado4.Padding = new System.Windows.Forms.Padding(2, 2, 12, 12);
+            this.panelSombreado4.Size = new System.Drawing.Size(555, 88);
+            this.panelSombreado4.TabIndex = 1;
+            // 
+            // btn_CancelarFechamento
+            // 
+            this.btn_CancelarFechamento.Location = new System.Drawing.Point(36, 21);
+            this.btn_CancelarFechamento.Name = "btn_CancelarFechamento";
+            this.btn_CancelarFechamento.Size = new System.Drawing.Size(152, 44);
+            this.btn_CancelarFechamento.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btn_CancelarFechamento.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btn_CancelarFechamento.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btn_CancelarFechamento.StateCommon.Border.Rounding = 10;
+            this.btn_CancelarFechamento.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.btn_CancelarFechamento.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.btn_CancelarFechamento.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btn_CancelarFechamento.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btn_CancelarFechamento.StateNormal.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.btn_CancelarFechamento.StateNormal.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.btn_CancelarFechamento.StateNormal.Content.ShortText.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CancelarFechamento.TabIndex = 2;
+            this.btn_CancelarFechamento.Values.Text = "Cancelar";
+            this.btn_CancelarFechamento.Click += new System.EventHandler(this.btn_CancelarFechamento_Click);
+            // 
+            // btn_ConfirmarFechamento
+            // 
+            this.btn_ConfirmarFechamento.Location = new System.Drawing.Point(269, 21);
+            this.btn_ConfirmarFechamento.Name = "btn_ConfirmarFechamento";
+            this.btn_ConfirmarFechamento.Size = new System.Drawing.Size(235, 44);
+            this.btn_ConfirmarFechamento.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_ConfirmarFechamento.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btn_ConfirmarFechamento.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_ConfirmarFechamento.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btn_ConfirmarFechamento.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btn_ConfirmarFechamento.StateCommon.Border.Rounding = 10;
+            this.btn_ConfirmarFechamento.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_ConfirmarFechamento.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btn_ConfirmarFechamento.StateDisabled.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_ConfirmarFechamento.StateDisabled.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btn_ConfirmarFechamento.StateDisabled.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btn_ConfirmarFechamento.StateDisabled.Border.Rounding = 10;
+            this.btn_ConfirmarFechamento.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_ConfirmarFechamento.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btn_ConfirmarFechamento.StateNormal.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.btn_ConfirmarFechamento.StateNormal.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.btn_ConfirmarFechamento.StateNormal.Content.ShortText.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ConfirmarFechamento.StatePressed.Back.Color1 = System.Drawing.Color.Gold;
+            this.btn_ConfirmarFechamento.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btn_ConfirmarFechamento.StateTracking.Back.Color1 = System.Drawing.Color.Lime;
+            this.btn_ConfirmarFechamento.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btn_ConfirmarFechamento.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.btn_ConfirmarFechamento.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.btn_ConfirmarFechamento.StateTracking.Content.ShortText.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ConfirmarFechamento.TabIndex = 1;
+            this.btn_ConfirmarFechamento.Values.Text = "Confirmar Fechamento";
+            this.btn_ConfirmarFechamento.Click += new System.EventHandler(this.btn_ConfirmarFechamento_Click);
+            // 
+            // panelSombreado3
+            // 
+            this.panelSombreado3.BackColor = System.Drawing.Color.Transparent;
+            this.panelSombreado3.Controls.Add(this.dgv_ListaVendas);
+            this.panelSombreado3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSombreado3.Location = new System.Drawing.Point(305, 0);
+            this.panelSombreado3.Margin = new System.Windows.Forms.Padding(0);
+            this.panelSombreado3.Name = "panelSombreado3";
+            this.panelSombreado3.Padding = new System.Windows.Forms.Padding(2, 2, 12, 12);
+            this.panelSombreado3.Size = new System.Drawing.Size(555, 562);
+            this.panelSombreado3.TabIndex = 0;
+            // 
+            // dgv_ListaVendas
+            // 
+            this.dgv_ListaVendas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_ListaVendas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ListaVendas.Location = new System.Drawing.Point(47, 96);
+            this.dgv_ListaVendas.Name = "dgv_ListaVendas";
+            this.dgv_ListaVendas.RowHeadersWidth = 51;
+            this.dgv_ListaVendas.RowTemplate.Height = 24;
+            this.dgv_ListaVendas.Size = new System.Drawing.Size(457, 341);
+            this.dgv_ListaVendas.TabIndex = 0;
+            // 
+            // panelSombreado2
+            // 
+            this.panelSombreado2.BackColor = System.Drawing.Color.Transparent;
+            this.panelSombreado2.Controls.Add(this.lbl_ValorFechamentoCaixa);
+            this.panelSombreado2.Controls.Add(this.label8);
+            this.panelSombreado2.Controls.Add(this.lbl_TotalVendido);
+            this.panelSombreado2.Controls.Add(this.label6);
+            this.panelSombreado2.Controls.Add(this.lbl_ValorInicial);
+            this.panelSombreado2.Controls.Add(this.label3);
+            this.panelSombreado2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelSombreado2.Location = new System.Drawing.Point(0, 0);
+            this.panelSombreado2.Margin = new System.Windows.Forms.Padding(0);
+            this.panelSombreado2.Name = "panelSombreado2";
+            this.panelSombreado2.Padding = new System.Windows.Forms.Padding(2, 2, 12, 12);
+            this.panelSombreado2.Size = new System.Drawing.Size(305, 562);
+            this.panelSombreado2.TabIndex = 0;
+            // 
+            // lbl_ValorFechamentoCaixa
+            // 
+            this.lbl_ValorFechamentoCaixa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbl_ValorFechamentoCaixa.AutoSize = true;
+            this.lbl_ValorFechamentoCaixa.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_ValorFechamentoCaixa.Location = new System.Drawing.Point(61, 326);
+            this.lbl_ValorFechamentoCaixa.Name = "lbl_ValorFechamentoCaixa";
+            this.lbl_ValorFechamentoCaixa.Size = new System.Drawing.Size(30, 41);
+            this.lbl_ValorFechamentoCaixa.TabIndex = 8;
+            this.lbl_ValorFechamentoCaixa.Text = "-";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(18, 277);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(198, 28);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Valor Final do Caixa";
+            // 
+            // lbl_TotalVendido
+            // 
+            this.lbl_TotalVendido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbl_TotalVendido.AutoSize = true;
+            this.lbl_TotalVendido.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_TotalVendido.Location = new System.Drawing.Point(61, 191);
+            this.lbl_TotalVendido.Name = "lbl_TotalVendido";
+            this.lbl_TotalVendido.Size = new System.Drawing.Size(30, 41);
+            this.lbl_TotalVendido.TabIndex = 5;
+            this.lbl_TotalVendido.Text = "-";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(12, 46);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(123, 28);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Valor Inicial";
+            // 
+            // lbl_ValorInicial
+            // 
+            this.lbl_ValorInicial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbl_ValorInicial.AutoSize = true;
+            this.lbl_ValorInicial.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_ValorInicial.Location = new System.Drawing.Point(61, 74);
+            this.lbl_ValorInicial.Name = "lbl_ValorInicial";
+            this.lbl_ValorInicial.Size = new System.Drawing.Size(30, 41);
+            this.lbl_ValorInicial.TabIndex = 3;
+            this.lbl_ValorInicial.Text = "-";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(18, 163);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(142, 28);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Total Vendido";
             // 
             // UC_Vendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.Controls.Add(this.pn_FechamentoCaixa);
+            this.Controls.Add(this.moonLabel2);
+            this.Controls.Add(this.num_Quantidade);
+            this.Controls.Add(this.btn_FecharCaixa);
             this.Controls.Add(this.panelSombreado1);
             this.Controls.Add(this.moonLabel7);
             this.Controls.Add(this.btn_BuscarCliente);
@@ -474,8 +734,6 @@
             this.Controls.Add(this.moonLabel3);
             this.Controls.Add(this.btn_LimparCampos);
             this.Controls.Add(this.btn_AdicionarItem);
-            this.Controls.Add(this.num_Quantidade);
-            this.Controls.Add(this.moonLabel2);
             this.Controls.Add(this.moonLabel1);
             this.Controls.Add(this.txt_NomeProd);
             this.Controls.Add(this.pick_FotoProd);
@@ -492,6 +750,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Carrinho)).EndInit();
             this.panelSombreado1.ResumeLayout(false);
             this.panelSombreado1.PerformLayout();
+            this.pn_FechamentoCaixa.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).EndInit();
+            this.kryptonGroupBox1.Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).EndInit();
+            this.kryptonGroupBox1.ResumeLayout(false);
+            this.panelSombreado4.ResumeLayout(false);
+            this.panelSombreado3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ListaVendas)).EndInit();
+            this.panelSombreado2.ResumeLayout(false);
+            this.panelSombreado2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,10 +768,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_Letreiro;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_CodigoProd;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_ValorUnitario;
         private ReaLTaiizor.Controls.HopePictureBox pick_FotoProd;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txt_NomeProd;
@@ -527,5 +793,22 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btn_BuscarCliente;
         private ReaLTaiizor.Controls.MoonLabel moonLabel7;
         private PanelSombreado panelSombreado1;
+        private FontAwesome.Sharp.IconButton btn_FecharCaixa;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
+        private PanelSombreado pn_FechamentoCaixa;
+        private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
+        private PanelSombreado panelSombreado3;
+        private PanelSombreado panelSombreado2;
+        private PanelSombreado panelSombreado4;
+        private System.Windows.Forms.DataGridView dgv_ListaVendas;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_ConfirmarFechamento;
+        private System.Windows.Forms.Label lbl_ValorInicial;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbl_TotalVendido;
+        private System.Windows.Forms.Label label6;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_CancelarFechamento;
+        private System.Windows.Forms.Label lbl_ValorFechamentoCaixa;
     }
 }
